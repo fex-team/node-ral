@@ -1,0 +1,39 @@
+{
+  "name": "yog-ral",
+  "version": "0.0.0",
+  "description": "a rpc client for node",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter dot --check-leaks test/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fex-team/yog-ral.git"
+  },
+  "keywords": [
+    "rpc",
+    "ral",
+    "fis"
+  ],
+  "author": "FIS",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/fex-team/yog-ral/issues"
+  },
+  "homepage": "https://github.com/fex-team/yog-ral",
+  "dependencies": {
+    "async": "0.9.0",
+    "chai": "1.9.1",
+    "iconv-lite": "0.4.4",
+    "recursive-readdir": "^1.1.3",
+    "should": "4.0.4",
+    "underscore": "1.6.0",
+    "yog-log": "0.0.9"
+  },
+  "devDependencies": {
+    "istanbul": "0.3.0",
+    "mocha": "1.21.3"
+  }
+}
