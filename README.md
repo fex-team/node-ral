@@ -18,6 +18,8 @@ yog-ral
     - [X] Logger
     - [X] Converter
     - [X] Protocol
+    - [ ] Request
+    - [ ] Response
     - [ ] **RPC**
     - [ ] *Filter*
 - Ext
@@ -39,5 +41,6 @@ yog-ral
         - [ ] *Msgpack*
     - Protocol
         - [ ] HTTP
-        - [ ] Socket
         - [ ] ***NsHead***
+        - [ ] *Socket*
+        - [ ] *HTTPS*
