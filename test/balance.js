@@ -12,9 +12,22 @@ var config = require('../lib/config.js');
 var path = require('path');
 var ctx = require('../lib/ctx.js');
 var BalanceContext = balance.BalanceContext;
+var Balance = balance.Balance;
 var RandomBalance = require('../lib/ext/balance/random.js');
 var RoundRobinBalance = require('../lib/ext/balance/roundrobin.js');
 var SourceRandom = Math.random;
+
+describe('balance', function(){
+    it('should fail when get name', function(){
+        var balance = new Balance();
+        (function(){balance.getName();}).should.be.throw(/Not Implemented/);
+    });
+
+    it('should get context class', function(){
+        var balance = new Balance();
+        balance.getContext().should.be.equal(BalanceContext);
+    });
+});
 
 
 describe('balance context', function() {
@@ -65,6 +78,12 @@ describe('random balance', function() {
         balance.getName().should.be.equal('random');
     });
 
+
+    it('has right context class', function(){
+        var converter = new RandomBalance();
+        converter.getContext().should.be.equal(BalanceContext);
+    });
+
     it('get server by random', function(done) {
         config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
             ctx.currentIDC = 'tc';
@@ -112,6 +131,11 @@ describe('roundrobin balance', function() {
     it('has right name', function(){
         var balance = new RoundRobinBalance();
         balance.getName().should.be.equal('roundrobin');
+    });
+
+    it('has right context class', function(){
+        var converter = new RoundRobinBalance();
+        converter.getContext().should.be.equal(BalanceContext);
     });
 
     it('get server by roundrobin', function(done) {

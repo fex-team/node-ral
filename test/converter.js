@@ -24,11 +24,27 @@ var mockBlahContext = new ConverterContext('mockBlah', {
     encoding: 'blah'
 });
 
+describe('converter', function(){
+   it('should fail when get name', function(){
+       var converter = new Converter();
+       (function(){converter.getName();}).should.be.throw(/Not Implemented/);
+   });
+
+    it('should get context class', function(){
+        var converter = new Converter();
+        converter.getContext().should.be.equal(ConverterContext);
+    });
+});
 
 describe('json converter', function() {
     it('has right name', function(){
         var jsonConverter = new JsonConverter();
         jsonConverter.getName().should.be.equal('json');
+    });
+
+    it('has right context class', function(){
+        var converter = new StringConverter();
+        converter.getContext().should.be.equal(ConverterContext);
     });
 
     it('pack and unpack should be paired', function() {
@@ -64,6 +80,11 @@ describe('string converter', function() {
     it('has right name', function(){
         var converter = new StringConverter();
         converter.getName().should.be.equal('string');
+    });
+
+    it('has right context class', function(){
+        var converter = new StringConverter();
+        converter.getContext().should.be.equal(ConverterContext);
     });
 
     it('pack and unpack should be paired', function() {
