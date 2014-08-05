@@ -63,6 +63,14 @@ describe('load config', function() {
         });
     });
 
+    it('load by json', function(done) {
+        config.load(__dirname + path.sep + './config/json_config.json', function(err, conf){
+            (err === null).should.be.true;
+            conf.should.have.properties('bookService');
+            done();
+        });
+    });
+
     it('load by wrong file path', function(done) {
         config.load(__dirname + path.sep + './config/single_config_w.js', function(err){
             err.should.be.ok;
