@@ -60,6 +60,11 @@ describe('balance context', function() {
 });
 
 describe('random balance', function() {
+    it('has right name', function(){
+        var balance = new RandomBalance();
+        balance.getName().should.be.equal('random');
+    });
+
     it('get server by random', function(done) {
         config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
             ctx.currentIDC = 'tc';
@@ -71,6 +76,17 @@ describe('random balance', function() {
             var server = balance.fetchServer(context);
             Math.random = SourceRandom;
             server.should.be.eql(conf.bookService3.server[0]);
+            done();
+        });
+    });
+
+    it('get server by random', function(done) {
+        config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
+            ctx.currentIDC = 'tc';
+            var context = new BalanceContext('bookService3', conf.bookService3);
+            var balance = new RandomBalance();
+            var server = balance.fetchServer(context);
+            conf.bookService3.server.should.be.containEql(server);
             done();
         });
     });
@@ -93,6 +109,11 @@ describe('random balance', function() {
 });
 
 describe('roundrobin balance', function() {
+    it('has right name', function(){
+        var balance = new RoundRobinBalance();
+        balance.getName().should.be.equal('roundrobin');
+    });
+
     it('get server by roundrobin', function(done) {
         config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
             var context = new BalanceContext('bookService3', conf.bookService3);

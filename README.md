@@ -11,7 +11,7 @@ yog-ral
     - [X] Balance
     - [ ] *Filter*
     - [X] Logger
-    - [ ] Converter
+    - [X] Converter
     - [ ] Protocol
     - [ ] **RPC**
 - Ext
@@ -25,9 +25,9 @@ yog-ral
         - [ ] *ConnectFilter*
         - [ ] *HealthFilter*
     - Converter
-        - [ ] JSON
+        - [X] JSON
         - [ ] Mcpack
-        - [ ] Raw
+        - [X] String
         - [ ] **Form**
     - Protocol
         - [ ] HTTP

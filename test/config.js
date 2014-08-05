@@ -17,15 +17,15 @@ describe('config parser', function() {
         (function(){config.parse(wrong_conf);}).should.throw(/balance/);
     });
 
-    it('parse config without unpack', function() {
-        var wrong_conf = require('./config/wrong_config.js').without_unpack;
-        (function(){config.parse(wrong_conf);}).should.throw(/unpack/);
-    });
-
-    it('parse config without pack', function() {
-        var wrong_conf = require('./config/wrong_config.js').without_pack;
-        (function(){config.parse(wrong_conf);}).should.throw(/pack/);
-    });
+//    it('parse config without unpack', function() {
+//        var wrong_conf = require('./config/wrong_config.js').without_unpack;
+//        (function(){config.parse(wrong_conf);}).should.throw(/unpack/);
+//    });
+//
+//    it('parse config without pack', function() {
+//        var wrong_conf = require('./config/wrong_config.js').without_pack;
+//        (function(){config.parse(wrong_conf);}).should.throw(/pack/);
+//    });
 
     it('parse config without protocol', function() {
         var wrong_conf = require('./config/wrong_config.js').without_protocol;
