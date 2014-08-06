@@ -44,3 +44,6 @@ yog-ral
         - [ ] ***NsHead***
         - [ ] *Socket*
         - [ ] *HTTPS*
+- Issue
+    - [X] Use Stream in Protocol
+    - [ ] Use Stream in Converter
