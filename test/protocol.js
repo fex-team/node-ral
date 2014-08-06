@@ -14,7 +14,7 @@ var HttpProtocolContext = require('../lib/ext/protocol/httpProtocol.js').HttpPro
 var mockHTTPService = {
     timeout: 1000,
     url: '/path/to/service',
-    method: '',
+    method: 'GET',
     query: {
         a: 1,
         b: 2
@@ -27,10 +27,20 @@ var mockHTTPService = {
 var mockHTTPService2 = {
     timeout: 1000,
     url: '/path/to/service',
-    method: '',
+    method: 'POST',
     query: 'a=1',
     headers: {
         'User-Agent': 'Chrome'
+    }
+};
+
+var mockRequest = {
+    options : {
+        timeout: 100,
+        query: 'b=1',
+        headers: {
+            'User-Agent': 'Webkit'
+        }
     }
 };
 
@@ -68,6 +78,30 @@ describe('http protocol', function () {
         protocol.getContext().should.be.equal(HttpProtocolContext);
     });
 
+    it('should correct prepare options', function () {
+        var http = new HttpProtocol();
+        var contextClass = http.getContext();
+        var context = new contextClass('mockHTTPService', mockHTTPService2);
+        http.talk(context, {});
+        http.options.timeout.should.be.equal(1000);
+        http.options.url.should.be.equal('/path/to/service');
+        http.options.query.should.be.eql({a:'1'});
+        http.options.headers['User-Agent'].should.be.eql('Chrome');
+    });
+
+    it('should correct extend options', function () {
+        var http = new HttpProtocol();
+        var contextClass = http.getContext();
+        var context = new contextClass('mockHTTPService', mockHTTPService2);
+        http.talk(context, mockRequest);
+        http.options.timeout.should.be.equal(100);
+        http.options.url.should.be.equal('/path/to/service');
+        http.options.query.should.be.eql({a:'1', b:'1'});
+        http.options.headers['User-Agent'].should.be.eql('Webkit');
+    });
+});
+
+describe('http protocol context', function () {
     it('should get correct context', function () {
         var context = new HttpProtocolContext('mockHTTPService', mockHTTPService);
         context.serviceID.should.be.equal('mockHTTPService');
