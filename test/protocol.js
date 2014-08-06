@@ -13,7 +13,7 @@ var HttpProtocolContext = require('../lib/ext/protocol/httpProtocol.js').HttpPro
 
 var mockHTTPService = {
     timeout: 1000,
-    url: '/path/to/service',
+    path: '/path/to/service',
     method: 'GET',
     query: {
         a: 1,
@@ -26,7 +26,7 @@ var mockHTTPService = {
 
 var mockHTTPService2 = {
     timeout: 1000,
-    url: '/path/to/service',
+    path: '/path/to/service',
     method: 'POST',
     query: 'a=1',
     headers: {
@@ -35,7 +35,7 @@ var mockHTTPService2 = {
 };
 
 var mockRequest = {
-    options : {
+    options: {
         timeout: 100,
         query: 'b=1',
         headers: {
@@ -57,14 +57,6 @@ describe('protocol', function () {
         protocol.getContext().should.be.equal(ProtocolContext);
     });
 
-    it('should get null response when talk()', function (done) {
-        var protocol = new Protocol();
-        protocol.on('data', function (data) {
-            (data === null).should.be.true;
-            done();
-        });
-        protocol.talk();
-    });
 });
 
 describe('http protocol', function () {
@@ -82,23 +74,78 @@ describe('http protocol', function () {
         var http = new HttpProtocol();
         var contextClass = http.getContext();
         var context = new contextClass('mockHTTPService', mockHTTPService2);
-        http.talk(context, {});
-        http.options.timeout.should.be.equal(1000);
-        http.options.url.should.be.equal('/path/to/service');
-        http.options.query.should.be.eql({a:'1'});
-        http.options.headers['User-Agent'].should.be.eql('Chrome');
+        var options = http._prepareOptions(context, {});
+        options.timeout.should.be.equal(1000);
+        options.path.should.be.equal('/path/to/service');
+        options.query.should.be.eql({a: '1'});
+        options.headers['User-Agent'].should.be.eql('Chrome');
     });
 
     it('should correct extend options', function () {
-        var http = new HttpProtocol();
-        var contextClass = http.getContext();
+        var httpProtocol = new HttpProtocol();
+        var contextClass = httpProtocol.getContext();
         var context = new contextClass('mockHTTPService', mockHTTPService2);
-        http.talk(context, mockRequest);
-        http.options.timeout.should.be.equal(100);
-        http.options.url.should.be.equal('/path/to/service');
-        http.options.query.should.be.eql({a:'1', b:'1'});
-        http.options.headers['User-Agent'].should.be.eql('Webkit');
+        var options = httpProtocol._prepareOptions(context, mockRequest);
+        options.timeout.should.be.equal(100);
+        options.path.should.be.equal('/path/to/service');
+        options.query.should.be.eql({a: '1', b: '1'});
+        options.headers['User-Agent'].should.be.eql('Webkit');
     });
+
+    describe('http protocol with get method',function(){
+        it('should work fine with GET method', function (done) {
+            var get_test = require('./protocol/http_protocol_get_test.js');
+            //start a http server for get
+            var server = get_test.createServer();
+            var httpProtocol = new HttpProtocol();
+            var context = new HttpProtocolContext('mockHTTPService', get_test.service);
+            httpProtocol.talk(context, get_test.request, function (err, response) {
+                response.toString().should.be.equal('hear you');
+                server.close();
+                done();
+            });
+        });
+
+        it('should work fine with GET method and querystring', function (done) {
+            var get_test = require('./protocol/http_protocol_get_test.js');
+            //start a http server for get
+            var server = get_test.createServer();
+            var httpProtocol = new HttpProtocol();
+            var context = new HttpProtocolContext('mockHTTPService', get_test.service);
+            httpProtocol.talk(context, get_test.request_with_query, function (err, response) {
+                response.toString().should.be.equal('hear you hefangshi');
+                server.close();
+                done();
+            });
+        });
+
+        it('should got 404 status when GET 404', function (done) {
+            var get_test = require('./protocol/http_protocol_get_test.js');
+            //start a http server for get
+            var server = get_test.createServer();
+            var httpProtocol = new HttpProtocol();
+            var context = new HttpProtocolContext('mockHTTPService', get_test.service);
+            httpProtocol.talk(context, get_test.request_404, function (err) {
+                err.should.be.ok;
+                server.close();
+                done();
+            });
+        });
+
+        it('should got 503 status when GET 503', function (done) {
+            var get_test = require('./protocol/http_protocol_get_test.js');
+            //start a http server for get
+            var server = get_test.createServer();
+            var httpProtocol = new HttpProtocol();
+            var context = new HttpProtocolContext('mockHTTPService', get_test.service);
+            httpProtocol.talk(context, get_test.request_503, function (err) {
+                err.should.be.ok;
+                server.close();
+                done();
+            });
+        });
+    });
+
 });
 
 describe('http protocol context', function () {
@@ -106,7 +153,7 @@ describe('http protocol context', function () {
         var context = new HttpProtocolContext('mockHTTPService', mockHTTPService);
         context.serviceID.should.be.equal('mockHTTPService');
         context.timeout.should.be.equal(mockHTTPService.timeout);
-        context.url.should.be.equal(mockHTTPService.url);
+        context.path.should.be.equal(mockHTTPService.path);
         context.method.should.be.equal(mockHTTPService.method);
         context.query.should.be.equal(mockHTTPService.query);
         context.headers.should.be.equal(mockHTTPService.headers);

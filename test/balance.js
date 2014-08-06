@@ -99,7 +99,7 @@ describe('random balance', function() {
         });
     });
 
-    it('get server by random', function(done) {
+    it('get server by random for real random', function(done) {
         config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
             ctx.currentIDC = 'tc';
             var context = new BalanceContext('bookService3', conf.bookService3);

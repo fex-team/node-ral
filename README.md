@@ -40,7 +40,7 @@ yog-ral
         - [ ] *Protobuf*
         - [ ] *Msgpack*
     - Protocol
-        - [ ] HTTP
+        - [X] HTTP
         - [ ] ***NsHead***
         - [ ] *Socket*
         - [ ] *HTTPS*
