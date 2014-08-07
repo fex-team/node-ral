@@ -6,6 +6,7 @@
 
 'use strict';
 
+var logger = require('../lib/logger.js')('ConverterTest');
 var Converter = require('../lib/converter.js').Converter;
 var ConverterContext = require('../lib/converter.js').ConverterContext;
 var JsonConverter = require('../lib/ext/converter/jsonConverter.js');
@@ -27,6 +28,8 @@ var mockBlahContext = new ConverterContext('mockBlah', {
     encoding: 'blah'
 });
 
+logger.debug('start');
+
 describe('converter', function(){
    it('should fail when get name', function(){
        var converter = new Converter();
@@ -36,6 +39,18 @@ describe('converter', function(){
     it('should get context class', function(){
         var converter = new Converter();
         converter.getContext().should.be.equal(ConverterContext);
+    });
+
+    it('pack should fail', function() {
+        var converter = new Converter();
+        var data = null;
+        (function(){converter.pack(mockBlahContext, data);}).should.throwError();
+    });
+
+    it('unpack should fail', function() {
+        var converter = new Converter();
+        var data = null;
+        (function(){converter.unpack(mockBlahContext, data);}).should.throwError();
     });
 });
 
@@ -65,6 +80,19 @@ describe('json converter', function() {
         pack.pipe(unpack);
     });
 
+    it('unpack a string pack should throw error', function(done) {
+        var converter = new StringConverter();
+        var jsonConverter = new JsonConverter();
+        var data = '张三李四';
+        var pack = converter.pack(mockUTF8Context, data);
+        var unpack = jsonConverter.unpack(mockUTF8Context);
+        unpack.on('error', function(err){
+            err.should.be.ok;
+            done();
+        });
+        pack.pipe(unpack);
+    });
+
     it('pack and unpack gbk correctly', function(done) {
         var jsonConverter = new JsonConverter();
         var data = {
@@ -78,6 +106,12 @@ describe('json converter', function() {
             done();
         });
         pack.pipe(unpack);
+    });
+
+    it('pack should fail if encoding is illegal', function() {
+        var converter = new JsonConverter();
+        var data = null;
+        (function(){converter.pack(mockBlahContext, data);}).should.throwError();
     });
 
     it('pack should work if data is null', function() {
