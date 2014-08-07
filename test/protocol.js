@@ -159,7 +159,7 @@ describe('http protocol', function () {
     });
 
     describe('http protocol with post method',function(){
-        it('should work fine with GET method', function (done) {
+        it('should work fine with POST method', function (done) {
             var post_test = require('./protocol/http_protocol_post_test.js');
             //start a http server for post
             var server = post_test.createServer();
@@ -171,7 +171,61 @@ describe('http protocol', function () {
                 response += data.toString();
             });
             stream.on('end', function(){
+                response.toString().should.be.equal('hear you hefangshi with file http_protocol_post_test.js');
+                server.close();
+                done();
+            });
+        });
+
+        it('should work fine with POST method when post a plan object', function (done) {
+            var post_test = require('./protocol/http_protocol_post_test.js');
+            //start a http server for post
+            var server = post_test.createServer();
+            var httpProtocol = new HttpProtocol();
+            var context = new HttpProtocolContext('mockHTTPService', post_test.service);
+            var stream = httpProtocol.talk(context, post_test.request_with_urlencode);
+            var response = '';
+            stream.on('data', function(data){
+                response += data.toString();
+            });
+            stream.on('end', function(){
                 response.toString().should.be.equal('hear you hefangshi');
+                server.close();
+                done();
+            });
+        });
+
+//        it('should work fine with POST gbk urlencode', function (done) {
+//            var post_test = require('./protocol/http_protocol_post_test.js');
+//            //start a http server for post
+//            var server = post_test.createServer('gbk');
+//            var httpProtocol = new HttpProtocol();
+//            var context = new HttpProtocolContext('mockHTTPService', post_test.service);
+//            var stream = httpProtocol.talk(context, post_test.request_with_gbk);
+//            var response = '';
+//            stream.on('data', function(data){
+//                response += data.toString();
+//            });
+//            stream.on('end', function(){
+//                response.toString().should.be.equal('hear you 何方石');
+//                server.close();
+//                done();
+//            });
+//        });
+
+        it('should work fine with POST gbk form', function (done) {
+            var post_test = require('./protocol/http_protocol_post_test.js');
+            //start a http server for post
+            var server = post_test.createServer('gbk');
+            var httpProtocol = new HttpProtocol();
+            var context = new HttpProtocolContext('mockHTTPService', post_test.service);
+            var stream = httpProtocol.talk(context, post_test.request_gbk_form);
+            var response = '';
+            stream.on('data', function(data){
+                response += data.toString();
+            });
+            stream.on('end', function(){
+                response.toString().should.be.equal('hear you 何方石 with file http_protocol_post_test.js');
                 server.close();
                 done();
             });

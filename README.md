@@ -35,7 +35,8 @@ yog-ral
     - Converter
         - [X] JSON
         - [X] String
-        - [ ] **Form**
+        - [X] UrlEncode
+        - [X] **Form**
         - [ ] ***Mcpack***
         - [ ] *Protobuf*
         - [ ] *Msgpack*
@@ -45,5 +46,6 @@ yog-ral
         - [ ] *Socket*
         - [ ] *HTTPS*
 - Issue
+    - [ ] Form unpack support GBK when use form-urlencoded
     - [X] Use Stream in Protocol
-    - [ ] Use Stream in Converter
+    - [X] Use Stream in Converter

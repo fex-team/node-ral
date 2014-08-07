@@ -26,17 +26,19 @@
   "dependencies": {
     "async": "0.9.0",
     "chai": "1.9.1",
+    "combined-stream": "0.0.5",
     "deep-extend": "0.2.11",
-    "form-data": "^0.1.4",
+    "form-data": "0.1.4",
     "iconv-lite": "0.4.4",
     "qs": "1.0.0",
-    "recursive-readdir": "1.1.3",
-    "request": "2.39.0",
+    "recursive-readdnir": "1.1.3",
+    "request": "2.40.0",
     "underscore": "1.6.0",
+    "urlencode": "^0.2.0",
     "yog-log": "0.0.9"
   },
   "devDependencies": {
-    "formidable": "^1.0.15",
+    "formidable": "1.0.15",
     "istanbul": "0.3.0",
     "mocha": "1.21.3",
     "should": "4.0.4"
