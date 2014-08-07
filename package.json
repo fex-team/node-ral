@@ -34,11 +34,11 @@
     "recursive-readdnir": "1.1.3",
     "request": "2.40.0",
     "underscore": "1.6.0",
-    "urlencode": "^0.2.0",
-    "yog-log": "0.0.9"
+    "urlencode": "0.2.0",
+    "yog-log": "0.0.9",
+    "formidable": "1.0.15"
   },
   "devDependencies": {
-    "formidable": "1.0.15",
     "istanbul": "0.3.0",
     "mocha": "1.21.3",
     "should": "4.0.4"
