@@ -6,10 +6,8 @@
 
 'use strict';
 
-var Protocol = require('../lib/protocol.js').Protocol;
-var ProtocolContext = require('../lib/protocol.js').ProtocolContext;
+var Protocol = require('../lib/protocol.js');
 var HttpProtocol = require('../lib/ext/protocol/httpProtocol.js');
-var HttpProtocolContext = require('../lib/ext/protocol/httpProtocol.js').HttpProtocolContext;
 var util = require('../lib/util.js');
 
 var mockHTTPService = {
