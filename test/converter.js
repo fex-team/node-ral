@@ -38,6 +38,11 @@ describe('converter', function () {
         }).should.be.throw(/Not Implemented/);
     });
 
+    it('has right catagory', function () {
+        var converter = new Converter();
+        converter.getCategory().should.be.equal('converter');
+    });
+
     it('pack should fail', function () {
         var converter = new Converter();
         var data = null;
@@ -59,6 +64,11 @@ describe('json converter', function () {
     it('has right name', function () {
         var jsonConverter = new JsonConverter();
         jsonConverter.getName().should.be.equal('json');
+    });
+
+    it('has right catagory', function () {
+        var converter = new JsonConverter();
+        converter.getCategory().should.be.equal('converter');
     });
 
     it('pack and unpack should be paired', function (done) {
@@ -127,6 +137,11 @@ describe('string converter', function () {
         converter.getName().should.be.equal('string');
     });
 
+    it('has right catagory', function () {
+        var converter = new StringConverter();
+        converter.getCategory().should.be.equal('converter');
+    });
+
     it('pack and unpack should be paired', function (done) {
         var converter = new StringConverter();
         var data = '张三李四';
@@ -172,6 +187,11 @@ describe('form converter', function () {
     it('has right name', function () {
         var converter = new FormConverter();
         converter.getName().should.be.equal('form');
+    });
+
+    it('has right catagory', function () {
+        var converter = new FormConverter();
+        converter.getCategory().should.be.equal('converter');
     });
 
     it('pack should work fine', function (done) {
@@ -253,6 +273,11 @@ describe('urlencode converter', function () {
     it('has right name', function () {
         var converter = new UrlEncodeConverter();
         converter.getName().should.be.equal('urlencode');
+    });
+
+    it('has right catagory', function () {
+        var converter = new UrlEncodeConverter();
+        converter.getCategory().should.be.equal('converter');
     });
 
     it('pack and unpack should be paired', function (done) {

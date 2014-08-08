@@ -4,7 +4,6 @@ var should = require('should');
 var config = require('../lib/config.js');
 var path = require('path');
 
-
 describe('config parser', function() {
 
     it('parse right config', function() {

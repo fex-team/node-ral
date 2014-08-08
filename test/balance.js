@@ -12,7 +12,7 @@ var config = require('../lib/config.js');
 var path = require('path');
 var ctx = require('../lib/ctx.js');
 var BalanceContext = balance.BalanceContext;
-var Balance = balance.Balance;
+var Balance = balance;
 var RandomBalance = require('../lib/ext/balance/random.js');
 var RoundRobinBalance = require('../lib/ext/balance/roundrobin.js');
 var SourceRandom = Math.random;
@@ -21,6 +21,11 @@ describe('balance', function(){
     it('should fail when get name', function(){
         var balance = new Balance();
         (function(){balance.getName();}).should.be.throw(/Not Implemented/);
+    });
+
+    it('has right catagory', function () {
+        var balance = new Balance();
+        balance.getCategory().should.be.equal('balance');
     });
 
     it('should get context class', function(){
@@ -78,6 +83,10 @@ describe('random balance', function() {
         balance.getName().should.be.equal('random');
     });
 
+    it('has right catagory', function () {
+        var balance = new RandomBalance();
+        balance.getCategory().should.be.equal('balance');
+    });
 
     it('has right context class', function(){
         var converter = new RandomBalance();
@@ -131,6 +140,11 @@ describe('roundrobin balance', function() {
     it('has right name', function(){
         var balance = new RoundRobinBalance();
         balance.getName().should.be.equal('roundrobin');
+    });
+
+    it('has right catagory', function () {
+        var balance = new RoundRobinBalance();
+        balance.getCategory().should.be.equal('balance');
     });
 
     it('has right context class', function(){

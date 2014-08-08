@@ -50,12 +50,22 @@ describe('protocol', function () {
             protocol.getName();
         }).should.be.throw(/Not Implemented/);
     });
+
+    it('has right catagory', function () {
+        var protocol = new Protocol();
+        protocol.getCategory().should.be.equal('protocol');
+    });
 });
 
 describe('http protocol', function () {
     it('should fail when get name', function () {
         var protocol = new HttpProtocol();
         protocol.getName().should.be.equal('http');
+    });
+
+    it('has right catagory', function () {
+        var protocol = new HttpProtocol();
+        protocol.getCategory().should.be.equal('protocol');
     });
 
 //    it('should correct prepare options', function () {
