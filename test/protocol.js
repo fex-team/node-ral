@@ -10,6 +10,7 @@ var Protocol = require('../lib/protocol.js').Protocol;
 var ProtocolContext = require('../lib/protocol.js').ProtocolContext;
 var HttpProtocol = require('../lib/ext/protocol/httpProtocol.js');
 var HttpProtocolContext = require('../lib/ext/protocol/httpProtocol.js').HttpProtocolContext;
+var util = require('../lib/util.js');
 
 var mockHTTPService = {
     timeout: 1000,
@@ -51,12 +52,6 @@ describe('protocol', function () {
             protocol.getName();
         }).should.be.throw(/Not Implemented/);
     });
-
-    it('should get context class', function () {
-        var protocol = new Protocol();
-        protocol.getContext().should.be.equal(ProtocolContext);
-    });
-
 });
 
 describe('http protocol', function () {
@@ -65,32 +60,27 @@ describe('http protocol', function () {
         protocol.getName().should.be.equal('http');
     });
 
-    it('should get context class', function () {
-        var protocol = new HttpProtocol();
-        protocol.getContext().should.be.equal(HttpProtocolContext);
-    });
+//    it('should correct prepare options', function () {
+//        var http = new HttpProtocol();
+//        var contextClass = http.getContextClass();
+//        var context = new contextClass('mockHTTPService', mockHTTPService2);
+//        var options = http._prepareOptions(context, {});
+//        options.timeout.should.be.equal(1000);
+//        options.path.should.be.equal('/path/to/service');
+//        options.query.should.be.eql({a: '1'});
+//        options.headers['User-Agent'].should.be.eql('Chrome');
+//    });
 
-    it('should correct prepare options', function () {
-        var http = new HttpProtocol();
-        var contextClass = http.getContext();
-        var context = new contextClass('mockHTTPService', mockHTTPService2);
-        var options = http._prepareOptions(context, {});
-        options.timeout.should.be.equal(1000);
-        options.path.should.be.equal('/path/to/service');
-        options.query.should.be.eql({a: '1'});
-        options.headers['User-Agent'].should.be.eql('Chrome');
-    });
-
-    it('should correct extend options', function () {
-        var httpProtocol = new HttpProtocol();
-        var contextClass = httpProtocol.getContext();
-        var context = new contextClass('mockHTTPService', mockHTTPService2);
-        var options = httpProtocol._prepareOptions(context, mockRequest);
-        options.timeout.should.be.equal(100);
-        options.path.should.be.equal('/path/to/service');
-        options.query.should.be.eql({a: '1', b: '1'});
-        options.headers['User-Agent'].should.be.eql('Webkit');
-    });
+//    it('should correct extend options', function () {
+//        var httpProtocol = new HttpProtocol();
+//        var contextClass = httpProtocol.getContextClass();
+//        var context = new contextClass('mockHTTPService', mockHTTPService2);
+//        var options = httpProtocol._prepareOptions(context, mockRequest);
+//        options.timeout.should.be.equal(100);
+//        options.path.should.be.equal('/path/to/service');
+//        options.query.should.be.eql({a: '1', b: '1'});
+//        options.headers['User-Agent'].should.be.eql('Webkit');
+//    });
 
     describe('http protocol with get method',function(){
         it('should work fine with GET method', function (done) {
@@ -98,8 +88,9 @@ describe('http protocol', function () {
             //start a http server for get
             var server = get_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = new HttpProtocolContext('mockHTTPService', get_test.service);
-            var stream = httpProtocol.talk(context, get_test.request);
+            var context = HttpProtocol.normalizeContext(get_test.service);
+            util.merge(context, get_test.request);
+            var stream = httpProtocol.talk(context);
             var response = '';
             stream.on('data', function(data){
                 response += data.toString();
@@ -116,8 +107,9 @@ describe('http protocol', function () {
             //start a http server for get
             var server = get_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = new HttpProtocolContext('mockHTTPService', get_test.service);
-            var stream = httpProtocol.talk(context, get_test.request_with_query);
+            var context = HttpProtocol.normalizeContext(get_test.service);
+            util.merge(context, get_test.request_with_query);
+            var stream = httpProtocol.talk(context);
             var response = '';
             stream.on('data', function(data){
                 response += data.toString();
@@ -134,8 +126,9 @@ describe('http protocol', function () {
             //start a http server for get
             var server = get_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = new HttpProtocolContext('mockHTTPService', get_test.service);
-            var stream = httpProtocol.talk(context, get_test.request_404);
+            var context = HttpProtocol.normalizeContext(get_test.service);
+            util.merge(context, get_test.request_404);
+            var stream = httpProtocol.talk(context);
             stream.on('error', function(err){
                 err.should.match(/Server Status Error: 404/);
                 server.close();
@@ -148,8 +141,9 @@ describe('http protocol', function () {
             //start a http server for get
             var server = get_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = new HttpProtocolContext('mockHTTPService', get_test.service);
-            var stream = httpProtocol.talk(context, get_test.request_503);
+            var context = HttpProtocol.normalizeContext(get_test.service);
+            util.merge(context, get_test.request_404);
+            var stream = httpProtocol.talk(context);
             stream.on('error', function(err){
                 err.should.match(/Server Status Error: 503/);
                 server.close();
@@ -164,17 +158,19 @@ describe('http protocol', function () {
             //start a http server for post
             var server = post_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = new HttpProtocolContext('mockHTTPService', post_test.service);
-            var stream = httpProtocol.talk(context, post_test.request);
+            var context = HttpProtocol.normalizeContext(post_test.service);
+            util.merge(context, post_test.request);
+            var stream = httpProtocol.talk(context);
             var response = '';
             stream.on('data', function(data){
                 response += data.toString();
             });
             stream.on('end', function(){
-                response.toString().should.be.equal('hear you hefangshi with file http_protocol_post_test.js');
                 server.close();
+                response.toString().should.be.equal('hear you hefangshi with file http_protocol_post_test.js');
                 done();
             });
+            post_test.request.payload.pipe(stream);
         });
 
         it('should work fine with POST method when post a plan object', function (done) {
@@ -182,8 +178,9 @@ describe('http protocol', function () {
             //start a http server for post
             var server = post_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = new HttpProtocolContext('mockHTTPService', post_test.service);
-            var stream = httpProtocol.talk(context, post_test.request_with_urlencode);
+            var context =HttpProtocol.normalizeContext(post_test.service);
+            util.merge(context, post_test.request_with_urlencode);
+            var stream = httpProtocol.talk(context);
             var response = '';
             stream.on('data', function(data){
                 response += data.toString();
@@ -193,6 +190,7 @@ describe('http protocol', function () {
                 server.close();
                 done();
             });
+            post_test.request_with_urlencode.payload.pipe(stream);
         });
 
 //        it('should work fine with POST gbk urlencode', function (done) {
@@ -218,8 +216,9 @@ describe('http protocol', function () {
             //start a http server for post
             var server = post_test.createServer('gbk');
             var httpProtocol = new HttpProtocol();
-            var context = new HttpProtocolContext('mockHTTPService', post_test.service);
-            var stream = httpProtocol.talk(context, post_test.request_gbk_form);
+            var context = HttpProtocol.normalizeContext(post_test.service);
+            util.merge(context, post_test.request_gbk_form);
+            var stream = httpProtocol.talk(context);
             var response = '';
             stream.on('data', function(data){
                 response += data.toString();
@@ -229,6 +228,7 @@ describe('http protocol', function () {
                 server.close();
                 done();
             });
+            post_test.request_gbk_form.payload.pipe(stream);
         });
 
         it('should got 404 status when GET 404', function (done) {
@@ -236,7 +236,8 @@ describe('http protocol', function () {
             //start a http server for post
             var server = post_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = new HttpProtocolContext('mockHTTPService', post_test.service);
+            var context = HttpProtocol.normalizeContext(post_test.service);
+            util.merge(context, post_test.request_404);
             var stream = httpProtocol.talk(context, post_test.request_404);
             stream.on('error', function(err){
                 server.close();
@@ -250,8 +251,9 @@ describe('http protocol', function () {
             //start a http server for post
             var server = post_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = new HttpProtocolContext('mockHTTPService', post_test.service);
-            var stream = httpProtocol.talk(context, post_test.request_503);
+            var options = HttpProtocol.normalizeContext(post_test.service);
+            util.merge(options, post_test.request_404);
+            var stream = httpProtocol.talk(options);
             stream.on('error', function(err){
                 server.close();
                 err.should.match(/Server Status Error: 503/);
@@ -263,8 +265,7 @@ describe('http protocol', function () {
 
 describe('http protocol context', function () {
     it('should get correct context', function () {
-        var context = new HttpProtocolContext('mockHTTPService', mockHTTPService);
-        context.serviceID.should.be.equal('mockHTTPService');
+        var context = HttpProtocol.normalizeContext(mockHTTPService);
         context.timeout.should.be.equal(mockHTTPService.timeout);
         context.path.should.be.equal(mockHTTPService.path);
         context.method.should.be.equal(mockHTTPService.method);
@@ -273,8 +274,7 @@ describe('http protocol context', function () {
     });
 
     it('should parse query string', function () {
-        var context = new HttpProtocolContext('mockHTTPService2', mockHTTPService2);
-        context.serviceID.should.be.equal('mockHTTPService2');
+        var context = HttpProtocol.normalizeContext(mockHTTPService2);
         context.query.should.be.eql({a: '1'});
     });
 });

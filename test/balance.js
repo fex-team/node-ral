@@ -25,7 +25,7 @@ describe('balance', function(){
 
     it('should get context class', function(){
         var balance = new Balance();
-        balance.getContext().should.be.equal(BalanceContext);
+        balance.getContextClass().should.be.equal(BalanceContext);
     });
 });
 
@@ -81,7 +81,7 @@ describe('random balance', function() {
 
     it('has right context class', function(){
         var converter = new RandomBalance();
-        converter.getContext().should.be.equal(BalanceContext);
+        converter.getContextClass().should.be.equal(BalanceContext);
     });
 
     it('get server by random', function(done) {
@@ -135,7 +135,7 @@ describe('roundrobin balance', function() {
 
     it('has right context class', function(){
         var converter = new RoundRobinBalance();
-        converter.getContext().should.be.equal(BalanceContext);
+        converter.getContextClass().should.be.equal(BalanceContext);
     });
 
     it('get server by roundrobin', function(done) {

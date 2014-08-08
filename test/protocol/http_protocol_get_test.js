@@ -8,11 +8,13 @@ var http = require('http');
 var url = require('url');
 var qs = require('qs');
 
-module.exports.service = {
-    timeout: 1000,
-    path: '/hello',
-    method: 'GET'
-};
+module.exports.__defineGetter__('service', function(){
+    return {
+        timeout: 1000,
+        path: '/hello',
+        method: 'GET'
+    };
+});
 
 module.exports.request = {
     server : {
@@ -22,9 +24,7 @@ module.exports.request = {
 };
 
 module.exports.request_404 = {
-    options: {
-        path: '/404'
-    },
+    path: '/404',
     server : {
         host : '127.0.0.1',
         port : 8934
@@ -32,9 +32,7 @@ module.exports.request_404 = {
 };
 
 module.exports.request_503 = {
-    options: {
-        path: '/error'
-    },
+    path: '/error',
     server : {
         host : '127.0.0.1',
         port : 8934
@@ -42,11 +40,9 @@ module.exports.request_503 = {
 };
 
 module.exports.request_with_query = {
-    options: {
-        path: '/hello',
-        query: {
-            name: 'hefangshi'
-        }
+    path: '/hello',
+    query: {
+        name: 'hefangshi'
     },
     server : {
         host : '127.0.0.1',

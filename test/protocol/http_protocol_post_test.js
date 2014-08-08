@@ -14,12 +14,13 @@ var CombinedStream = require('combined-stream');
 var iconv = require('iconv-lite');
 iconv.extendNodeEncodings();
 
-
-module.exports.service = {
-    timeout: 1000,
-    path: '/hello',
-    method: 'POST'
-};
+module.exports.__defineGetter__('service', function(){
+    return {
+        timeout: 1000,
+        path: '/hello',
+        method: 'POST'
+    };
+});
 
 var form = new formData();
 form.append('name', 'hefangshi');
@@ -27,13 +28,18 @@ form.append('passwd', 'what');
 form.append('file', fs.createReadStream(__dirname + '/' + 'http_protocol_post_test.js'));
 
 
-module.exports.request = {
-    server : {
-        host : '127.0.0.1',
-        port : 8934
-    },
-    payload: form
-};
+module.exports.__defineGetter__('request',function() {
+    return {
+        server: {
+            host: '127.0.0.1',
+            port: 8934
+        },
+            headers:{'Content-Type':"multipart/form-data;boundary=" + form.getBoundary()
+        },
+        payload: form
+    };
+});
+
 
 //create a buffer stream
 var combinedStream = CombinedStream.create();
@@ -43,6 +49,9 @@ module.exports.request_with_urlencode = {
     server : {
         host : '127.0.0.1',
         port : 8934
+    },
+    headers : {
+        'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8'
     },
     payload: combinedStream
 };
@@ -56,8 +65,9 @@ module.exports.request_with_gbk = {
         host : '127.0.0.1',
         port : 8934
     },
-    options : {
-        encoding : 'gbk'
+    encoding : 'gbk',
+    headers : {
+        'Content-Type' :  "application/x-www-form-urlencoded; charset=gbk"
     },
     payload: gbkStream
 };
@@ -73,16 +83,15 @@ module.exports.request_gbk_form = {
         host : '127.0.0.1',
         port : 8934
     },
-    options : {
-        encoding : 'gbk'
+    encoding : 'gbk',
+    headers : {
+        'Content-Type' : "multipart/form-data;boundary=" + gbk_form.getBoundary()
     },
     payload: gbk_form
 };
 
 module.exports.request_404 = {
-    options: {
-        path: '/404'
-    },
+    path: '/404',
     server : {
         host : '127.0.0.1',
         port : 8934
@@ -90,9 +99,7 @@ module.exports.request_404 = {
 };
 
 module.exports.request_503 = {
-    options: {
-        path: '/error'
-    },
+    path: '/error',
     server : {
         host : '127.0.0.1',
         port : 8934
@@ -100,11 +107,9 @@ module.exports.request_503 = {
 };
 
 module.exports.request_with_query = {
-    options: {
-        path: '/hello',
-        query: {
-            name: 'hefangshi'
-        }
+    path: '/hello',
+    query: {
+        name: 'hefangshi'
     },
     server : {
         host : '127.0.0.1',
