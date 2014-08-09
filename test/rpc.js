@@ -6,7 +6,7 @@
 
 'use strict';
 
-var RPC = require('../lib/ral.js');
+var RAL = require('../lib/ral.js');
 var path = require('path');
 var server = require('./rpc/server.js');
 var EE = require('events').EventEmitter;
