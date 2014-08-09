@@ -8,12 +8,12 @@
 
 var RAL = require('../lib/ral.js');
 var path = require('path');
-var server = require('./rpc/server.js');
+var server = require('./ral/server.js');
 var EE = require('events').EventEmitter;
 
 var isInited = new EE();
 
-describe('rpc', function () {
+describe('ral', function () {
     var servers = [];
 
     beforeEach(function(){
@@ -29,10 +29,10 @@ describe('rpc', function () {
 
     it('should init successfully', function (done) {
         RAL.init({
-            confDir : __dirname + path.sep + './rpc/config',
+            confDir : __dirname + path.sep + './ral/config',
             logger : {
                 "log_path" : __dirname + path.sep + './logs',
-                "app" : "rpc"
+                "app" : "ral"
             },
             currentIDC : 'tc'
         }, function(err){
