@@ -6,7 +6,7 @@
 'use strict';
 var http = require('http');
 var url = require('url');
-var qs = require('qs');
+var urlencode = require('urlencode');
 
 module.exports.__defineGetter__('service', function(){
     return {
@@ -60,7 +60,7 @@ module.exports.createServer = function(){
             });
             var content = 'hear you';
             if (info.query){
-                info.query = qs.parse(info.query);
+                info.query = urlencode.parse(info.query);
                 if (info.query.name){
                     content += ' ' + info.query.name;
                 }

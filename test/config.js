@@ -87,8 +87,8 @@ describe('load config', function() {
     it('load by directory', function(done) {
         config.load(__dirname + path.sep + './config/directory', function(err){
             (err === null).should.be.true;
-            var conf = config.getConf();
-            conf.should.have.properties('bookService', 'bookServiceBNS', 'bookListService', 'bookListServiceWithCUI');
+            var confs = config.getConfNames();
+            confs.should.containEql('bookService', 'bookServiceBNS', 'bookListService', 'bookListServiceWithCUI');
             done();
         });
     });

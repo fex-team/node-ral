@@ -8,8 +8,9 @@
 
 var http = require('http');
 var url = require('url');
+var urlencode = require('urlencode');
 
-module.exports.bookService = function(port){
+module.exports.bookService = function(port, encoding){
     return http.createServer(function (request, response) {
         var info = url.parse(request.url);
         var pathname =info.pathname;
@@ -29,7 +30,8 @@ module.exports.bookService = function(port){
                 'Content-Type': 'application/json'
             });
             response.write(JSON.stringify({
-
+                port: port,
+                query: urlencode.parse(info.query)
             }));
             response.end();
         }

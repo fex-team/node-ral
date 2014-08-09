@@ -14,6 +14,7 @@ module.exports = {
         encoding: 'utf-8',
         balance: 'random',
         protocol: 'http',
+        query: 'from=ral',
         server: [
             { host: '127.0.0.1', port: 8192, idc: 'tc'},
             { host: '127.0.0.1', port: 8193, idc: 'tc'},

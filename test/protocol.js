@@ -96,7 +96,7 @@ describe('http protocol', function () {
             //start a http server for get
             var server = get_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeContext(get_test.service);
+            var context = HttpProtocol.normalizeConfig(get_test.service);
             util.merge(context, get_test.request);
             var stream = httpProtocol.talk(context);
             var response = '';
@@ -115,7 +115,7 @@ describe('http protocol', function () {
             //start a http server for get
             var server = get_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeContext(get_test.service);
+            var context = HttpProtocol.normalizeConfig(get_test.service);
             util.merge(context, get_test.request_with_query);
             var stream = httpProtocol.talk(context);
             var response = '';
@@ -134,7 +134,7 @@ describe('http protocol', function () {
             //start a http server for get
             var server = get_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeContext(get_test.service);
+            var context = HttpProtocol.normalizeConfig(get_test.service);
             util.merge(context, get_test.request_404);
             var stream = httpProtocol.talk(context);
             stream.on('error', function(err){
@@ -149,7 +149,7 @@ describe('http protocol', function () {
             //start a http server for get
             var server = get_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeContext(get_test.service);
+            var context = HttpProtocol.normalizeConfig(get_test.service);
             util.merge(context, get_test.request_404);
             var stream = httpProtocol.talk(context);
             stream.on('error', function(err){
@@ -166,7 +166,7 @@ describe('http protocol', function () {
             //start a http server for post
             var server = post_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeContext(post_test.service);
+            var context = HttpProtocol.normalizeConfig(post_test.service);
             util.merge(context, post_test.request);
             var stream = httpProtocol.talk(context);
             var response = '';
@@ -186,7 +186,7 @@ describe('http protocol', function () {
             //start a http server for post
             var server = post_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context =HttpProtocol.normalizeContext(post_test.service);
+            var context =HttpProtocol.normalizeConfig(post_test.service);
             util.merge(context, post_test.request_with_urlencode);
             var stream = httpProtocol.talk(context);
             var response = '';
@@ -224,7 +224,7 @@ describe('http protocol', function () {
             //start a http server for post
             var server = post_test.createServer('gbk');
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeContext(post_test.service);
+            var context = HttpProtocol.normalizeConfig(post_test.service);
             util.merge(context, post_test.request_gbk_form);
             var stream = httpProtocol.talk(context);
             var response = '';
@@ -244,7 +244,7 @@ describe('http protocol', function () {
             //start a http server for post
             var server = post_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeContext(post_test.service);
+            var context = HttpProtocol.normalizeConfig(post_test.service);
             util.merge(context, post_test.request_404);
             var stream = httpProtocol.talk(context, post_test.request_404);
             stream.on('error', function(err){
@@ -259,7 +259,7 @@ describe('http protocol', function () {
             //start a http server for post
             var server = post_test.createServer();
             var httpProtocol = new HttpProtocol();
-            var options = HttpProtocol.normalizeContext(post_test.service);
+            var options = HttpProtocol.normalizeConfig(post_test.service);
             util.merge(options, post_test.request_404);
             var stream = httpProtocol.talk(options);
             stream.on('error', function(err){
@@ -273,7 +273,7 @@ describe('http protocol', function () {
 
 describe('http protocol context', function () {
     it('should get correct context', function () {
-        var context = HttpProtocol.normalizeContext(mockHTTPService);
+        var context = HttpProtocol.normalizeConfig(mockHTTPService);
         context.timeout.should.be.equal(mockHTTPService.timeout);
         context.path.should.be.equal(mockHTTPService.path);
         context.method.should.be.equal(mockHTTPService.method);
@@ -282,7 +282,7 @@ describe('http protocol context', function () {
     });
 
     it('should parse query string', function () {
-        var context = HttpProtocol.normalizeContext(mockHTTPService2);
+        var context = HttpProtocol.normalizeConfig(mockHTTPService2);
         context.query.should.be.eql({a: '1'});
     });
 });

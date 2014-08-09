@@ -5,3 +5,7 @@
  */
 
 'use strict';
+
+module.exports.RAL = require('./lib/ral.js');
+module.exports.Config = require('./lib/config.js');
+module.exports.RalModule = require('./lib/ralmodule.js');

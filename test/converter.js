@@ -16,17 +16,17 @@ var UrlEncodeConverter = require('../lib/ext/converter/urlencodeConverter.js');
 var util = require('../lib/util.js');
 var _ = require('underscore');
 
-var mockUTF8Context = Converter.normalizeContext({
+var mockUTF8Context = {
     encoding: 'utf8'
-});
+};
 
-var mockGBKContext = Converter.normalizeContext({
+var mockGBKContext = {
     encoding: 'gbk'
-});
+};
 
-var mockBlahContext = Converter.normalizeContext({
+var mockBlahContext = {
     encoding: 'blah'
-});
+};
 
 logger.debug('start');
 
@@ -204,7 +204,7 @@ describe('form converter', function () {
         var post_test = require('./protocol/http_protocol_post_test.js');
         var server = post_test.createServer();
         util.merge(options, post_test.service);
-        options = HttpProtocol.normalizeContext(options);
+        options = HttpProtocol.normalizeConfig(options);
         var pack = converter.pack(options, data);
         util.merge(options, {
             server: post_test.request.server
@@ -234,7 +234,7 @@ describe('form converter', function () {
         util.merge(options, {
             server: post_test.request.server
         });
-        options = HttpProtocol.normalizeContext(options);
+        options = HttpProtocol.normalizeConfig(options);
         var server = post_test.createServer('gbk');
         var pack = converter.pack(options, data);
         var request = httpProtocol.talk(options);
@@ -328,7 +328,7 @@ describe('urlencode converter', function () {
         var post_test = require('./protocol/http_protocol_post_test.js');
         util.merge(options, post_test.service);
         util.merge(options, post_test.request);
-        options = HttpProtocol.normalizeContext(options);
+        options = HttpProtocol.normalizeConfig(options);
         var pack = converter.pack(options, data);
         var server = post_test.createServer();
         var request = httpProtocol.talk(options);
