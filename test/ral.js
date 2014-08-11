@@ -27,6 +27,28 @@ describe('ral', function () {
         servers = [];
     });
 
+    it('show raw request time', function(done){
+        var body = '';
+        var req = require('http').request('http://127.0.0.1:8192', function(res) {
+            res.on('data',function(d){
+                body += d;
+            }).on('end', function(){
+                body.should.be.ok;
+                done();
+            });
+        }).on('error', function(e) {
+            e.should.not.be.ok;
+        });
+        req.end();
+    });
+
+    it('show request time with module request', function(done){
+        require('request').get('http://127.0.0.1:8192', {} , function(err, response, data){
+            data.should.be.ok;
+            done();
+        });
+    });
+
     it('should init successfully', function (done) {
         RAL.init({
             confDir : __dirname + path.sep + './ral/config',
