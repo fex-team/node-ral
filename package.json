@@ -28,13 +28,14 @@
     "chai": "1.9.1",
     "combined-stream": "0.0.5",
     "form-data": "0.1.4",
+    "formidable": "1.0.15",
     "iconv-lite": "0.4.4",
+    "performance-now": "^0.1.3",
     "recursive-readdir": "1.1.3",
     "request": "2.40.0",
     "underscore": "1.6.0",
     "urlencode": "0.2.0",
-    "yog-log": "0.0.10",
-    "formidable": "1.0.15"
+    "yog-log": "0.0.10"
   },
   "devDependencies": {
     "istanbul": "0.3.0",
