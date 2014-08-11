@@ -79,7 +79,7 @@ describe('json converter', function () {
         };
         var pack = jsonConverter.pack(mockUTF8Context, data);
         var unpack = jsonConverter.unpack(mockUTF8Context);
-        unpack.on('end', function (unpackData) {
+        unpack.on('data', function (unpackData) {
             data.should.be.eql(unpackData);
             done();
         });
@@ -107,7 +107,7 @@ describe('json converter', function () {
         };
         var pack = jsonConverter.pack(mockGBKContext, data);
         var unpack = jsonConverter.unpack(mockGBKContext);
-        unpack.on('end', function (unpackData) {
+        unpack.on('data', function (unpackData) {
             data.should.be.eql(unpackData);
             done();
         });
@@ -147,7 +147,7 @@ describe('string converter', function () {
         var data = '张三李四';
         var pack = converter.pack(mockUTF8Context, data);
         var unpack = converter.unpack(mockUTF8Context);
-        unpack.on('end', function (unpackData) {
+        unpack.on('data', function (unpackData) {
             data.should.be.eql(unpackData);
             done();
         });
@@ -159,7 +159,7 @@ describe('string converter', function () {
         var data = '张三李四';
         var pack = converter.pack(mockGBKContext, data);
         var unpack = converter.unpack(mockGBKContext);
-        unpack.on('end', function (unpackData) {
+        unpack.on('data', function (unpackData) {
             data.should.be.eql(unpackData);
             done();
         });
@@ -288,7 +288,7 @@ describe('urlencode converter', function () {
         };
         var pack = converter.pack(mockUTF8Context, data);
         var unpack = converter.unpack(mockUTF8Context);
-        unpack.on('end', function (unpackData) {
+        unpack.on('data', function (unpackData) {
             data.should.be.eql(unpackData);
             done();
         });
@@ -303,7 +303,7 @@ describe('urlencode converter', function () {
         };
         var pack = converter.pack(mockGBKContext, data);
         var unpack = converter.unpack(mockGBKContext);
-        unpack.on('end', function (unpackData) {
+        unpack.on('data', function (unpackData) {
             data.should.be.eql(unpackData);
             done();
         });

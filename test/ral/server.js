@@ -9,6 +9,8 @@
 var http = require('http');
 var url = require('url');
 var urlencode = require('urlencode');
+var fs = require('fs');
+var path = require('path');
 
 module.exports.bookService = function(port, encoding){
     return http.createServer(function (request, response) {
@@ -25,6 +27,11 @@ module.exports.bookService = function(port, encoding){
             });
             response.write('404');
             response.end();
+        }else if (pathname === '/largecontent'){
+            response.writeHead(200, {
+                'Content-Type': 'text/plain'
+            });
+            fs.createReadStream(__dirname + path.sep + './data/bigone.json').pipe(response);
         }else{
             response.writeHead(200, {
                 'Content-Type': 'application/json'

@@ -68,28 +68,6 @@ describe('http protocol', function () {
         protocol.getCategory().should.be.equal('protocol');
     });
 
-//    it('should correct prepare options', function () {
-//        var http = new HttpProtocol();
-//        var contextClass = http.getContextClass();
-//        var context = new contextClass('mockHTTPService', mockHTTPService2);
-//        var options = http._prepareOptions(context, {});
-//        options.timeout.should.be.equal(1000);
-//        options.path.should.be.equal('/path/to/service');
-//        options.query.should.be.eql({a: '1'});
-//        options.headers['User-Agent'].should.be.eql('Chrome');
-//    });
-
-//    it('should correct extend options', function () {
-//        var httpProtocol = new HttpProtocol();
-//        var contextClass = httpProtocol.getContextClass();
-//        var context = new contextClass('mockHTTPService', mockHTTPService2);
-//        var options = httpProtocol._prepareOptions(context, mockRequest);
-//        options.timeout.should.be.equal(100);
-//        options.path.should.be.equal('/path/to/service');
-//        options.query.should.be.eql({a: '1', b: '1'});
-//        options.headers['User-Agent'].should.be.eql('Webkit');
-//    });
-
     describe('http protocol with get method',function(){
         it('should work fine with GET method', function (done) {
             var get_test = require('./protocol/http_protocol_get_test.js');
@@ -98,15 +76,12 @@ describe('http protocol', function () {
             var httpProtocol = new HttpProtocol();
             var context = HttpProtocol.normalizeConfig(get_test.service);
             util.merge(context, get_test.request);
-            var stream = httpProtocol.talk(context);
-            var response = '';
-            stream.on('data', function(data){
-                response += data.toString();
-            });
-            stream.on('end', function(){
-                response.toString().should.be.equal('hear you');
-                server.close();
-                done();
+            httpProtocol.talk(context, function(res){
+                res.on('data', function(data){
+                    server.close();
+                    data.toString().should.be.equal('hear you');
+                    done();
+                });
             });
         });
 
@@ -117,15 +92,12 @@ describe('http protocol', function () {
             var httpProtocol = new HttpProtocol();
             var context = HttpProtocol.normalizeConfig(get_test.service);
             util.merge(context, get_test.request_with_query);
-            var stream = httpProtocol.talk(context);
-            var response = '';
-            stream.on('data', function(data){
-                response += data.toString();
-            });
-            stream.on('end', function(){
-                response.toString().should.be.equal('hear you hefangshi');
-                server.close();
-                done();
+            httpProtocol.talk(context, function(res){
+                res.on('data', function(data){
+                    server.close();
+                    data.toString().should.be.equal('hear you hefangshi');
+                    done();
+                });
             });
         });
 
@@ -138,8 +110,8 @@ describe('http protocol', function () {
             util.merge(context, get_test.request_404);
             var stream = httpProtocol.talk(context);
             stream.on('error', function(err){
-                err.should.match(/Server Status Error: 404/);
                 server.close();
+                err.should.match(/Server Status Error: 404/);
                 done();
             });
         });
@@ -153,8 +125,8 @@ describe('http protocol', function () {
             util.merge(context, get_test.request_404);
             var stream = httpProtocol.talk(context);
             stream.on('error', function(err){
-                err.should.match(/Server Status Error: 503/);
                 server.close();
+                err.should.match(/Server Status Error: 503/);
                 done();
             });
         });
@@ -168,17 +140,14 @@ describe('http protocol', function () {
             var httpProtocol = new HttpProtocol();
             var context = HttpProtocol.normalizeConfig(post_test.service);
             util.merge(context, post_test.request);
-            var stream = httpProtocol.talk(context);
-            var response = '';
-            stream.on('data', function(data){
-                response += data.toString();
+            var request = httpProtocol.talk(context, function(res){
+                res.on('data', function(data){
+                    server.close();
+                    data.toString().should.be.equal('hear you hefangshi with file http_protocol_post_test.js');
+                    done();
+                });
             });
-            stream.on('end', function(){
-                server.close();
-                response.toString().should.be.equal('hear you hefangshi with file http_protocol_post_test.js');
-                done();
-            });
-            post_test.request.payload.pipe(stream);
+            post_test.request.payload.pipe(request);
         });
 
         it('should work fine with POST method when post a plan object', function (done) {
@@ -188,36 +157,15 @@ describe('http protocol', function () {
             var httpProtocol = new HttpProtocol();
             var context =HttpProtocol.normalizeConfig(post_test.service);
             util.merge(context, post_test.request_with_urlencode);
-            var stream = httpProtocol.talk(context);
-            var response = '';
-            stream.on('data', function(data){
-                response += data.toString();
+            var request = httpProtocol.talk(context, function(res){
+                res.on('data', function(data){
+                    server.close();
+                    data.toString().should.be.equal('hear you hefangshi');
+                    done();
+                });
             });
-            stream.on('end', function(){
-                response.toString().should.be.equal('hear you hefangshi');
-                server.close();
-                done();
-            });
-            post_test.request_with_urlencode.payload.pipe(stream);
+            post_test.request_with_urlencode.payload.pipe(request);
         });
-
-//        it('should work fine with POST gbk urlencode', function (done) {
-//            var post_test = require('./protocol/http_protocol_post_test.js');
-//            //start a http server for post
-//            var server = post_test.createServer('gbk');
-//            var httpProtocol = new HttpProtocol();
-//            var context = new HttpProtocolContext('mockHTTPService', post_test.service);
-//            var stream = httpProtocol.talk(context, post_test.request_with_gbk);
-//            var response = '';
-//            stream.on('data', function(data){
-//                response += data.toString();
-//            });
-//            stream.on('end', function(){
-//                response.toString().should.be.equal('hear you 何方石');
-//                server.close();
-//                done();
-//            });
-//        });
 
         it('should work fine with POST gbk form', function (done) {
             var post_test = require('./protocol/http_protocol_post_test.js');
@@ -226,17 +174,14 @@ describe('http protocol', function () {
             var httpProtocol = new HttpProtocol();
             var context = HttpProtocol.normalizeConfig(post_test.service);
             util.merge(context, post_test.request_gbk_form);
-            var stream = httpProtocol.talk(context);
-            var response = '';
-            stream.on('data', function(data){
-                response += data.toString();
+            var request = httpProtocol.talk(context, function(res){
+                res.on('data', function(data){
+                    server.close();
+                    data.toString().should.be.equal('hear you 何方石 with file http_protocol_post_test.js');
+                    done();
+                });
             });
-            stream.on('end', function(){
-                response.toString().should.be.equal('hear you 何方石 with file http_protocol_post_test.js');
-                server.close();
-                done();
-            });
-            post_test.request_gbk_form.payload.pipe(stream);
+            post_test.request_gbk_form.payload.pipe(request);
         });
 
         it('should got 404 status when GET 404', function (done) {
@@ -246,7 +191,7 @@ describe('http protocol', function () {
             var httpProtocol = new HttpProtocol();
             var context = HttpProtocol.normalizeConfig(post_test.service);
             util.merge(context, post_test.request_404);
-            var stream = httpProtocol.talk(context, post_test.request_404);
+            var stream = httpProtocol.talk(context);
             stream.on('error', function(err){
                 server.close();
                 err.should.match(/Server Status Error: 404/);

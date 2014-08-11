@@ -31,7 +31,7 @@ describe('ral', function () {
         RAL.init({
             confDir : __dirname + path.sep + './ral/config',
             logger : {
-                "log_path" : __dirname + path.sep + './logs',
+                "log_path" : __dirname + path.sep + '../logs',
                 "app" : "ral"
             },
             currentIDC : 'tc'
@@ -47,7 +47,7 @@ describe('ral', function () {
             isInited.on('done', ok);
         });
         var req = RAL('GET_QS_SERV');
-        req.on('end', function(data){
+        req.on('data', function(data){
             [8192,8193].should.containEql(data.port);
             data.port.should.not.eql(8194);
             data.query.from.should.eql('ral');
@@ -65,7 +65,7 @@ describe('ral', function () {
                 name: '何方石'
             }
         });
-        req.on('end', function(data){
+        req.on('data', function(data){
             servers.map(function(server){server.close()});
             [8192,8193].should.containEql(data.port);
             data.port.should.not.eql(8194);
@@ -85,6 +85,28 @@ describe('ral', function () {
         });
         req.on('error', function(err){
             err.toString().should.be.match(/404/);
+            var req_normal = RAL('GET_QS_SERV');
+            req_normal.on('data', function(data){
+                data.query.from.should.eql('ral');
+                done();
+            });
+        });
+
+    });
+
+    it('should get large content correctly', function (done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var req = RAL('GET_QS_SERV', {
+            path: '/largecontent'
+        });
+        req.on('data', function(data){
+            data.res.should.be.an.instanceOf(Object);
+            done();
+        });
+        req.on('error', function(err){
+            err.should.not.be.ok;
             done();
         });
     });

@@ -1,0 +1,3332 @@
+{
+    "res": {
+        "index:page/areamap.tpl": {
+            "uri": "/template/index/page/areamap.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "deps": [
+                "common:widget/map/map.js",
+                "index:widget/helper/maphelper.js"
+            ],
+            "hash": "3588070"
+        },
+        "index:page/business.tpl": {
+            "uri": "/template/index/page/business.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "dd901e9"
+        },
+        "index:page/businessselect.tpl": {
+            "uri": "/template/index/page/businessselect.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "c27fb10"
+        },
+        "index:page/casuallook.tpl": {
+            "uri": "/template/index/page/casuallook.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "0f5ce8f"
+        },
+        "index:page/error.tpl": {
+            "uri": "/template/index/page/error.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "deps": [
+                "index:widget/error/error.js"
+            ],
+            "hash": "a5b02a0"
+        },
+        "index:page/hao123.tpl": {
+            "uri": "/template/index/page/hao123.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "384b129"
+        },
+        "index:page/index.tpl": {
+            "uri": "/template/index/page/index.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true,
+                "async": [
+                    "common:widget/login/login.js"
+                ]
+            },
+            "hash": "de3593f"
+        },
+        "index:page/linesearch.tpl": {
+            "uri": "/template/index/page/linesearch.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "efa7ff6"
+        },
+        "index:page/map.tpl": {
+            "uri": "/template/index/page/map.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "deps": [
+                "common:widget/map/map.js",
+                "index:widget/helper/maphelper.js",
+                "common:widget/login/login.js"
+            ],
+            "hash": "1fd6b88"
+        },
+        "index:page/more.tpl": {
+            "uri": "/template/index/page/more.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "681f19c"
+        },
+        "index:page/mylocation.tpl": {
+            "uri": "/template/index/page/mylocation.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "0e52145"
+        },
+        "index:page/navline.tpl": {
+            "uri": "/template/index/page/navline.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "71d6ee4"
+        },
+        "index:page/searchnearby.tpl": {
+            "uri": "/template/index/page/searchnearby.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "08121fe"
+        },
+        "index:page/setmylocation.tpl": {
+            "uri": "/template/index/page/setmylocation.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "924e9b1"
+        },
+        "index:page/setsubwaycity.tpl": {
+            "uri": "/template/index/page/setsubwaycity.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "f97506e"
+        },
+        "index:page/streetview.tpl": {
+            "uri": "/template/index/page/streetview.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "8423c4c"
+        },
+        "index:page/sventry.tpl": {
+            "uri": "/template/index/page/sventry.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "532a2e1"
+        },
+        "index:page/switchproduct.tpl": {
+            "uri": "/template/index/page/switchproduct.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "hash": "2dde3ae"
+        },
+        "index:page/waitforloc.tpl": {
+            "uri": "/template/index/page/waitforloc.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            },
+            "deps": [
+                "index:widget/waitforloc/waitforloc.js"
+            ],
+            "hash": "9b580d8"
+        },
+        "index:static/css/hao123.inline.less": {
+            "uri": "/static/index/css/hao123.inline.css",
+            "type": "css",
+            "hash": "8fd4445"
+        },
+        "index:static/css/index.inline.less": {
+            "uri": "/static/index/css/index.inline.css",
+            "type": "css",
+            "hash": "a53fa0f"
+        },
+        "index:static/css/mylocation.inline.less": {
+            "uri": "/static/index/css/mylocation.inline.css",
+            "type": "css",
+            "hash": "330d9df"
+        },
+        "index:static/css/setmylocation.inline.less": {
+            "uri": "/static/index/css/setmylocation.inline.css",
+            "type": "css",
+            "hash": "25f6f44"
+        },
+        "index:static/css/setsubwaycity.inline.less": {
+            "uri": "/static/index/css/setsubwaycity.inline.css",
+            "type": "css",
+            "hash": "e48541e"
+        },
+        "index:static/css/sventry.inline.less": {
+            "uri": "/static/index/css/sventry.inline.css",
+            "type": "css",
+            "hash": "6ec9b35"
+        },
+        "index:widget/addestop/addestop.inline.less": {
+            "uri": "/static/index/widget/addestop/addestop.inline.css",
+            "type": "css",
+            "hash": "1665ad6"
+        },
+        "index:widget/addestop/addestop.js": {
+            "uri": "/static/index/widget/addestop/addestop.js",
+            "type": "js",
+            "deps": [
+                "common:widget/url/url.js",
+                "common:static/js/util.js",
+                "common:widget/cookie/cookie.js",
+                "common:widget/stat/stat.js",
+                "common:widget/stat/pbstat.js"
+            ],
+            "hash": "06ac232"
+        },
+        "index:widget/addestop/addestop.tpl": {
+            "uri": "index/widget/addestop/addestop.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/addestop/addestop.js"
+            ],
+            "hash": "ae53419"
+        },
+        "index:widget/allcity/allcity.inline.less": {
+            "uri": "/static/index/widget/allcity/allcity.inline.css",
+            "type": "css",
+            "hash": "e81e474"
+        },
+        "index:widget/allcity/allcity.js": {
+            "uri": "/static/index/widget/allcity/allcity.js",
+            "type": "js",
+            "deps": [
+                "common:widget/setcity/setcity.js"
+            ],
+            "hash": "bb6d28d"
+        },
+        "index:widget/allcity/allcity.tpl": {
+            "uri": "index/widget/allcity/allcity.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/allcity/allcity.js"
+            ],
+            "hash": "1e7936a"
+        },
+        "index:widget/bizarea/bizarea.inline.less": {
+            "uri": "/static/index/widget/bizarea/bizarea.inline.css",
+            "type": "css",
+            "hash": "641c612"
+        },
+        "index:widget/bizarea/bizarea.js": {
+            "uri": "/static/index/widget/bizarea/bizarea.js",
+            "type": "js",
+            "deps": [
+                "common:static/js/util.js",
+                "common:widget/geolocation/location.js",
+                "index:widget/helper/helper.js"
+            ],
+            "hash": "314022b"
+        },
+        "index:widget/bizarea/bizarea.tpl": {
+            "uri": "index/widget/bizarea/bizarea.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/bizarea/bizarea.js"
+            ],
+            "hash": "03fb693"
+        },
+        "index:widget/businesslist/businesslist.inline.less": {
+            "uri": "/static/index/widget/businesslist/businesslist.inline.css",
+            "type": "css",
+            "hash": "b510d48"
+        },
+        "index:widget/businesslist/businesslist.js": {
+            "uri": "/static/index/widget/businesslist/businesslist.js",
+            "type": "js",
+            "deps": [
+                "common:widget/url/url.js",
+                "common:static/js/searchdata.js"
+            ],
+            "hash": "bf47bd9"
+        },
+        "index:widget/businesslist/businesslist.tpl": {
+            "uri": "index/widget/businesslist/businesslist.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/businesslist/businesslist.js"
+            ],
+            "hash": "be3d1a1"
+        },
+        "index:widget/bussinesslist/bussinesslist.inline.less": {
+            "uri": "/static/index/widget/bussinesslist/bussinesslist.inline.css",
+            "type": "css",
+            "hash": "1b235c5"
+        },
+        "index:widget/bussinesslist/bussinesslist.js": {
+            "uri": "/static/index/widget/bussinesslist/bussinesslist.js",
+            "type": "js",
+            "hash": "794b78b"
+        },
+        "index:widget/bussinesslist/bussinesslist.tpl": {
+            "uri": "index/widget/bussinesslist/bussinesslist.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/bussinesslist/bussinesslist.js"
+            ],
+            "hash": "c695612"
+        },
+        "index:widget/cateinfo/cateinfo.inline.less": {
+            "uri": "/static/index/widget/cateinfo/cateinfo.inline.css",
+            "type": "css",
+            "hash": "1316cf2"
+        },
+        "index:widget/cateinfo/cateinfo.js": {
+            "uri": "/static/index/widget/cateinfo/cateinfo.js",
+            "type": "js",
+            "deps": [
+                "common:widget/url/url.js",
+                "index:widget/helper/helper.js",
+                "common:widget/stat/stat.js"
+            ],
+            "hash": "d9c9ca7"
+        },
+        "index:widget/cateinfo/cateinfo.tpl": {
+            "uri": "index/widget/cateinfo/cateinfo.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/cateinfo/cateinfo.js"
+            ],
+            "hash": "8db760a"
+        },
+        "index:widget/curloc/curloc.inline.less": {
+            "uri": "/static/index/widget/curloc/curloc.inline.css",
+            "type": "css",
+            "hash": "648682a"
+        },
+        "index:widget/curloc/curloc.js": {
+            "uri": "/static/index/widget/curloc/curloc.js",
+            "type": "js",
+            "deps": [
+                "common:widget/geolocation/location.js"
+            ],
+            "hash": "d297bb8"
+        },
+        "index:widget/curloc/curloc.tpl": {
+            "uri": "index/widget/curloc/curloc.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/curloc/curloc.js"
+            ],
+            "hash": "12bb3f6"
+        },
+        "index:widget/error/error.inline.less": {
+            "uri": "/static/index/widget/error/error.inline.css",
+            "type": "css",
+            "hash": "f8748ea"
+        },
+        "index:widget/error/error.js": {
+            "uri": "/static/index/widget/error/error.js",
+            "type": "js",
+            "hash": "87c7510"
+        },
+        "index:widget/error/error.tpl": {
+            "uri": "index/widget/error/error.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/error/error.js"
+            ],
+            "hash": "11ef56c"
+        },
+        "index:widget/helper/helper.js": {
+            "uri": "/static/index/widget/helper/helper.js",
+            "type": "js",
+            "deps": [
+                "common:static/js/util.js",
+                "common:widget/url/url.js",
+                "common:widget/stat/stat.js",
+                "common:widget/stat/pbstat.js",
+                "common:static/js/searchdata.js",
+                "common:widget/geolocation/location.js"
+            ],
+            "hash": "3da0566"
+        },
+        "index:widget/helper/maphelper.js": {
+            "uri": "/static/index/widget/helper/maphelper.js",
+            "type": "js",
+            "deps": [
+                "common:widget/map/map.js",
+                "common:widget/geolocation/location.js"
+            ],
+            "hash": "69fc4ce"
+        },
+        "index:widget/historycity/historycity.inline.less": {
+            "uri": "/static/index/widget/historycity/historycity.inline.css",
+            "type": "css",
+            "hash": "ebbf757"
+        },
+        "index:widget/historycity/historycity.js": {
+            "uri": "/static/index/widget/historycity/historycity.js",
+            "type": "js",
+            "deps": [
+                "common:widget/setcity/setcity.js"
+            ],
+            "hash": "b29f90f"
+        },
+        "index:widget/historycity/historycity.tpl": {
+            "uri": "index/widget/historycity/historycity.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/historycity/historycity.js"
+            ],
+            "hash": "f34e0f6"
+        },
+        "index:widget/hotcity/hotcity.inline.less": {
+            "uri": "/static/index/widget/hotcity/hotcity.inline.css",
+            "type": "css",
+            "hash": "beb725f"
+        },
+        "index:widget/hotcity/hotcity.js": {
+            "uri": "/static/index/widget/hotcity/hotcity.js",
+            "type": "js",
+            "deps": [
+                "common:widget/setcity/setcity.js"
+            ],
+            "hash": "e6fa666"
+        },
+        "index:widget/hotcity/hotcity.tpl": {
+            "uri": "index/widget/hotcity/hotcity.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/hotcity/hotcity.js"
+            ],
+            "hash": "bc0bc6b"
+        },
+        "index:widget/locsearch/locsearch.inline.less": {
+            "uri": "/static/index/widget/locsearch/locsearch.inline.css",
+            "type": "css",
+            "hash": "642ec3f"
+        },
+        "index:widget/locsearch/locsearch.js": {
+            "uri": "/static/index/widget/locsearch/locsearch.js",
+            "type": "js",
+            "deps": [
+                "common:widget/geolocation/location.js",
+                "common:widget/url/url.js",
+                "common:widget/stat/pbstat.js"
+            ],
+            "hash": "960ef88"
+        },
+        "index:widget/locsearch/locsearch.tpl": {
+            "uri": "index/widget/locsearch/locsearch.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/locsearch/locsearch.js"
+            ],
+            "hash": "c866549"
+        },
+        "index:widget/morecategory/morecategory.inline.less": {
+            "uri": "/static/index/widget/morecategory/morecategory.inline.css",
+            "type": "css",
+            "hash": "7a998ef"
+        },
+        "index:widget/morecategory/morecategory.js": {
+            "uri": "/static/index/widget/morecategory/morecategory.js",
+            "type": "js",
+            "deps": [
+                "common:widget/geolocation/location.js",
+                "common:static/js/util.js",
+                "common:widget/stat/stat.js",
+                "common:widget/stat/pbstat.js",
+                "common:widget/url/url.js"
+            ],
+            "hash": "f5c377e"
+        },
+        "index:widget/morecategory/morecategory.tpl": {
+            "uri": "index/widget/morecategory/morecategory.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/morecategory/morecategory.js"
+            ],
+            "hash": "9bf4ca6"
+        },
+        "index:widget/navebox/navebox.inline.less": {
+            "uri": "/static/index/widget/navebox/navebox.inline.css",
+            "type": "css",
+            "hash": "ddefbbe"
+        },
+        "index:widget/navebox/navebox.js": {
+            "uri": "/static/index/widget/navebox/navebox.js",
+            "type": "js",
+            "deps": [
+                "common:widget/url/url.js"
+            ],
+            "hash": "a99c096"
+        },
+        "index:widget/navebox/navebox.tpl": {
+            "uri": "index/widget/navebox/navebox.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/navebox/navebox.js"
+            ],
+            "hash": "b892c44"
+        },
+        "index:widget/navethumbnail/navethumbnail.inline.less": {
+            "uri": "/static/index/widget/navethumbnail/navethumbnail.inline.css",
+            "type": "css",
+            "hash": "9f78032"
+        },
+        "index:widget/navethumbnail/navethumbnail.js": {
+            "uri": "/static/index/widget/navethumbnail/navethumbnail.js",
+            "type": "js",
+            "deps": [
+                "common:static/js/util.js",
+                "common:widget/geolocation/location.js",
+                "common:static/js/searchdata.js",
+                "common:widget/stat/stat.js"
+            ],
+            "hash": "ad98e39"
+        },
+        "index:widget/navethumbnail/navethumbnail.tpl": {
+            "uri": "index/widget/navethumbnail/navethumbnail.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/navethumbnail/navethumbnail.js"
+            ],
+            "hash": "7510e3a"
+        },
+        "index:widget/nbserachbox/nbserachbox.inline.less": {
+            "uri": "/static/index/widget/nbserachbox/nbserachbox.inline.css",
+            "type": "css",
+            "hash": "ba8ad67"
+        },
+        "index:widget/nbserachbox/nbserachbox.js": {
+            "uri": "/static/index/widget/nbserachbox/nbserachbox.js",
+            "type": "js",
+            "deps": [
+                "common:widget/geolocation/location.js",
+                "common:widget/url/url.js",
+                "common:widget/stat/pbstat.js"
+            ],
+            "hash": "b6aa811"
+        },
+        "index:widget/nbserachbox/nbserachbox.tpl": {
+            "uri": "index/widget/nbserachbox/nbserachbox.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/nbserachbox/nbserachbox.js"
+            ],
+            "hash": "b3eda25"
+        },
+        "index:widget/nearby/nearby.inline.less": {
+            "uri": "/static/index/widget/nearby/nearby.inline.css",
+            "type": "css",
+            "hash": "f4c6a87"
+        },
+        "index:widget/nearby/nearby.js": {
+            "uri": "/static/index/widget/nearby/nearby.js",
+            "type": "js",
+            "deps": [
+                "common:static/js/gmu/src/extend/highlight.js",
+                "common:static/js/util.js",
+                "common:widget/url/url.js",
+                "index:widget/helper/helper.js",
+                "common:widget/stat/stat.js",
+                "common:widget/imageloader/imageloader.js",
+                "common:widget/geolocation/location.js",
+                "common:widget/stat/pbstat.js"
+            ],
+            "hash": "3f7db2a"
+        },
+        "index:widget/nearby/nearby.tpl": {
+            "uri": "index/widget/nearby/nearby.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/nearby/nearby.js"
+            ],
+            "hash": "cfeae92"
+        },
+        "index:widget/nearbytip/nearbytip.inline.less": {
+            "uri": "/static/index/widget/nearbytip/nearbytip.inline.css",
+            "type": "css",
+            "hash": "5d9c818"
+        },
+        "index:widget/nearbytip/nearbytip.js": {
+            "uri": "/static/index/widget/nearbytip/nearbytip.js",
+            "type": "js",
+            "hash": "96562d1"
+        },
+        "index:widget/nearbytip/nearbytip.tpl": {
+            "uri": "index/widget/nearbytip/nearbytip.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/nearbytip/nearbytip.js"
+            ],
+            "hash": "6ed1c8b"
+        },
+        "index:widget/nearpush/bank.inline.less": {
+            "uri": "/static/index/widget/nearpush/bank.inline.css",
+            "type": "css",
+            "hash": "861b2f7"
+        },
+        "index:widget/nearpush/bank.js": {
+            "uri": "/static/index/widget/nearpush/bank.js",
+            "type": "js",
+            "deps": [
+                "index:widget/helper/helper.js"
+            ],
+            "hash": "426a436"
+        },
+        "index:widget/nearpush/bank.tpl": {
+            "uri": "index/widget/nearpush/bank.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/nearpush/bank.js"
+            ],
+            "hash": "9f4e033"
+        },
+        "index:widget/nearpush/cater.inline.less": {
+            "uri": "/static/index/widget/nearpush/cater.inline.css",
+            "type": "css",
+            "hash": "5c278fd"
+        },
+        "index:widget/nearpush/cater.js": {
+            "uri": "/static/index/widget/nearpush/cater.js",
+            "type": "js",
+            "deps": [
+                "common:static/js/util.js",
+                "common:widget/stat/stat.js",
+                "common:widget/geolocation/location.js",
+                "index:widget/helper/helper.js"
+            ],
+            "hash": "f0846b0"
+        },
+        "index:widget/nearpush/cater.tpl": {
+            "uri": "index/widget/nearpush/cater.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/nearpush/cater.js"
+            ],
+            "hash": "eabdf91"
+        },
+        "index:widget/nearpush/hao123hd.inline.less": {
+            "uri": "/static/index/widget/nearpush/hao123hd.inline.css",
+            "type": "css",
+            "hash": "c446101"
+        },
+        "index:widget/nearpush/hao123hd.tpl": {
+            "uri": "index/widget/nearpush/hao123hd.tpl",
+            "type": "tpl",
+            "hash": "816c2cd"
+        },
+        "index:widget/nearpush/hotel.inline.less": {
+            "uri": "/static/index/widget/nearpush/hotel.inline.css",
+            "type": "css",
+            "hash": "eb07f14"
+        },
+        "index:widget/nearpush/hotel.js": {
+            "uri": "/static/index/widget/nearpush/hotel.js",
+            "type": "js",
+            "deps": [
+                "common:static/js/util.js",
+                "index:widget/helper/helper.js"
+            ],
+            "hash": "ad6e20a"
+        },
+        "index:widget/nearpush/hotel.tpl": {
+            "uri": "index/widget/nearpush/hotel.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/nearpush/hotel.js"
+            ],
+            "hash": "cb54c7b"
+        },
+        "index:widget/searchbox/searchbox.inline.less": {
+            "uri": "/static/index/widget/searchbox/searchbox.inline.css",
+            "type": "css",
+            "hash": "9e63bf2"
+        },
+        "index:widget/searchbox/searchbox.js": {
+            "uri": "/static/index/widget/searchbox/searchbox.js",
+            "type": "js",
+            "deps": [
+                "common:static/js/gmu/src/extend/highlight.js",
+                "common:static/js/gmu/src/widget/suggestion/suggestion.js",
+                "common:static/js/gmu/src/widget/suggestion/renderlist.js",
+                "common:static/js/gmu/src/widget/suggestion/quickdelete.js",
+                "common:static/js/gmu/src/widget/suggestion/sendrequest.js",
+                "common:widget/url/url.js",
+                "common:widget/geolocation/location.js",
+                "common:widget/search/poisearch.js",
+                "common:widget/stat/stat.js",
+                "common:widget/stat/pbstat.js",
+                "common:widget/apphistory/apphistory.js"
+            ],
+            "hash": "d96acee"
+        },
+        "index:widget/searchbox/searchbox.tpl": {
+            "uri": "index/widget/searchbox/searchbox.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/searchbox/searchbox.js"
+            ],
+            "hash": "3b6ce1f"
+        },
+        "index:widget/surface/surface.inline.less": {
+            "uri": "/static/index/widget/surface/surface.inline.css",
+            "type": "css",
+            "hash": "1a48184"
+        },
+        "index:widget/surface/surface.js": {
+            "uri": "/static/index/widget/surface/surface.js",
+            "type": "js",
+            "hash": "8027476"
+        },
+        "index:widget/surface/surface.tpl": {
+            "uri": "index/widget/surface/surface.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/surface/surface.js"
+            ],
+            "hash": "d23d540"
+        },
+        "index:widget/sventry/sventry.inline.less": {
+            "uri": "/static/index/widget/sventry/sventry.inline.css",
+            "type": "css",
+            "hash": "cb55f48"
+        },
+        "index:widget/sventry/sventry.js": {
+            "uri": "/static/index/widget/sventry/sventry.js",
+            "type": "js",
+            "deps": [
+                "common:widget/url/url.js"
+            ],
+            "hash": "8bbe196"
+        },
+        "index:widget/sventry/sventry.tpl": {
+            "uri": "index/widget/sventry/sventry.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/sventry/sventry.js"
+            ],
+            "hash": "af9d051"
+        },
+        "index:widget/switchproduct/switchproduct.inline.less": {
+            "uri": "/static/index/widget/switchproduct/switchproduct.inline.css",
+            "type": "css",
+            "hash": "89f329b"
+        },
+        "index:widget/switchproduct/switchproduct.tpl": {
+            "uri": "index/widget/switchproduct/switchproduct.tpl",
+            "type": "tpl",
+            "hash": "862791f"
+        },
+        "index:widget/tabgroup/tabgroup.inline.less": {
+            "uri": "/static/index/widget/tabgroup/tabgroup.inline.css",
+            "type": "css",
+            "hash": "017c458"
+        },
+        "index:widget/tabgroup/tabgroup.js": {
+            "uri": "/static/index/widget/tabgroup/tabgroup.js",
+            "type": "js",
+            "deps": [
+                "common:widget/url/url.js",
+                "common:widget/map/preloader/preloader.js",
+                "common:widget/geolocation/location.js",
+                "common:widget/stat/pbstat.js"
+            ],
+            "hash": "63531c6"
+        },
+        "index:widget/tabgroup/tabgroup.tpl": {
+            "uri": "index/widget/tabgroup/tabgroup.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/tabgroup/tabgroup.js"
+            ],
+            "hash": "d462004"
+        },
+        "index:widget/thumbnail/thumbnail.inline.less": {
+            "uri": "/static/index/widget/thumbnail/thumbnail.inline.css",
+            "type": "css",
+            "hash": "98abd9f"
+        },
+        "index:widget/thumbnail/thumbnail.js": {
+            "uri": "/static/index/widget/thumbnail/thumbnail.js",
+            "type": "js",
+            "deps": [
+                "common:static/js/util.js",
+                "common:widget/popup/popup.js",
+                "common:widget/geolocation/location.js",
+                "common:widget/stat/stat.js",
+                "common:widget/stat/pbstat.js",
+                "index:widget/historycity/historycity.js"
+            ],
+            "hash": "5a1af25"
+        },
+        "index:widget/thumbnail/thumbnail.tpl": {
+            "uri": "index/widget/thumbnail/thumbnail.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/thumbnail/thumbnail.js"
+            ],
+            "hash": "838e0dc"
+        },
+        "index:widget/waitforloc/waitforloc.inline.less": {
+            "uri": "/static/index/widget/waitforloc/waitforloc.inline.css",
+            "type": "css",
+            "hash": "ec927c4"
+        },
+        "index:widget/waitforloc/waitforloc.js": {
+            "uri": "/static/index/widget/waitforloc/waitforloc.js",
+            "type": "js",
+            "deps": [
+                "common:widget/geolocation/geolocation.js",
+                "common:widget/url/url.js",
+                "common:widget/cookie/cookie.js",
+                "common:widget/geolocation/location.js"
+            ],
+            "hash": "7f9d284"
+        },
+        "index:widget/waitforloc/waitforloc.tpl": {
+            "uri": "index/widget/waitforloc/waitforloc.tpl",
+            "type": "tpl",
+            "deps": [
+                "index:widget/waitforloc/waitforloc.js"
+            ],
+            "hash": "eb53e0d"
+        }
+    },
+    "pkg": {},
+    "more": {
+        "res": {
+            "index:page/areamap.tpl": {
+                "uri": "/template/index/page/areamap.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "common:widget/map/map.js",
+                    "index:widget/helper/maphelper.js"
+                ],
+                "hash": "3588070"
+            },
+            "index:page/business.tpl": {
+                "uri": "/template/index/page/business.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "dd901e9"
+            },
+            "index:page/businessselect.tpl": {
+                "uri": "/template/index/page/businessselect.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "c27fb10"
+            },
+            "index:page/casuallook.tpl": {
+                "uri": "/template/index/page/casuallook.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "0f5ce8f"
+            },
+            "index:page/error.tpl": {
+                "uri": "/template/index/page/error.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "index:widget/error/error.js"
+                ],
+                "hash": "a5b02a0"
+            },
+            "index:page/hao123.tpl": {
+                "uri": "/template/index/page/hao123.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "384b129"
+            },
+            "index:page/index.tpl": {
+                "uri": "/template/index/page/index.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true,
+                    "async": [
+                        "common:widget/login/login.js"
+                    ]
+                },
+                "hash": "de3593f"
+            },
+            "index:page/linesearch.tpl": {
+                "uri": "/template/index/page/linesearch.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "efa7ff6"
+            },
+            "index:page/map.tpl": {
+                "uri": "/template/index/page/map.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "common:widget/map/map.js",
+                    "index:widget/helper/maphelper.js",
+                    "common:widget/login/login.js"
+                ],
+                "hash": "1fd6b88"
+            },
+            "index:page/more.tpl": {
+                "uri": "/template/index/page/more.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "681f19c"
+            },
+            "index:page/mylocation.tpl": {
+                "uri": "/template/index/page/mylocation.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "0e52145"
+            },
+            "index:page/navline.tpl": {
+                "uri": "/template/index/page/navline.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "71d6ee4"
+            },
+            "index:page/searchnearby.tpl": {
+                "uri": "/template/index/page/searchnearby.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "08121fe"
+            },
+            "index:page/setmylocation.tpl": {
+                "uri": "/template/index/page/setmylocation.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "924e9b1"
+            },
+            "index:page/setsubwaycity.tpl": {
+                "uri": "/template/index/page/setsubwaycity.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "f97506e"
+            },
+            "index:page/streetview.tpl": {
+                "uri": "/template/index/page/streetview.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "8423c4c"
+            },
+            "index:page/sventry.tpl": {
+                "uri": "/template/index/page/sventry.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "532a2e1"
+            },
+            "index:page/switchproduct.tpl": {
+                "uri": "/template/index/page/switchproduct.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "2dde3ae"
+            },
+            "index:page/waitforloc.tpl": {
+                "uri": "/template/index/page/waitforloc.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "index:widget/waitforloc/waitforloc.js"
+                ],
+                "hash": "9b580d8"
+            },
+            "index:static/css/hao123.inline.less": {
+                "uri": "/static/index/css/hao123.inline.css",
+                "type": "css",
+                "hash": "8fd4445"
+            },
+            "index:static/css/index.inline.less": {
+                "uri": "/static/index/css/index.inline.css",
+                "type": "css",
+                "hash": "a53fa0f"
+            },
+            "index:static/css/mylocation.inline.less": {
+                "uri": "/static/index/css/mylocation.inline.css",
+                "type": "css",
+                "hash": "330d9df"
+            },
+            "index:static/css/setmylocation.inline.less": {
+                "uri": "/static/index/css/setmylocation.inline.css",
+                "type": "css",
+                "hash": "25f6f44"
+            },
+            "index:static/css/setsubwaycity.inline.less": {
+                "uri": "/static/index/css/setsubwaycity.inline.css",
+                "type": "css",
+                "hash": "e48541e"
+            },
+            "index:static/css/sventry.inline.less": {
+                "uri": "/static/index/css/sventry.inline.css",
+                "type": "css",
+                "hash": "6ec9b35"
+            },
+            "index:widget/addestop/addestop.inline.less": {
+                "uri": "/static/index/widget/addestop/addestop.inline.css",
+                "type": "css",
+                "hash": "1665ad6"
+            },
+            "index:widget/addestop/addestop.js": {
+                "uri": "/static/index/widget/addestop/addestop.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "common:static/js/util.js",
+                    "common:widget/cookie/cookie.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "06ac232"
+            },
+            "index:widget/addestop/addestop.tpl": {
+                "uri": "index/widget/addestop/addestop.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/addestop/addestop.js"
+                ],
+                "hash": "ae53419"
+            },
+            "index:widget/allcity/allcity.inline.less": {
+                "uri": "/static/index/widget/allcity/allcity.inline.css",
+                "type": "css",
+                "hash": "e81e474"
+            },
+            "index:widget/allcity/allcity.js": {
+                "uri": "/static/index/widget/allcity/allcity.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/setcity/setcity.js"
+                ],
+                "hash": "bb6d28d"
+            },
+            "index:widget/allcity/allcity.tpl": {
+                "uri": "index/widget/allcity/allcity.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/allcity/allcity.js"
+                ],
+                "hash": "1e7936a"
+            },
+            "index:widget/bizarea/bizarea.inline.less": {
+                "uri": "/static/index/widget/bizarea/bizarea.inline.css",
+                "type": "css",
+                "hash": "641c612"
+            },
+            "index:widget/bizarea/bizarea.js": {
+                "uri": "/static/index/widget/bizarea/bizarea.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/geolocation/location.js",
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "314022b"
+            },
+            "index:widget/bizarea/bizarea.tpl": {
+                "uri": "index/widget/bizarea/bizarea.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/bizarea/bizarea.js"
+                ],
+                "hash": "03fb693"
+            },
+            "index:widget/businesslist/businesslist.inline.less": {
+                "uri": "/static/index/widget/businesslist/businesslist.inline.css",
+                "type": "css",
+                "hash": "b510d48"
+            },
+            "index:widget/businesslist/businesslist.js": {
+                "uri": "/static/index/widget/businesslist/businesslist.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "common:static/js/searchdata.js"
+                ],
+                "hash": "bf47bd9"
+            },
+            "index:widget/businesslist/businesslist.tpl": {
+                "uri": "index/widget/businesslist/businesslist.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/businesslist/businesslist.js"
+                ],
+                "hash": "be3d1a1"
+            },
+            "index:widget/bussinesslist/bussinesslist.inline.less": {
+                "uri": "/static/index/widget/bussinesslist/bussinesslist.inline.css",
+                "type": "css",
+                "hash": "1b235c5"
+            },
+            "index:widget/bussinesslist/bussinesslist.js": {
+                "uri": "/static/index/widget/bussinesslist/bussinesslist.js",
+                "type": "js",
+                "hash": "794b78b"
+            },
+            "index:widget/bussinesslist/bussinesslist.tpl": {
+                "uri": "index/widget/bussinesslist/bussinesslist.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/bussinesslist/bussinesslist.js"
+                ],
+                "hash": "c695612"
+            },
+            "index:widget/cateinfo/cateinfo.inline.less": {
+                "uri": "/static/index/widget/cateinfo/cateinfo.inline.css",
+                "type": "css",
+                "hash": "1316cf2"
+            },
+            "index:widget/cateinfo/cateinfo.js": {
+                "uri": "/static/index/widget/cateinfo/cateinfo.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "index:widget/helper/helper.js",
+                    "common:widget/stat/stat.js"
+                ],
+                "hash": "d9c9ca7"
+            },
+            "index:widget/cateinfo/cateinfo.tpl": {
+                "uri": "index/widget/cateinfo/cateinfo.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/cateinfo/cateinfo.js"
+                ],
+                "hash": "8db760a"
+            },
+            "index:widget/curloc/curloc.inline.less": {
+                "uri": "/static/index/widget/curloc/curloc.inline.css",
+                "type": "css",
+                "hash": "648682a"
+            },
+            "index:widget/curloc/curloc.js": {
+                "uri": "/static/index/widget/curloc/curloc.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "d297bb8"
+            },
+            "index:widget/curloc/curloc.tpl": {
+                "uri": "index/widget/curloc/curloc.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/curloc/curloc.js"
+                ],
+                "hash": "12bb3f6"
+            },
+            "index:widget/error/error.inline.less": {
+                "uri": "/static/index/widget/error/error.inline.css",
+                "type": "css",
+                "hash": "f8748ea"
+            },
+            "index:widget/error/error.js": {
+                "uri": "/static/index/widget/error/error.js",
+                "type": "js",
+                "hash": "87c7510"
+            },
+            "index:widget/error/error.tpl": {
+                "uri": "index/widget/error/error.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/error/error.js"
+                ],
+                "hash": "11ef56c"
+            },
+            "index:widget/helper/helper.js": {
+                "uri": "/static/index/widget/helper/helper.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/url/url.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "common:static/js/searchdata.js",
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "3da0566"
+            },
+            "index:widget/helper/maphelper.js": {
+                "uri": "/static/index/widget/helper/maphelper.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/map/map.js",
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "69fc4ce"
+            },
+            "index:widget/historycity/historycity.inline.less": {
+                "uri": "/static/index/widget/historycity/historycity.inline.css",
+                "type": "css",
+                "hash": "ebbf757"
+            },
+            "index:widget/historycity/historycity.js": {
+                "uri": "/static/index/widget/historycity/historycity.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/setcity/setcity.js"
+                ],
+                "hash": "b29f90f"
+            },
+            "index:widget/historycity/historycity.tpl": {
+                "uri": "index/widget/historycity/historycity.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/historycity/historycity.js"
+                ],
+                "hash": "f34e0f6"
+            },
+            "index:widget/hotcity/hotcity.inline.less": {
+                "uri": "/static/index/widget/hotcity/hotcity.inline.css",
+                "type": "css",
+                "hash": "beb725f"
+            },
+            "index:widget/hotcity/hotcity.js": {
+                "uri": "/static/index/widget/hotcity/hotcity.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/setcity/setcity.js"
+                ],
+                "hash": "e6fa666"
+            },
+            "index:widget/hotcity/hotcity.tpl": {
+                "uri": "index/widget/hotcity/hotcity.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/hotcity/hotcity.js"
+                ],
+                "hash": "bc0bc6b"
+            },
+            "index:widget/locsearch/locsearch.inline.less": {
+                "uri": "/static/index/widget/locsearch/locsearch.inline.css",
+                "type": "css",
+                "hash": "642ec3f"
+            },
+            "index:widget/locsearch/locsearch.js": {
+                "uri": "/static/index/widget/locsearch/locsearch.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js",
+                    "common:widget/url/url.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "960ef88"
+            },
+            "index:widget/locsearch/locsearch.tpl": {
+                "uri": "index/widget/locsearch/locsearch.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/locsearch/locsearch.js"
+                ],
+                "hash": "c866549"
+            },
+            "index:widget/morecategory/morecategory.inline.less": {
+                "uri": "/static/index/widget/morecategory/morecategory.inline.css",
+                "type": "css",
+                "hash": "7a998ef"
+            },
+            "index:widget/morecategory/morecategory.js": {
+                "uri": "/static/index/widget/morecategory/morecategory.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js",
+                    "common:static/js/util.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "common:widget/url/url.js"
+                ],
+                "hash": "f5c377e"
+            },
+            "index:widget/morecategory/morecategory.tpl": {
+                "uri": "index/widget/morecategory/morecategory.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/morecategory/morecategory.js"
+                ],
+                "hash": "9bf4ca6"
+            },
+            "index:widget/navebox/navebox.inline.less": {
+                "uri": "/static/index/widget/navebox/navebox.inline.css",
+                "type": "css",
+                "hash": "ddefbbe"
+            },
+            "index:widget/navebox/navebox.js": {
+                "uri": "/static/index/widget/navebox/navebox.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js"
+                ],
+                "hash": "a99c096"
+            },
+            "index:widget/navebox/navebox.tpl": {
+                "uri": "index/widget/navebox/navebox.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/navebox/navebox.js"
+                ],
+                "hash": "b892c44"
+            },
+            "index:widget/navethumbnail/navethumbnail.inline.less": {
+                "uri": "/static/index/widget/navethumbnail/navethumbnail.inline.css",
+                "type": "css",
+                "hash": "9f78032"
+            },
+            "index:widget/navethumbnail/navethumbnail.js": {
+                "uri": "/static/index/widget/navethumbnail/navethumbnail.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/geolocation/location.js",
+                    "common:static/js/searchdata.js",
+                    "common:widget/stat/stat.js"
+                ],
+                "hash": "ad98e39"
+            },
+            "index:widget/navethumbnail/navethumbnail.tpl": {
+                "uri": "index/widget/navethumbnail/navethumbnail.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/navethumbnail/navethumbnail.js"
+                ],
+                "hash": "7510e3a"
+            },
+            "index:widget/nbserachbox/nbserachbox.inline.less": {
+                "uri": "/static/index/widget/nbserachbox/nbserachbox.inline.css",
+                "type": "css",
+                "hash": "ba8ad67"
+            },
+            "index:widget/nbserachbox/nbserachbox.js": {
+                "uri": "/static/index/widget/nbserachbox/nbserachbox.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js",
+                    "common:widget/url/url.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "b6aa811"
+            },
+            "index:widget/nbserachbox/nbserachbox.tpl": {
+                "uri": "index/widget/nbserachbox/nbserachbox.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nbserachbox/nbserachbox.js"
+                ],
+                "hash": "b3eda25"
+            },
+            "index:widget/nearby/nearby.inline.less": {
+                "uri": "/static/index/widget/nearby/nearby.inline.css",
+                "type": "css",
+                "hash": "f4c6a87"
+            },
+            "index:widget/nearby/nearby.js": {
+                "uri": "/static/index/widget/nearby/nearby.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/gmu/src/extend/highlight.js",
+                    "common:static/js/util.js",
+                    "common:widget/url/url.js",
+                    "index:widget/helper/helper.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/imageloader/imageloader.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "3f7db2a"
+            },
+            "index:widget/nearby/nearby.tpl": {
+                "uri": "index/widget/nearby/nearby.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearby/nearby.js"
+                ],
+                "hash": "cfeae92"
+            },
+            "index:widget/nearbytip/nearbytip.inline.less": {
+                "uri": "/static/index/widget/nearbytip/nearbytip.inline.css",
+                "type": "css",
+                "hash": "5d9c818"
+            },
+            "index:widget/nearbytip/nearbytip.js": {
+                "uri": "/static/index/widget/nearbytip/nearbytip.js",
+                "type": "js",
+                "hash": "96562d1"
+            },
+            "index:widget/nearbytip/nearbytip.tpl": {
+                "uri": "index/widget/nearbytip/nearbytip.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearbytip/nearbytip.js"
+                ],
+                "hash": "6ed1c8b"
+            },
+            "index:widget/nearpush/bank.inline.less": {
+                "uri": "/static/index/widget/nearpush/bank.inline.css",
+                "type": "css",
+                "hash": "861b2f7"
+            },
+            "index:widget/nearpush/bank.js": {
+                "uri": "/static/index/widget/nearpush/bank.js",
+                "type": "js",
+                "deps": [
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "426a436"
+            },
+            "index:widget/nearpush/bank.tpl": {
+                "uri": "index/widget/nearpush/bank.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearpush/bank.js"
+                ],
+                "hash": "9f4e033"
+            },
+            "index:widget/nearpush/cater.inline.less": {
+                "uri": "/static/index/widget/nearpush/cater.inline.css",
+                "type": "css",
+                "hash": "5c278fd"
+            },
+            "index:widget/nearpush/cater.js": {
+                "uri": "/static/index/widget/nearpush/cater.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/geolocation/location.js",
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "f0846b0"
+            },
+            "index:widget/nearpush/cater.tpl": {
+                "uri": "index/widget/nearpush/cater.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearpush/cater.js"
+                ],
+                "hash": "eabdf91"
+            },
+            "index:widget/nearpush/hao123hd.inline.less": {
+                "uri": "/static/index/widget/nearpush/hao123hd.inline.css",
+                "type": "css",
+                "hash": "c446101"
+            },
+            "index:widget/nearpush/hao123hd.tpl": {
+                "uri": "index/widget/nearpush/hao123hd.tpl",
+                "type": "tpl",
+                "hash": "816c2cd"
+            },
+            "index:widget/nearpush/hotel.inline.less": {
+                "uri": "/static/index/widget/nearpush/hotel.inline.css",
+                "type": "css",
+                "hash": "eb07f14"
+            },
+            "index:widget/nearpush/hotel.js": {
+                "uri": "/static/index/widget/nearpush/hotel.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "ad6e20a"
+            },
+            "index:widget/nearpush/hotel.tpl": {
+                "uri": "index/widget/nearpush/hotel.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearpush/hotel.js"
+                ],
+                "hash": "cb54c7b"
+            },
+            "index:widget/searchbox/searchbox.inline.less": {
+                "uri": "/static/index/widget/searchbox/searchbox.inline.css",
+                "type": "css",
+                "hash": "9e63bf2"
+            },
+            "index:widget/searchbox/searchbox.js": {
+                "uri": "/static/index/widget/searchbox/searchbox.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/gmu/src/extend/highlight.js",
+                    "common:static/js/gmu/src/widget/suggestion/suggestion.js",
+                    "common:static/js/gmu/src/widget/suggestion/renderlist.js",
+                    "common:static/js/gmu/src/widget/suggestion/quickdelete.js",
+                    "common:static/js/gmu/src/widget/suggestion/sendrequest.js",
+                    "common:widget/url/url.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/search/poisearch.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "common:widget/apphistory/apphistory.js"
+                ],
+                "hash": "d96acee"
+            },
+            "index:widget/searchbox/searchbox.tpl": {
+                "uri": "index/widget/searchbox/searchbox.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/searchbox/searchbox.js"
+                ],
+                "hash": "3b6ce1f"
+            },
+            "index:widget/surface/surface.inline.less": {
+                "uri": "/static/index/widget/surface/surface.inline.css",
+                "type": "css",
+                "hash": "1a48184"
+            },
+            "index:widget/surface/surface.js": {
+                "uri": "/static/index/widget/surface/surface.js",
+                "type": "js",
+                "hash": "8027476"
+            },
+            "index:widget/surface/surface.tpl": {
+                "uri": "index/widget/surface/surface.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/surface/surface.js"
+                ],
+                "hash": "d23d540"
+            },
+            "index:widget/sventry/sventry.inline.less": {
+                "uri": "/static/index/widget/sventry/sventry.inline.css",
+                "type": "css",
+                "hash": "cb55f48"
+            },
+            "index:widget/sventry/sventry.js": {
+                "uri": "/static/index/widget/sventry/sventry.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js"
+                ],
+                "hash": "8bbe196"
+            },
+            "index:widget/sventry/sventry.tpl": {
+                "uri": "index/widget/sventry/sventry.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/sventry/sventry.js"
+                ],
+                "hash": "af9d051"
+            },
+            "index:widget/switchproduct/switchproduct.inline.less": {
+                "uri": "/static/index/widget/switchproduct/switchproduct.inline.css",
+                "type": "css",
+                "hash": "89f329b"
+            },
+            "index:widget/switchproduct/switchproduct.tpl": {
+                "uri": "index/widget/switchproduct/switchproduct.tpl",
+                "type": "tpl",
+                "hash": "862791f"
+            },
+            "index:widget/tabgroup/tabgroup.inline.less": {
+                "uri": "/static/index/widget/tabgroup/tabgroup.inline.css",
+                "type": "css",
+                "hash": "017c458"
+            },
+            "index:widget/tabgroup/tabgroup.js": {
+                "uri": "/static/index/widget/tabgroup/tabgroup.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "common:widget/map/preloader/preloader.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "63531c6"
+            },
+            "index:widget/tabgroup/tabgroup.tpl": {
+                "uri": "index/widget/tabgroup/tabgroup.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/tabgroup/tabgroup.js"
+                ],
+                "hash": "d462004"
+            },
+            "index:widget/thumbnail/thumbnail.inline.less": {
+                "uri": "/static/index/widget/thumbnail/thumbnail.inline.css",
+                "type": "css",
+                "hash": "98abd9f"
+            },
+            "index:widget/thumbnail/thumbnail.js": {
+                "uri": "/static/index/widget/thumbnail/thumbnail.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/popup/popup.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "index:widget/historycity/historycity.js"
+                ],
+                "hash": "5a1af25"
+            },
+            "index:widget/thumbnail/thumbnail.tpl": {
+                "uri": "index/widget/thumbnail/thumbnail.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/thumbnail/thumbnail.js"
+                ],
+                "hash": "838e0dc"
+            },
+            "index:widget/waitforloc/waitforloc.inline.less": {
+                "uri": "/static/index/widget/waitforloc/waitforloc.inline.css",
+                "type": "css",
+                "hash": "ec927c4"
+            },
+            "index:widget/waitforloc/waitforloc.js": {
+                "uri": "/static/index/widget/waitforloc/waitforloc.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/geolocation.js",
+                    "common:widget/url/url.js",
+                    "common:widget/cookie/cookie.js",
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "7f9d284"
+            },
+            "index:widget/waitforloc/waitforloc.tpl": {
+                "uri": "index/widget/waitforloc/waitforloc.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/waitforloc/waitforloc.js"
+                ],
+                "hash": "eb53e0d"
+            }
+        },
+        "pkg": {}
+    },
+    "more2": {
+        "res": {
+            "index:page/areamap.tpl": {
+                "uri": "/template/index/page/areamap.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "common:widget/map/map.js",
+                    "index:widget/helper/maphelper.js"
+                ],
+                "hash": "3588070"
+            },
+            "index:page/business.tpl": {
+                "uri": "/template/index/page/business.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "dd901e9"
+            },
+            "index:page/businessselect.tpl": {
+                "uri": "/template/index/page/businessselect.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "c27fb10"
+            },
+            "index:page/casuallook.tpl": {
+                "uri": "/template/index/page/casuallook.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "0f5ce8f"
+            },
+            "index:page/error.tpl": {
+                "uri": "/template/index/page/error.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "index:widget/error/error.js"
+                ],
+                "hash": "a5b02a0"
+            },
+            "index:page/hao123.tpl": {
+                "uri": "/template/index/page/hao123.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "384b129"
+            },
+            "index:page/index.tpl": {
+                "uri": "/template/index/page/index.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true,
+                    "async": [
+                        "common:widget/login/login.js"
+                    ]
+                },
+                "hash": "de3593f"
+            },
+            "index:page/linesearch.tpl": {
+                "uri": "/template/index/page/linesearch.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "efa7ff6"
+            },
+            "index:page/map.tpl": {
+                "uri": "/template/index/page/map.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "common:widget/map/map.js",
+                    "index:widget/helper/maphelper.js",
+                    "common:widget/login/login.js"
+                ],
+                "hash": "1fd6b88"
+            },
+            "index:page/more.tpl": {
+                "uri": "/template/index/page/more.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "681f19c"
+            },
+            "index:page/mylocation.tpl": {
+                "uri": "/template/index/page/mylocation.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "0e52145"
+            },
+            "index:page/navline.tpl": {
+                "uri": "/template/index/page/navline.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "71d6ee4"
+            },
+            "index:page/searchnearby.tpl": {
+                "uri": "/template/index/page/searchnearby.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "08121fe"
+            },
+            "index:page/setmylocation.tpl": {
+                "uri": "/template/index/page/setmylocation.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "924e9b1"
+            },
+            "index:page/setsubwaycity.tpl": {
+                "uri": "/template/index/page/setsubwaycity.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "f97506e"
+            },
+            "index:page/streetview.tpl": {
+                "uri": "/template/index/page/streetview.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "8423c4c"
+            },
+            "index:page/sventry.tpl": {
+                "uri": "/template/index/page/sventry.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "532a2e1"
+            },
+            "index:page/switchproduct.tpl": {
+                "uri": "/template/index/page/switchproduct.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "2dde3ae"
+            },
+            "index:page/waitforloc.tpl": {
+                "uri": "/template/index/page/waitforloc.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "index:widget/waitforloc/waitforloc.js"
+                ],
+                "hash": "9b580d8"
+            },
+            "index:static/css/hao123.inline.less": {
+                "uri": "/static/index/css/hao123.inline.css",
+                "type": "css",
+                "hash": "8fd4445"
+            },
+            "index:static/css/index.inline.less": {
+                "uri": "/static/index/css/index.inline.css",
+                "type": "css",
+                "hash": "a53fa0f"
+            },
+            "index:static/css/mylocation.inline.less": {
+                "uri": "/static/index/css/mylocation.inline.css",
+                "type": "css",
+                "hash": "330d9df"
+            },
+            "index:static/css/setmylocation.inline.less": {
+                "uri": "/static/index/css/setmylocation.inline.css",
+                "type": "css",
+                "hash": "25f6f44"
+            },
+            "index:static/css/setsubwaycity.inline.less": {
+                "uri": "/static/index/css/setsubwaycity.inline.css",
+                "type": "css",
+                "hash": "e48541e"
+            },
+            "index:static/css/sventry.inline.less": {
+                "uri": "/static/index/css/sventry.inline.css",
+                "type": "css",
+                "hash": "6ec9b35"
+            },
+            "index:widget/addestop/addestop.inline.less": {
+                "uri": "/static/index/widget/addestop/addestop.inline.css",
+                "type": "css",
+                "hash": "1665ad6"
+            },
+            "index:widget/addestop/addestop.js": {
+                "uri": "/static/index/widget/addestop/addestop.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "common:static/js/util.js",
+                    "common:widget/cookie/cookie.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "06ac232"
+            },
+            "index:widget/addestop/addestop.tpl": {
+                "uri": "index/widget/addestop/addestop.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/addestop/addestop.js"
+                ],
+                "hash": "ae53419"
+            },
+            "index:widget/allcity/allcity.inline.less": {
+                "uri": "/static/index/widget/allcity/allcity.inline.css",
+                "type": "css",
+                "hash": "e81e474"
+            },
+            "index:widget/allcity/allcity.js": {
+                "uri": "/static/index/widget/allcity/allcity.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/setcity/setcity.js"
+                ],
+                "hash": "bb6d28d"
+            },
+            "index:widget/allcity/allcity.tpl": {
+                "uri": "index/widget/allcity/allcity.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/allcity/allcity.js"
+                ],
+                "hash": "1e7936a"
+            },
+            "index:widget/bizarea/bizarea.inline.less": {
+                "uri": "/static/index/widget/bizarea/bizarea.inline.css",
+                "type": "css",
+                "hash": "641c612"
+            },
+            "index:widget/bizarea/bizarea.js": {
+                "uri": "/static/index/widget/bizarea/bizarea.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/geolocation/location.js",
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "314022b"
+            },
+            "index:widget/bizarea/bizarea.tpl": {
+                "uri": "index/widget/bizarea/bizarea.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/bizarea/bizarea.js"
+                ],
+                "hash": "03fb693"
+            },
+            "index:widget/businesslist/businesslist.inline.less": {
+                "uri": "/static/index/widget/businesslist/businesslist.inline.css",
+                "type": "css",
+                "hash": "b510d48"
+            },
+            "index:widget/businesslist/businesslist.js": {
+                "uri": "/static/index/widget/businesslist/businesslist.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "common:static/js/searchdata.js"
+                ],
+                "hash": "bf47bd9"
+            },
+            "index:widget/businesslist/businesslist.tpl": {
+                "uri": "index/widget/businesslist/businesslist.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/businesslist/businesslist.js"
+                ],
+                "hash": "be3d1a1"
+            },
+            "index:widget/bussinesslist/bussinesslist.inline.less": {
+                "uri": "/static/index/widget/bussinesslist/bussinesslist.inline.css",
+                "type": "css",
+                "hash": "1b235c5"
+            },
+            "index:widget/bussinesslist/bussinesslist.js": {
+                "uri": "/static/index/widget/bussinesslist/bussinesslist.js",
+                "type": "js",
+                "hash": "794b78b"
+            },
+            "index:widget/bussinesslist/bussinesslist.tpl": {
+                "uri": "index/widget/bussinesslist/bussinesslist.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/bussinesslist/bussinesslist.js"
+                ],
+                "hash": "c695612"
+            },
+            "index:widget/cateinfo/cateinfo.inline.less": {
+                "uri": "/static/index/widget/cateinfo/cateinfo.inline.css",
+                "type": "css",
+                "hash": "1316cf2"
+            },
+            "index:widget/cateinfo/cateinfo.js": {
+                "uri": "/static/index/widget/cateinfo/cateinfo.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "index:widget/helper/helper.js",
+                    "common:widget/stat/stat.js"
+                ],
+                "hash": "d9c9ca7"
+            },
+            "index:widget/cateinfo/cateinfo.tpl": {
+                "uri": "index/widget/cateinfo/cateinfo.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/cateinfo/cateinfo.js"
+                ],
+                "hash": "8db760a"
+            },
+            "index:widget/curloc/curloc.inline.less": {
+                "uri": "/static/index/widget/curloc/curloc.inline.css",
+                "type": "css",
+                "hash": "648682a"
+            },
+            "index:widget/curloc/curloc.js": {
+                "uri": "/static/index/widget/curloc/curloc.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "d297bb8"
+            },
+            "index:widget/curloc/curloc.tpl": {
+                "uri": "index/widget/curloc/curloc.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/curloc/curloc.js"
+                ],
+                "hash": "12bb3f6"
+            },
+            "index:widget/error/error.inline.less": {
+                "uri": "/static/index/widget/error/error.inline.css",
+                "type": "css",
+                "hash": "f8748ea"
+            },
+            "index:widget/error/error.js": {
+                "uri": "/static/index/widget/error/error.js",
+                "type": "js",
+                "hash": "87c7510"
+            },
+            "index:widget/error/error.tpl": {
+                "uri": "index/widget/error/error.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/error/error.js"
+                ],
+                "hash": "11ef56c"
+            },
+            "index:widget/helper/helper.js": {
+                "uri": "/static/index/widget/helper/helper.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/url/url.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "common:static/js/searchdata.js",
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "3da0566"
+            },
+            "index:widget/helper/maphelper.js": {
+                "uri": "/static/index/widget/helper/maphelper.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/map/map.js",
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "69fc4ce"
+            },
+            "index:widget/historycity/historycity.inline.less": {
+                "uri": "/static/index/widget/historycity/historycity.inline.css",
+                "type": "css",
+                "hash": "ebbf757"
+            },
+            "index:widget/historycity/historycity.js": {
+                "uri": "/static/index/widget/historycity/historycity.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/setcity/setcity.js"
+                ],
+                "hash": "b29f90f"
+            },
+            "index:widget/historycity/historycity.tpl": {
+                "uri": "index/widget/historycity/historycity.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/historycity/historycity.js"
+                ],
+                "hash": "f34e0f6"
+            },
+            "index:widget/hotcity/hotcity.inline.less": {
+                "uri": "/static/index/widget/hotcity/hotcity.inline.css",
+                "type": "css",
+                "hash": "beb725f"
+            },
+            "index:widget/hotcity/hotcity.js": {
+                "uri": "/static/index/widget/hotcity/hotcity.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/setcity/setcity.js"
+                ],
+                "hash": "e6fa666"
+            },
+            "index:widget/hotcity/hotcity.tpl": {
+                "uri": "index/widget/hotcity/hotcity.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/hotcity/hotcity.js"
+                ],
+                "hash": "bc0bc6b"
+            },
+            "index:widget/locsearch/locsearch.inline.less": {
+                "uri": "/static/index/widget/locsearch/locsearch.inline.css",
+                "type": "css",
+                "hash": "642ec3f"
+            },
+            "index:widget/locsearch/locsearch.js": {
+                "uri": "/static/index/widget/locsearch/locsearch.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js",
+                    "common:widget/url/url.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "960ef88"
+            },
+            "index:widget/locsearch/locsearch.tpl": {
+                "uri": "index/widget/locsearch/locsearch.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/locsearch/locsearch.js"
+                ],
+                "hash": "c866549"
+            },
+            "index:widget/morecategory/morecategory.inline.less": {
+                "uri": "/static/index/widget/morecategory/morecategory.inline.css",
+                "type": "css",
+                "hash": "7a998ef"
+            },
+            "index:widget/morecategory/morecategory.js": {
+                "uri": "/static/index/widget/morecategory/morecategory.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js",
+                    "common:static/js/util.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "common:widget/url/url.js"
+                ],
+                "hash": "f5c377e"
+            },
+            "index:widget/morecategory/morecategory.tpl": {
+                "uri": "index/widget/morecategory/morecategory.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/morecategory/morecategory.js"
+                ],
+                "hash": "9bf4ca6"
+            },
+            "index:widget/navebox/navebox.inline.less": {
+                "uri": "/static/index/widget/navebox/navebox.inline.css",
+                "type": "css",
+                "hash": "ddefbbe"
+            },
+            "index:widget/navebox/navebox.js": {
+                "uri": "/static/index/widget/navebox/navebox.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js"
+                ],
+                "hash": "a99c096"
+            },
+            "index:widget/navebox/navebox.tpl": {
+                "uri": "index/widget/navebox/navebox.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/navebox/navebox.js"
+                ],
+                "hash": "b892c44"
+            },
+            "index:widget/navethumbnail/navethumbnail.inline.less": {
+                "uri": "/static/index/widget/navethumbnail/navethumbnail.inline.css",
+                "type": "css",
+                "hash": "9f78032"
+            },
+            "index:widget/navethumbnail/navethumbnail.js": {
+                "uri": "/static/index/widget/navethumbnail/navethumbnail.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/geolocation/location.js",
+                    "common:static/js/searchdata.js",
+                    "common:widget/stat/stat.js"
+                ],
+                "hash": "ad98e39"
+            },
+            "index:widget/navethumbnail/navethumbnail.tpl": {
+                "uri": "index/widget/navethumbnail/navethumbnail.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/navethumbnail/navethumbnail.js"
+                ],
+                "hash": "7510e3a"
+            },
+            "index:widget/nbserachbox/nbserachbox.inline.less": {
+                "uri": "/static/index/widget/nbserachbox/nbserachbox.inline.css",
+                "type": "css",
+                "hash": "ba8ad67"
+            },
+            "index:widget/nbserachbox/nbserachbox.js": {
+                "uri": "/static/index/widget/nbserachbox/nbserachbox.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js",
+                    "common:widget/url/url.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "b6aa811"
+            },
+            "index:widget/nbserachbox/nbserachbox.tpl": {
+                "uri": "index/widget/nbserachbox/nbserachbox.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nbserachbox/nbserachbox.js"
+                ],
+                "hash": "b3eda25"
+            },
+            "index:widget/nearby/nearby.inline.less": {
+                "uri": "/static/index/widget/nearby/nearby.inline.css",
+                "type": "css",
+                "hash": "f4c6a87"
+            },
+            "index:widget/nearby/nearby.js": {
+                "uri": "/static/index/widget/nearby/nearby.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/gmu/src/extend/highlight.js",
+                    "common:static/js/util.js",
+                    "common:widget/url/url.js",
+                    "index:widget/helper/helper.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/imageloader/imageloader.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "3f7db2a"
+            },
+            "index:widget/nearby/nearby.tpl": {
+                "uri": "index/widget/nearby/nearby.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearby/nearby.js"
+                ],
+                "hash": "cfeae92"
+            },
+            "index:widget/nearbytip/nearbytip.inline.less": {
+                "uri": "/static/index/widget/nearbytip/nearbytip.inline.css",
+                "type": "css",
+                "hash": "5d9c818"
+            },
+            "index:widget/nearbytip/nearbytip.js": {
+                "uri": "/static/index/widget/nearbytip/nearbytip.js",
+                "type": "js",
+                "hash": "96562d1"
+            },
+            "index:widget/nearbytip/nearbytip.tpl": {
+                "uri": "index/widget/nearbytip/nearbytip.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearbytip/nearbytip.js"
+                ],
+                "hash": "6ed1c8b"
+            },
+            "index:widget/nearpush/bank.inline.less": {
+                "uri": "/static/index/widget/nearpush/bank.inline.css",
+                "type": "css",
+                "hash": "861b2f7"
+            },
+            "index:widget/nearpush/bank.js": {
+                "uri": "/static/index/widget/nearpush/bank.js",
+                "type": "js",
+                "deps": [
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "426a436"
+            },
+            "index:widget/nearpush/bank.tpl": {
+                "uri": "index/widget/nearpush/bank.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearpush/bank.js"
+                ],
+                "hash": "9f4e033"
+            },
+            "index:widget/nearpush/cater.inline.less": {
+                "uri": "/static/index/widget/nearpush/cater.inline.css",
+                "type": "css",
+                "hash": "5c278fd"
+            },
+            "index:widget/nearpush/cater.js": {
+                "uri": "/static/index/widget/nearpush/cater.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/geolocation/location.js",
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "f0846b0"
+            },
+            "index:widget/nearpush/cater.tpl": {
+                "uri": "index/widget/nearpush/cater.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearpush/cater.js"
+                ],
+                "hash": "eabdf91"
+            },
+            "index:widget/nearpush/hao123hd.inline.less": {
+                "uri": "/static/index/widget/nearpush/hao123hd.inline.css",
+                "type": "css",
+                "hash": "c446101"
+            },
+            "index:widget/nearpush/hao123hd.tpl": {
+                "uri": "index/widget/nearpush/hao123hd.tpl",
+                "type": "tpl",
+                "hash": "816c2cd"
+            },
+            "index:widget/nearpush/hotel.inline.less": {
+                "uri": "/static/index/widget/nearpush/hotel.inline.css",
+                "type": "css",
+                "hash": "eb07f14"
+            },
+            "index:widget/nearpush/hotel.js": {
+                "uri": "/static/index/widget/nearpush/hotel.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "ad6e20a"
+            },
+            "index:widget/nearpush/hotel.tpl": {
+                "uri": "index/widget/nearpush/hotel.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearpush/hotel.js"
+                ],
+                "hash": "cb54c7b"
+            },
+            "index:widget/searchbox/searchbox.inline.less": {
+                "uri": "/static/index/widget/searchbox/searchbox.inline.css",
+                "type": "css",
+                "hash": "9e63bf2"
+            },
+            "index:widget/searchbox/searchbox.js": {
+                "uri": "/static/index/widget/searchbox/searchbox.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/gmu/src/extend/highlight.js",
+                    "common:static/js/gmu/src/widget/suggestion/suggestion.js",
+                    "common:static/js/gmu/src/widget/suggestion/renderlist.js",
+                    "common:static/js/gmu/src/widget/suggestion/quickdelete.js",
+                    "common:static/js/gmu/src/widget/suggestion/sendrequest.js",
+                    "common:widget/url/url.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/search/poisearch.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "common:widget/apphistory/apphistory.js"
+                ],
+                "hash": "d96acee"
+            },
+            "index:widget/searchbox/searchbox.tpl": {
+                "uri": "index/widget/searchbox/searchbox.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/searchbox/searchbox.js"
+                ],
+                "hash": "3b6ce1f"
+            },
+            "index:widget/surface/surface.inline.less": {
+                "uri": "/static/index/widget/surface/surface.inline.css",
+                "type": "css",
+                "hash": "1a48184"
+            },
+            "index:widget/surface/surface.js": {
+                "uri": "/static/index/widget/surface/surface.js",
+                "type": "js",
+                "hash": "8027476"
+            },
+            "index:widget/surface/surface.tpl": {
+                "uri": "index/widget/surface/surface.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/surface/surface.js"
+                ],
+                "hash": "d23d540"
+            },
+            "index:widget/sventry/sventry.inline.less": {
+                "uri": "/static/index/widget/sventry/sventry.inline.css",
+                "type": "css",
+                "hash": "cb55f48"
+            },
+            "index:widget/sventry/sventry.js": {
+                "uri": "/static/index/widget/sventry/sventry.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js"
+                ],
+                "hash": "8bbe196"
+            },
+            "index:widget/sventry/sventry.tpl": {
+                "uri": "index/widget/sventry/sventry.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/sventry/sventry.js"
+                ],
+                "hash": "af9d051"
+            },
+            "index:widget/switchproduct/switchproduct.inline.less": {
+                "uri": "/static/index/widget/switchproduct/switchproduct.inline.css",
+                "type": "css",
+                "hash": "89f329b"
+            },
+            "index:widget/switchproduct/switchproduct.tpl": {
+                "uri": "index/widget/switchproduct/switchproduct.tpl",
+                "type": "tpl",
+                "hash": "862791f"
+            },
+            "index:widget/tabgroup/tabgroup.inline.less": {
+                "uri": "/static/index/widget/tabgroup/tabgroup.inline.css",
+                "type": "css",
+                "hash": "017c458"
+            },
+            "index:widget/tabgroup/tabgroup.js": {
+                "uri": "/static/index/widget/tabgroup/tabgroup.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "common:widget/map/preloader/preloader.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "63531c6"
+            },
+            "index:widget/tabgroup/tabgroup.tpl": {
+                "uri": "index/widget/tabgroup/tabgroup.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/tabgroup/tabgroup.js"
+                ],
+                "hash": "d462004"
+            },
+            "index:widget/thumbnail/thumbnail.inline.less": {
+                "uri": "/static/index/widget/thumbnail/thumbnail.inline.css",
+                "type": "css",
+                "hash": "98abd9f"
+            },
+            "index:widget/thumbnail/thumbnail.js": {
+                "uri": "/static/index/widget/thumbnail/thumbnail.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/popup/popup.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "index:widget/historycity/historycity.js"
+                ],
+                "hash": "5a1af25"
+            },
+            "index:widget/thumbnail/thumbnail.tpl": {
+                "uri": "index/widget/thumbnail/thumbnail.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/thumbnail/thumbnail.js"
+                ],
+                "hash": "838e0dc"
+            },
+            "index:widget/waitforloc/waitforloc.inline.less": {
+                "uri": "/static/index/widget/waitforloc/waitforloc.inline.css",
+                "type": "css",
+                "hash": "ec927c4"
+            },
+            "index:widget/waitforloc/waitforloc.js": {
+                "uri": "/static/index/widget/waitforloc/waitforloc.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/geolocation.js",
+                    "common:widget/url/url.js",
+                    "common:widget/cookie/cookie.js",
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "7f9d284"
+            },
+            "index:widget/waitforloc/waitforloc.tpl": {
+                "uri": "index/widget/waitforloc/waitforloc.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/waitforloc/waitforloc.js"
+                ],
+                "hash": "eb53e0d"
+            }
+        },
+        "pkg": {}
+    },
+    "more3":{
+        "res": {
+            "index:page/areamap.tpl": {
+                "uri": "/template/index/page/areamap.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "common:widget/map/map.js",
+                    "index:widget/helper/maphelper.js"
+                ],
+                "hash": "3588070"
+            },
+            "index:page/business.tpl": {
+                "uri": "/template/index/page/business.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "dd901e9"
+            },
+            "index:page/businessselect.tpl": {
+                "uri": "/template/index/page/businessselect.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "c27fb10"
+            },
+            "index:page/casuallook.tpl": {
+                "uri": "/template/index/page/casuallook.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "0f5ce8f"
+            },
+            "index:page/error.tpl": {
+                "uri": "/template/index/page/error.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "index:widget/error/error.js"
+                ],
+                "hash": "a5b02a0"
+            },
+            "index:page/hao123.tpl": {
+                "uri": "/template/index/page/hao123.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "384b129"
+            },
+            "index:page/index.tpl": {
+                "uri": "/template/index/page/index.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true,
+                    "async": [
+                        "common:widget/login/login.js"
+                    ]
+                },
+                "hash": "de3593f"
+            },
+            "index:page/linesearch.tpl": {
+                "uri": "/template/index/page/linesearch.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "efa7ff6"
+            },
+            "index:page/map.tpl": {
+                "uri": "/template/index/page/map.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "common:widget/map/map.js",
+                    "index:widget/helper/maphelper.js",
+                    "common:widget/login/login.js"
+                ],
+                "hash": "1fd6b88"
+            },
+            "index:page/more.tpl": {
+                "uri": "/template/index/page/more.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "681f19c"
+            },
+            "index:page/mylocation.tpl": {
+                "uri": "/template/index/page/mylocation.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "0e52145"
+            },
+            "index:page/navline.tpl": {
+                "uri": "/template/index/page/navline.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "71d6ee4"
+            },
+            "index:page/searchnearby.tpl": {
+                "uri": "/template/index/page/searchnearby.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "08121fe"
+            },
+            "index:page/setmylocation.tpl": {
+                "uri": "/template/index/page/setmylocation.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "924e9b1"
+            },
+            "index:page/setsubwaycity.tpl": {
+                "uri": "/template/index/page/setsubwaycity.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "f97506e"
+            },
+            "index:page/streetview.tpl": {
+                "uri": "/template/index/page/streetview.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "8423c4c"
+            },
+            "index:page/sventry.tpl": {
+                "uri": "/template/index/page/sventry.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "532a2e1"
+            },
+            "index:page/switchproduct.tpl": {
+                "uri": "/template/index/page/switchproduct.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "hash": "2dde3ae"
+            },
+            "index:page/waitforloc.tpl": {
+                "uri": "/template/index/page/waitforloc.tpl",
+                "type": "tpl",
+                "extras": {
+                    "isPage": true
+                },
+                "deps": [
+                    "index:widget/waitforloc/waitforloc.js"
+                ],
+                "hash": "9b580d8"
+            },
+            "index:static/css/hao123.inline.less": {
+                "uri": "/static/index/css/hao123.inline.css",
+                "type": "css",
+                "hash": "8fd4445"
+            },
+            "index:static/css/index.inline.less": {
+                "uri": "/static/index/css/index.inline.css",
+                "type": "css",
+                "hash": "a53fa0f"
+            },
+            "index:static/css/mylocation.inline.less": {
+                "uri": "/static/index/css/mylocation.inline.css",
+                "type": "css",
+                "hash": "330d9df"
+            },
+            "index:static/css/setmylocation.inline.less": {
+                "uri": "/static/index/css/setmylocation.inline.css",
+                "type": "css",
+                "hash": "25f6f44"
+            },
+            "index:static/css/setsubwaycity.inline.less": {
+                "uri": "/static/index/css/setsubwaycity.inline.css",
+                "type": "css",
+                "hash": "e48541e"
+            },
+            "index:static/css/sventry.inline.less": {
+                "uri": "/static/index/css/sventry.inline.css",
+                "type": "css",
+                "hash": "6ec9b35"
+            },
+            "index:widget/addestop/addestop.inline.less": {
+                "uri": "/static/index/widget/addestop/addestop.inline.css",
+                "type": "css",
+                "hash": "1665ad6"
+            },
+            "index:widget/addestop/addestop.js": {
+                "uri": "/static/index/widget/addestop/addestop.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "common:static/js/util.js",
+                    "common:widget/cookie/cookie.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "06ac232"
+            },
+            "index:widget/addestop/addestop.tpl": {
+                "uri": "index/widget/addestop/addestop.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/addestop/addestop.js"
+                ],
+                "hash": "ae53419"
+            },
+            "index:widget/allcity/allcity.inline.less": {
+                "uri": "/static/index/widget/allcity/allcity.inline.css",
+                "type": "css",
+                "hash": "e81e474"
+            },
+            "index:widget/allcity/allcity.js": {
+                "uri": "/static/index/widget/allcity/allcity.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/setcity/setcity.js"
+                ],
+                "hash": "bb6d28d"
+            },
+            "index:widget/allcity/allcity.tpl": {
+                "uri": "index/widget/allcity/allcity.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/allcity/allcity.js"
+                ],
+                "hash": "1e7936a"
+            },
+            "index:widget/bizarea/bizarea.inline.less": {
+                "uri": "/static/index/widget/bizarea/bizarea.inline.css",
+                "type": "css",
+                "hash": "641c612"
+            },
+            "index:widget/bizarea/bizarea.js": {
+                "uri": "/static/index/widget/bizarea/bizarea.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/geolocation/location.js",
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "314022b"
+            },
+            "index:widget/bizarea/bizarea.tpl": {
+                "uri": "index/widget/bizarea/bizarea.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/bizarea/bizarea.js"
+                ],
+                "hash": "03fb693"
+            },
+            "index:widget/businesslist/businesslist.inline.less": {
+                "uri": "/static/index/widget/businesslist/businesslist.inline.css",
+                "type": "css",
+                "hash": "b510d48"
+            },
+            "index:widget/businesslist/businesslist.js": {
+                "uri": "/static/index/widget/businesslist/businesslist.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "common:static/js/searchdata.js"
+                ],
+                "hash": "bf47bd9"
+            },
+            "index:widget/businesslist/businesslist.tpl": {
+                "uri": "index/widget/businesslist/businesslist.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/businesslist/businesslist.js"
+                ],
+                "hash": "be3d1a1"
+            },
+            "index:widget/bussinesslist/bussinesslist.inline.less": {
+                "uri": "/static/index/widget/bussinesslist/bussinesslist.inline.css",
+                "type": "css",
+                "hash": "1b235c5"
+            },
+            "index:widget/bussinesslist/bussinesslist.js": {
+                "uri": "/static/index/widget/bussinesslist/bussinesslist.js",
+                "type": "js",
+                "hash": "794b78b"
+            },
+            "index:widget/bussinesslist/bussinesslist.tpl": {
+                "uri": "index/widget/bussinesslist/bussinesslist.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/bussinesslist/bussinesslist.js"
+                ],
+                "hash": "c695612"
+            },
+            "index:widget/cateinfo/cateinfo.inline.less": {
+                "uri": "/static/index/widget/cateinfo/cateinfo.inline.css",
+                "type": "css",
+                "hash": "1316cf2"
+            },
+            "index:widget/cateinfo/cateinfo.js": {
+                "uri": "/static/index/widget/cateinfo/cateinfo.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "index:widget/helper/helper.js",
+                    "common:widget/stat/stat.js"
+                ],
+                "hash": "d9c9ca7"
+            },
+            "index:widget/cateinfo/cateinfo.tpl": {
+                "uri": "index/widget/cateinfo/cateinfo.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/cateinfo/cateinfo.js"
+                ],
+                "hash": "8db760a"
+            },
+            "index:widget/curloc/curloc.inline.less": {
+                "uri": "/static/index/widget/curloc/curloc.inline.css",
+                "type": "css",
+                "hash": "648682a"
+            },
+            "index:widget/curloc/curloc.js": {
+                "uri": "/static/index/widget/curloc/curloc.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "d297bb8"
+            },
+            "index:widget/curloc/curloc.tpl": {
+                "uri": "index/widget/curloc/curloc.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/curloc/curloc.js"
+                ],
+                "hash": "12bb3f6"
+            },
+            "index:widget/error/error.inline.less": {
+                "uri": "/static/index/widget/error/error.inline.css",
+                "type": "css",
+                "hash": "f8748ea"
+            },
+            "index:widget/error/error.js": {
+                "uri": "/static/index/widget/error/error.js",
+                "type": "js",
+                "hash": "87c7510"
+            },
+            "index:widget/error/error.tpl": {
+                "uri": "index/widget/error/error.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/error/error.js"
+                ],
+                "hash": "11ef56c"
+            },
+            "index:widget/helper/helper.js": {
+                "uri": "/static/index/widget/helper/helper.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/url/url.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "common:static/js/searchdata.js",
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "3da0566"
+            },
+            "index:widget/helper/maphelper.js": {
+                "uri": "/static/index/widget/helper/maphelper.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/map/map.js",
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "69fc4ce"
+            },
+            "index:widget/historycity/historycity.inline.less": {
+                "uri": "/static/index/widget/historycity/historycity.inline.css",
+                "type": "css",
+                "hash": "ebbf757"
+            },
+            "index:widget/historycity/historycity.js": {
+                "uri": "/static/index/widget/historycity/historycity.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/setcity/setcity.js"
+                ],
+                "hash": "b29f90f"
+            },
+            "index:widget/historycity/historycity.tpl": {
+                "uri": "index/widget/historycity/historycity.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/historycity/historycity.js"
+                ],
+                "hash": "f34e0f6"
+            },
+            "index:widget/hotcity/hotcity.inline.less": {
+                "uri": "/static/index/widget/hotcity/hotcity.inline.css",
+                "type": "css",
+                "hash": "beb725f"
+            },
+            "index:widget/hotcity/hotcity.js": {
+                "uri": "/static/index/widget/hotcity/hotcity.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/setcity/setcity.js"
+                ],
+                "hash": "e6fa666"
+            },
+            "index:widget/hotcity/hotcity.tpl": {
+                "uri": "index/widget/hotcity/hotcity.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/hotcity/hotcity.js"
+                ],
+                "hash": "bc0bc6b"
+            },
+            "index:widget/locsearch/locsearch.inline.less": {
+                "uri": "/static/index/widget/locsearch/locsearch.inline.css",
+                "type": "css",
+                "hash": "642ec3f"
+            },
+            "index:widget/locsearch/locsearch.js": {
+                "uri": "/static/index/widget/locsearch/locsearch.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js",
+                    "common:widget/url/url.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "960ef88"
+            },
+            "index:widget/locsearch/locsearch.tpl": {
+                "uri": "index/widget/locsearch/locsearch.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/locsearch/locsearch.js"
+                ],
+                "hash": "c866549"
+            },
+            "index:widget/morecategory/morecategory.inline.less": {
+                "uri": "/static/index/widget/morecategory/morecategory.inline.css",
+                "type": "css",
+                "hash": "7a998ef"
+            },
+            "index:widget/morecategory/morecategory.js": {
+                "uri": "/static/index/widget/morecategory/morecategory.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js",
+                    "common:static/js/util.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "common:widget/url/url.js"
+                ],
+                "hash": "f5c377e"
+            },
+            "index:widget/morecategory/morecategory.tpl": {
+                "uri": "index/widget/morecategory/morecategory.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/morecategory/morecategory.js"
+                ],
+                "hash": "9bf4ca6"
+            },
+            "index:widget/navebox/navebox.inline.less": {
+                "uri": "/static/index/widget/navebox/navebox.inline.css",
+                "type": "css",
+                "hash": "ddefbbe"
+            },
+            "index:widget/navebox/navebox.js": {
+                "uri": "/static/index/widget/navebox/navebox.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js"
+                ],
+                "hash": "a99c096"
+            },
+            "index:widget/navebox/navebox.tpl": {
+                "uri": "index/widget/navebox/navebox.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/navebox/navebox.js"
+                ],
+                "hash": "b892c44"
+            },
+            "index:widget/navethumbnail/navethumbnail.inline.less": {
+                "uri": "/static/index/widget/navethumbnail/navethumbnail.inline.css",
+                "type": "css",
+                "hash": "9f78032"
+            },
+            "index:widget/navethumbnail/navethumbnail.js": {
+                "uri": "/static/index/widget/navethumbnail/navethumbnail.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/geolocation/location.js",
+                    "common:static/js/searchdata.js",
+                    "common:widget/stat/stat.js"
+                ],
+                "hash": "ad98e39"
+            },
+            "index:widget/navethumbnail/navethumbnail.tpl": {
+                "uri": "index/widget/navethumbnail/navethumbnail.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/navethumbnail/navethumbnail.js"
+                ],
+                "hash": "7510e3a"
+            },
+            "index:widget/nbserachbox/nbserachbox.inline.less": {
+                "uri": "/static/index/widget/nbserachbox/nbserachbox.inline.css",
+                "type": "css",
+                "hash": "ba8ad67"
+            },
+            "index:widget/nbserachbox/nbserachbox.js": {
+                "uri": "/static/index/widget/nbserachbox/nbserachbox.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/location.js",
+                    "common:widget/url/url.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "b6aa811"
+            },
+            "index:widget/nbserachbox/nbserachbox.tpl": {
+                "uri": "index/widget/nbserachbox/nbserachbox.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nbserachbox/nbserachbox.js"
+                ],
+                "hash": "b3eda25"
+            },
+            "index:widget/nearby/nearby.inline.less": {
+                "uri": "/static/index/widget/nearby/nearby.inline.css",
+                "type": "css",
+                "hash": "f4c6a87"
+            },
+            "index:widget/nearby/nearby.js": {
+                "uri": "/static/index/widget/nearby/nearby.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/gmu/src/extend/highlight.js",
+                    "common:static/js/util.js",
+                    "common:widget/url/url.js",
+                    "index:widget/helper/helper.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/imageloader/imageloader.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "3f7db2a"
+            },
+            "index:widget/nearby/nearby.tpl": {
+                "uri": "index/widget/nearby/nearby.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearby/nearby.js"
+                ],
+                "hash": "cfeae92"
+            },
+            "index:widget/nearbytip/nearbytip.inline.less": {
+                "uri": "/static/index/widget/nearbytip/nearbytip.inline.css",
+                "type": "css",
+                "hash": "5d9c818"
+            },
+            "index:widget/nearbytip/nearbytip.js": {
+                "uri": "/static/index/widget/nearbytip/nearbytip.js",
+                "type": "js",
+                "hash": "96562d1"
+            },
+            "index:widget/nearbytip/nearbytip.tpl": {
+                "uri": "index/widget/nearbytip/nearbytip.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearbytip/nearbytip.js"
+                ],
+                "hash": "6ed1c8b"
+            },
+            "index:widget/nearpush/bank.inline.less": {
+                "uri": "/static/index/widget/nearpush/bank.inline.css",
+                "type": "css",
+                "hash": "861b2f7"
+            },
+            "index:widget/nearpush/bank.js": {
+                "uri": "/static/index/widget/nearpush/bank.js",
+                "type": "js",
+                "deps": [
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "426a436"
+            },
+            "index:widget/nearpush/bank.tpl": {
+                "uri": "index/widget/nearpush/bank.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearpush/bank.js"
+                ],
+                "hash": "9f4e033"
+            },
+            "index:widget/nearpush/cater.inline.less": {
+                "uri": "/static/index/widget/nearpush/cater.inline.css",
+                "type": "css",
+                "hash": "5c278fd"
+            },
+            "index:widget/nearpush/cater.js": {
+                "uri": "/static/index/widget/nearpush/cater.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/geolocation/location.js",
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "f0846b0"
+            },
+            "index:widget/nearpush/cater.tpl": {
+                "uri": "index/widget/nearpush/cater.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearpush/cater.js"
+                ],
+                "hash": "eabdf91"
+            },
+            "index:widget/nearpush/hao123hd.inline.less": {
+                "uri": "/static/index/widget/nearpush/hao123hd.inline.css",
+                "type": "css",
+                "hash": "c446101"
+            },
+            "index:widget/nearpush/hao123hd.tpl": {
+                "uri": "index/widget/nearpush/hao123hd.tpl",
+                "type": "tpl",
+                "hash": "816c2cd"
+            },
+            "index:widget/nearpush/hotel.inline.less": {
+                "uri": "/static/index/widget/nearpush/hotel.inline.css",
+                "type": "css",
+                "hash": "eb07f14"
+            },
+            "index:widget/nearpush/hotel.js": {
+                "uri": "/static/index/widget/nearpush/hotel.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "index:widget/helper/helper.js"
+                ],
+                "hash": "ad6e20a"
+            },
+            "index:widget/nearpush/hotel.tpl": {
+                "uri": "index/widget/nearpush/hotel.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/nearpush/hotel.js"
+                ],
+                "hash": "cb54c7b"
+            },
+            "index:widget/searchbox/searchbox.inline.less": {
+                "uri": "/static/index/widget/searchbox/searchbox.inline.css",
+                "type": "css",
+                "hash": "9e63bf2"
+            },
+            "index:widget/searchbox/searchbox.js": {
+                "uri": "/static/index/widget/searchbox/searchbox.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/gmu/src/extend/highlight.js",
+                    "common:static/js/gmu/src/widget/suggestion/suggestion.js",
+                    "common:static/js/gmu/src/widget/suggestion/renderlist.js",
+                    "common:static/js/gmu/src/widget/suggestion/quickdelete.js",
+                    "common:static/js/gmu/src/widget/suggestion/sendrequest.js",
+                    "common:widget/url/url.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/search/poisearch.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "common:widget/apphistory/apphistory.js"
+                ],
+                "hash": "d96acee"
+            },
+            "index:widget/searchbox/searchbox.tpl": {
+                "uri": "index/widget/searchbox/searchbox.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/searchbox/searchbox.js"
+                ],
+                "hash": "3b6ce1f"
+            },
+            "index:widget/surface/surface.inline.less": {
+                "uri": "/static/index/widget/surface/surface.inline.css",
+                "type": "css",
+                "hash": "1a48184"
+            },
+            "index:widget/surface/surface.js": {
+                "uri": "/static/index/widget/surface/surface.js",
+                "type": "js",
+                "hash": "8027476"
+            },
+            "index:widget/surface/surface.tpl": {
+                "uri": "index/widget/surface/surface.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/surface/surface.js"
+                ],
+                "hash": "d23d540"
+            },
+            "index:widget/sventry/sventry.inline.less": {
+                "uri": "/static/index/widget/sventry/sventry.inline.css",
+                "type": "css",
+                "hash": "cb55f48"
+            },
+            "index:widget/sventry/sventry.js": {
+                "uri": "/static/index/widget/sventry/sventry.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js"
+                ],
+                "hash": "8bbe196"
+            },
+            "index:widget/sventry/sventry.tpl": {
+                "uri": "index/widget/sventry/sventry.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/sventry/sventry.js"
+                ],
+                "hash": "af9d051"
+            },
+            "index:widget/switchproduct/switchproduct.inline.less": {
+                "uri": "/static/index/widget/switchproduct/switchproduct.inline.css",
+                "type": "css",
+                "hash": "89f329b"
+            },
+            "index:widget/switchproduct/switchproduct.tpl": {
+                "uri": "index/widget/switchproduct/switchproduct.tpl",
+                "type": "tpl",
+                "hash": "862791f"
+            },
+            "index:widget/tabgroup/tabgroup.inline.less": {
+                "uri": "/static/index/widget/tabgroup/tabgroup.inline.css",
+                "type": "css",
+                "hash": "017c458"
+            },
+            "index:widget/tabgroup/tabgroup.js": {
+                "uri": "/static/index/widget/tabgroup/tabgroup.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/url/url.js",
+                    "common:widget/map/preloader/preloader.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/stat/pbstat.js"
+                ],
+                "hash": "63531c6"
+            },
+            "index:widget/tabgroup/tabgroup.tpl": {
+                "uri": "index/widget/tabgroup/tabgroup.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/tabgroup/tabgroup.js"
+                ],
+                "hash": "d462004"
+            },
+            "index:widget/thumbnail/thumbnail.inline.less": {
+                "uri": "/static/index/widget/thumbnail/thumbnail.inline.css",
+                "type": "css",
+                "hash": "98abd9f"
+            },
+            "index:widget/thumbnail/thumbnail.js": {
+                "uri": "/static/index/widget/thumbnail/thumbnail.js",
+                "type": "js",
+                "deps": [
+                    "common:static/js/util.js",
+                    "common:widget/popup/popup.js",
+                    "common:widget/geolocation/location.js",
+                    "common:widget/stat/stat.js",
+                    "common:widget/stat/pbstat.js",
+                    "index:widget/historycity/historycity.js"
+                ],
+                "hash": "5a1af25"
+            },
+            "index:widget/thumbnail/thumbnail.tpl": {
+                "uri": "index/widget/thumbnail/thumbnail.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/thumbnail/thumbnail.js"
+                ],
+                "hash": "838e0dc"
+            },
+            "index:widget/waitforloc/waitforloc.inline.less": {
+                "uri": "/static/index/widget/waitforloc/waitforloc.inline.css",
+                "type": "css",
+                "hash": "ec927c4"
+            },
+            "index:widget/waitforloc/waitforloc.js": {
+                "uri": "/static/index/widget/waitforloc/waitforloc.js",
+                "type": "js",
+                "deps": [
+                    "common:widget/geolocation/geolocation.js",
+                    "common:widget/url/url.js",
+                    "common:widget/cookie/cookie.js",
+                    "common:widget/geolocation/location.js"
+                ],
+                "hash": "7f9d284"
+            },
+            "index:widget/waitforloc/waitforloc.tpl": {
+                "uri": "index/widget/waitforloc/waitforloc.tpl",
+                "type": "tpl",
+                "deps": [
+                    "index:widget/waitforloc/waitforloc.js"
+                ],
+                "hash": "eb53e0d"
+            }
+        },
+        "pkg": {}
+    }
+}

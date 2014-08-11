@@ -9,3 +9,8 @@
 module.exports.RAL = require('./lib/ral.js');
 module.exports.Config = require('./lib/config.js');
 module.exports.RalModule = require('./lib/ralmodule.js');
+
+module.exports.Balance = require('./lib/balance.js');
+module.exports.Converter = require('./lib/converter.js');
+module.exports.Protocol = require('./lib/protocol.js');
+module.exports.Logger = require('./lib/logger.js');
