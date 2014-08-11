@@ -21,9 +21,6 @@ node-ral
     - [X] **RAL**
     - [ ] *Filter*
 - Ext
-    - Config
-        - [ ] BNS Support
-        - [ ] **BNS Update**
     - Balance
         - [X] RandomBalance
         - [X] RoundRobinBalance
@@ -34,15 +31,15 @@ node-ral
         - [X] JSON
         - [X] String
         - [X] UrlEncode
+        - [X] QueryString
+        - [X] Raw
         - [X] **Form**
-        - [ ] ***Mcpack***
         - [ ] *Protobuf*
         - [ ] *Msgpack*
     - Protocol
         - [X] HTTP
-        - [ ] ***NsHead***
-        - [ ] *Socket*
         - [ ] *HTTPS*
+        - [ ] *Socket*
 - Issue
     - [ ] Form unpack support GBK when use form-urlencoded
     - [X] Use Stream in Protocol

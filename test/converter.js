@@ -13,8 +13,12 @@ var StringConverter = require('../lib/ext/converter/stringConverter.js');
 var FormConverter = require('../lib/ext/converter/formConverter.js');
 var HttpProtocol = require('../lib/ext/protocol/httpProtocol.js');
 var UrlEncodeConverter = require('../lib/ext/converter/urlencodeConverter.js');
+var QueryStringConverter = require('../lib/ext/converter/querystringConverter.js');
+var RawConverter = require('../lib/ext/converter/rawConverter.js');
 var util = require('../lib/util.js');
 var _ = require('underscore');
+var fs = require('fs');
+var path = require('path');
 
 var mockUTF8Context = {
     encoding: 'utf8'
@@ -342,5 +346,72 @@ describe('urlencode converter', function () {
             done();
         });
         pack.pipe(request);
+    });
+});
+
+describe('querystring converter', function () {
+    it('has right name', function () {
+        var converter = new QueryStringConverter();
+        converter.getName().should.be.equal('querystring');
+    });
+
+    it('has right catagory', function () {
+        var converter = new QueryStringConverter();
+        converter.getCategory().should.be.equal('converter');
+    });
+
+    it('pack should change headers and query', function () {
+        var converter = new QueryStringConverter();
+        var data = {
+            a: 1,
+            b: "张三"
+        };
+        converter.pack(mockUTF8Context, data);
+        mockUTF8Context.headers['Content-Type'].should.be.eql('application/json');
+        mockUTF8Context.query.should.be.eql(data);
+    });
+
+    it('unpack should work with urlencodeConverter', function (done) {
+        var converter = new QueryStringConverter();
+        var urlencodeConverter = new UrlEncodeConverter();
+        var data = {
+            a: 1,
+            b: "张三"
+        };
+        var pack = urlencodeConverter.pack(mockUTF8Context, data);
+        var unpack = converter.unpack(pack);
+        unpack.on('data', function (unpackData) {
+            data.should.be.eql(unpackData);
+            done();
+        });
+        pack.pipe(unpack);
+    });
+});
+
+describe('raw converter', function () {
+    it('has right name', function () {
+        var converter = new RawConverter();
+        converter.getName().should.be.equal('raw');
+    });
+
+    it('has right catagory', function () {
+        var converter = new RawConverter();
+        converter.getCategory().should.be.equal('converter');
+    });
+
+    it('pack and unpack should be paired', function (done) {
+        var converter = new RawConverter();
+        var data = fs.createReadStream(__dirname + path.sep + './converter.js');
+        var pack = converter.pack({}, data);
+        var unpack = converter.unpack({});
+        var body = '';
+        unpack.on('data', function (data) {
+            body += data;
+        });
+        unpack.on('end', function () {
+            fs.readFileSync(__dirname + path.sep + './converter.js').toString().should.be.eql(body);
+            done();
+        });
+        pack.pipe(unpack);
     });
 });
