@@ -33,7 +33,8 @@ describe('ral', function () {
             res.on('data',function(d){
                 body += d;
             }).on('end', function(){
-                body.should.be.ok;
+                var data = JSON.parse(body);
+                data.port.should.be.eql(8192);
                 done();
             });
         }).on('error', function(e) {
@@ -43,8 +44,10 @@ describe('ral', function () {
     });
 
     it('show request time with module request', function(done){
-        require('request').get('http://127.0.0.1:8192', {} , function(err, response, data){
-            data.should.be.ok;
+        require('request').get('http://127.0.0.1:8192', {} , function(err, response, body){
+            (err === null).should.be.true;
+            var data = JSON.parse(body);
+            data.port.should.be.eql(8192);
             done();
         });
     });
