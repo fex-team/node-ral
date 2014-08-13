@@ -32,6 +32,19 @@ module.exports.bookService = function(port, encoding){
                 'Content-Type': 'text/plain'
             });
             fs.createReadStream(__dirname + path.sep + './data/bigone.json').pipe(response);
+        }else if (pathname === '/timeout'){
+            response.writeHead(200, {
+                'Content-Type': 'text/plain'
+            });
+            var str = JSON.stringify({
+                port: port,
+                query: urlencode.parse(info.query)
+            });
+            response.write(str.slice(0, 1));
+            setTimeout(function(){
+                response.write(str.slice(1));
+                response.end();
+            },200)
         }else{
             response.writeHead(200, {
                 'Content-Type': 'application/json'

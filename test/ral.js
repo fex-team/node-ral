@@ -151,4 +151,27 @@ describe('ral', function () {
             done();
         });
     });
+
+    it('should invoke timeout', function (done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var req = RAL('GET_QS_SERV', {
+            path: '/timeout',
+            data: {
+                msg: 'hi',
+                name: 'timeout'
+            },
+            retry: 2,
+            timeout: 100
+        });
+        req.on('data', function(data){
+            console.log(data);
+            done();
+        });
+        req.on('error', function(err){
+            err.should.be.match(/request time out/);
+            done();
+        });
+    });
 });
