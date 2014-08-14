@@ -19,6 +19,7 @@ var util = require('../lib/util.js');
 var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
+var post_test = require('./protocol/http_protocol_post_test.js');
 
 var mockUTF8Context = {
     encoding: 'utf8'
@@ -184,7 +185,6 @@ describe('form converter', function () {
         };
         var options = _.clone(mockUTF8Context);
         var httpProtocol = new HttpProtocol();
-        var post_test = require('./protocol/http_protocol_post_test.js');
         var server = post_test.createServer();
         util.merge(options, post_test.service);
         options = HttpProtocol.normalizeConfig(options);
@@ -198,8 +198,8 @@ describe('form converter', function () {
             response += data.toString();
         });
         request.on('end', function () {
-            response.toString().should.be.equal('hear you 张三李四');
             server.close();
+            response.toString().should.be.equal('hear you 张三李四');
             done();
         });
         pack.pipe(request);
@@ -212,7 +212,6 @@ describe('form converter', function () {
         };
         var options = _.clone(mockGBKContext);
         var httpProtocol = new HttpProtocol();
-        var post_test = require('./protocol/http_protocol_post_test.js');
         util.merge(options, post_test.service);
         util.merge(options, {
             server: post_test.request.server
@@ -301,7 +300,6 @@ describe('urlencode converter', function () {
         };
         var options = _.clone(mockUTF8Context);
         var httpProtocol = new HttpProtocol();
-        var post_test = require('./protocol/http_protocol_post_test.js');
         util.merge(options, post_test.service);
         util.merge(options, post_test.request);
         options = HttpProtocol.normalizeConfig(options);
