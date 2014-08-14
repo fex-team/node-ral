@@ -38,6 +38,6 @@
     "istanbul": "0.3.0",
     "mocha": "1.21.3",
     "should": "4.0.4",
-    "formidable": "1.0.15",
+    "formidable": "1.0.15"
   }
 }
