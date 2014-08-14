@@ -27,7 +27,6 @@
     "chai": "1.9.1",
     "combined-stream": "0.0.5",
     "form-data": "0.1.4",
-    "formidable": "1.0.15",
     "iconv-lite": "0.4.4",
     "performance-now": "0.1.3",
     "request": "2.40.0",
@@ -38,6 +37,7 @@
   "devDependencies": {
     "istanbul": "0.3.0",
     "mocha": "1.21.3",
-    "should": "4.0.4"
+    "should": "4.0.4",
+    "formidable": "1.0.15",
   }
 }
