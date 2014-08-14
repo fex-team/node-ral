@@ -52,7 +52,7 @@ describe('ral', function () {
         });
     });
 
-    it('should init successfully', function (done) {
+    it('should init successfully', function () {
         RAL.init({
             confDir : __dirname + path.sep + './ral/config',
             logger : {
@@ -60,11 +60,8 @@ describe('ral', function () {
                 "app" : "ral"
             },
             currentIDC : 'tc'
-        }, function(err){
-            (err === undefined).should.be.true;
-            isInited.emit('done');
-            done();
         });
+        isInited.emit('done');
     });
 
     it('should make request correctly', function (done) {

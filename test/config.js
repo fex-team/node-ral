@@ -54,42 +54,27 @@ describe('config parser', function() {
 
 describe('load config', function() {
 
-    it('load by file', function(done) {
-        config.load(__dirname + path.sep + './config/single_config.js', function(err, conf){
-            (err === null).should.be.true;
-            conf.should.have.properties('bookService', 'bookServiceBNS', 'bookListService', 'bookListServiceWithCUI');
-            done();
-        });
+    it('load by file', function() {
+        var conf = config.load(__dirname + path.sep + './config/single_config.js');
+        conf.should.have.properties('bookService', 'bookServiceBNS', 'bookListService', 'bookListServiceWithCUI');
     });
 
-    it('load by json', function(done) {
-        config.load(__dirname + path.sep + './config/json_config.json', function(err, conf){
-            (err === null).should.be.true;
-            conf.should.have.properties('bookService');
-            done();
-        });
+    it('load by json', function() {
+        var conf = config.load(__dirname + path.sep + './config/json_config.json');
+        conf.should.have.properties('bookService');
     });
 
-    it('load by wrong file path', function(done) {
-        config.load(__dirname + path.sep + './config/single_config_w.js', function(err){
-            err.should.be.ok;
-            done();
-        });
+    it('load by wrong file path', function() {
+        (function(){config.load(__dirname + path.sep + './config/single_config_w.js');}).should.throwError();
     });
 
-    it('load by wrong folder path', function(done) {
-        config.load(__dirname + path.sep + './config/directory_w', function(err){
-            err.should.be.ok;
-            done();
-        });
+    it('load by wrong folder path', function() {
+        (function(){config.load(__dirname + path.sep + './config/directory_w');}).should.throwError();
     });
 
-    it('load by directory', function(done) {
-        config.load(__dirname + path.sep + './config/directory', function(err){
-            (err === null).should.be.true;
-            var confs = config.getConfNames();
-            confs.should.containEql('bookService', 'bookServiceBNS', 'bookListService', 'bookListServiceWithCUI');
-            done();
-        });
+    it('load by directory', function() {
+        var conf = config.load(__dirname + path.sep + './config/directory');
+        var confs = config.getConfNames();
+        confs.should.containEql('bookService', 'bookServiceBNS', 'bookListService', 'bookListServiceWithCUI');
     });
 });

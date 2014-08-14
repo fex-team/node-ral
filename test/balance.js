@@ -37,43 +37,35 @@ describe('balance', function(){
 
 describe('balance context', function() {
 
-    it('get server by all idc', function(done) {
-        config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
-            var context = new BalanceContext('bookService', conf.bookService);
-            context.reqIDCServers.should.eql(conf.bookService.server);
-            done();
-        });
+    it('get server by all idc', function() {
+        var conf = config.load(__dirname + path.sep + './config/idc_config.js');
+        var context = new BalanceContext('bookService', conf.bookService);
+        context.reqIDCServers.should.eql(conf.bookService.server);
     });
 
-    it('get server by tc idc', function(done) {
-        config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
-            ctx.currentIDC = 'tc';
-            var context = new BalanceContext('bookService', conf.bookService);
-            context.reqIDCServers.should.have.length(1);
-            context.reqIDCServers[0].idc.should.equal('tc');
-            context.crossIDCServers.should.have.length(1);
-            context.crossIDCServers[0].idc.should.equal('st');
-            done();
-        });
+    it('get server by tc idc', function() {
+        var conf = config.load(__dirname + path.sep + './config/idc_config.js');
+        ctx.currentIDC = 'tc';
+        var context = new BalanceContext('bookService', conf.bookService);
+        context.reqIDCServers.should.have.length(1);
+        context.reqIDCServers[0].idc.should.equal('tc');
+        context.crossIDCServers.should.have.length(1);
+        context.crossIDCServers[0].idc.should.equal('st');
     });
 
-    it('server conf without idc can use for all idc', function(done) {
-        config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
-            ctx.currentIDC = 'tc';
-            var context = new BalanceContext('bookService2', conf.bookService2);
-            context.reqIDCServers.should.have.length(2);
-            context.reqIDCServers.should.eql(conf.bookService2.server);
-            done();
-        });
+    it('server conf without idc can use for all idc', function() {
+        var conf = config.load(__dirname + path.sep + './config/idc_config.js');
+        ctx.currentIDC = 'tc';
+        var context = new BalanceContext('bookService2', conf.bookService2);
+        context.reqIDCServers.should.have.length(2);
+        context.reqIDCServers.should.eql(conf.bookService2.server);
     });
 
-    it('service conf with hybird mode can use all server', function(done) {
-        config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
-            ctx.currentIDC = 'st';
-            var context = new BalanceContext('bookService3', conf.bookService3);
-            context.reqIDCServers.should.eql(conf.bookService3.server);
-            done();
-        });
+    it('service conf with hybird mode can use all server', function() {
+        var conf = config.load(__dirname + path.sep + './config/idc_config.js');
+        ctx.currentIDC = 'st';
+        var context = new BalanceContext('bookService3', conf.bookService3);
+        context.reqIDCServers.should.eql(conf.bookService3.server);
     });
 });
 
@@ -93,46 +85,40 @@ describe('random balance', function() {
         converter.getContextClass().should.be.equal(BalanceContext);
     });
 
-    it('get server by random', function(done) {
-        config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
-            ctx.currentIDC = 'tc';
-            var context = new BalanceContext('bookService3', conf.bookService3);
-            var balance = new RandomBalance();
-            Math.random = function(){
-                return 0.1;
-            };
-            var server = balance.fetchServer(context);
-            Math.random = SourceRandom;
-            server.should.be.eql(conf.bookService3.server[0]);
-            done();
-        });
+    it('get server by random', function() {
+        var conf = config.load(__dirname + path.sep + './config/idc_config.js');
+        ctx.currentIDC = 'tc';
+        var context = new BalanceContext('bookService3', conf.bookService3);
+        var balance = new RandomBalance();
+        Math.random = function(){
+            return 0.1;
+        };
+        var server = balance.fetchServer(context);
+        Math.random = SourceRandom;
+        server.should.be.eql(conf.bookService3.server[0]);
     });
 
-    it('get server by random for real random', function(done) {
-        config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
-            ctx.currentIDC = 'tc';
-            var context = new BalanceContext('bookService3', conf.bookService3);
-            var balance = new RandomBalance();
-            var server = balance.fetchServer(context);
-            conf.bookService3.server.should.be.containEql(server);
-            done();
-        });
+    it('get server by random for real random', function() {
+        var conf = config.load(__dirname + path.sep + './config/idc_config.js');
+        ctx.currentIDC = 'tc';
+        var context = new BalanceContext('bookService3', conf.bookService3);
+        var balance = new RandomBalance();
+        var server = balance.fetchServer(context);
+        conf.bookService3.server.should.be.containEql(server);
     });
 
-    it('direct use single server', function(done) {
-        config.load(__dirname + path.sep + './config/singleserver_config.js', function(err, conf){
-            ctx.currentIDC = 'st';
-            var context = new BalanceContext('bookService', conf.bookService);
-            var balance = new RandomBalance();
-            Math.random = function(){
-                throw new Error();
-            };
-            (function(){balance.fetchServer(context);}).should.not.throwError();
-            var server = balance.fetchServer(context);
-            Math.random = SourceRandom;
-            server.should.be.eql(conf.bookService.server[0]);
-            done();
-        });
+    it('direct use single server', function() {
+        var conf = config.load(__dirname + path.sep + './config/singleserver_config.js');
+        ctx.currentIDC = 'st';
+        var context = new BalanceContext('bookService', conf.bookService);
+        var balance = new RandomBalance();
+        Math.random = function(){
+            throw new Error();
+        };
+        (function(){balance.fetchServer(context);}).should.not.throwError();
+        var server = balance.fetchServer(context);
+        Math.random = SourceRandom;
+        server.should.be.eql(conf.bookService.server[0]);
     });
 });
 
@@ -152,29 +138,25 @@ describe('roundrobin balance', function() {
         converter.getContextClass().should.be.equal(BalanceContext);
     });
 
-    it('get server by roundrobin', function(done) {
-        config.load(__dirname + path.sep + './config/idc_config.js', function(err, conf){
-            var context = new BalanceContext('bookService3', conf.bookService3);
-            var balance = new RoundRobinBalance();
-            var server = balance.fetchServer(context);
-            server.should.be.eql(conf.bookService3.server[1]);
-            server = balance.fetchServer(context);
-            server.should.be.eql(conf.bookService3.server[0]);
-            server = balance.fetchServer(context);
-            server.should.be.eql(conf.bookService3.server[1]);
-            done();
-        });
+    it('get server by roundrobin', function() {
+        var conf = config.load(__dirname + path.sep + './config/idc_config.js');
+        var context = new BalanceContext('bookService3', conf.bookService3);
+        var balance = new RoundRobinBalance();
+        var server = balance.fetchServer(context);
+        server.should.be.eql(conf.bookService3.server[1]);
+        server = balance.fetchServer(context);
+        server.should.be.eql(conf.bookService3.server[0]);
+        server = balance.fetchServer(context);
+        server.should.be.eql(conf.bookService3.server[1]);
     });
 
-    it('direct use single server', function(done) {
-        config.load(__dirname + path.sep + './config/singleserver_config.js', function(err, conf){
-            ctx.currentIDC = 'tc';
-            var context = new BalanceContext('bookService', conf.bookService);
-            var balance = new RoundRobinBalance();
-            var server = balance.fetchServer(context);
-            server.should.be.eql(conf.bookService.server[0]);
-            (context.lastRoundRobinID === undefined).should.be.true;
-            done();
-        });
+    it('direct use single server', function() {
+        var conf = config.load(__dirname + path.sep + './config/singleserver_config.js');
+        ctx.currentIDC = 'tc';
+        var context = new BalanceContext('bookService', conf.bookService);
+        var balance = new RoundRobinBalance();
+        var server = balance.fetchServer(context);
+        server.should.be.eql(conf.bookService.server[0]);
+        (context.lastRoundRobinID === undefined).should.be.true;
     });
 });
