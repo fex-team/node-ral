@@ -57,7 +57,7 @@ describe('ral', function () {
             confDir : __dirname + path.sep + './ral/config',
             logger : {
                 "log_path" : __dirname + path.sep + '../logs',
-                "app" : "ral"
+                "app" : "yog-ral"
             },
             currentIDC : 'tc'
         });
@@ -164,10 +164,29 @@ describe('ral', function () {
         });
         req.on('data', function(data){
             console.log(data);
-            done();
         });
         req.on('error', function(err){
             err.should.be.match(/request time out/);
+            done();
+        });
+    });
+
+    it('should make POST request with form data correctly', function (done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var req = RAL('POST_QS_SERV', {
+            data: {
+                msg: 'hi',
+                name: '何方石'
+            }
+        });
+        req.on('data', function(data){
+            servers.map(function(server){server.close()});
+            [8192,8193].should.containEql(data.port);
+            data.port.should.not.eql(8194);
+            data.query.msg.should.eql('hi');
+            data.query.name.should.eql('何方石');
             done();
         });
     });

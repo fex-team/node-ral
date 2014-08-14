@@ -9,6 +9,7 @@
 var http = require('http');
 var url = require('url');
 var urlencode = require('urlencode');
+var formidable = require('formidable');
 var fs = require('fs');
 var path = require('path');
 
@@ -49,11 +50,23 @@ module.exports.bookService = function(port, encoding){
             response.writeHead(200, {
                 'Content-Type': 'application/json'
             });
-            response.write(JSON.stringify({
-                port: port,
-                query: urlencode.parse(info.query)
-            }));
-            response.end();
+            if (request.method == 'POST'){
+                var formIn = new formidable.IncomingForm();
+                formIn.encoding = encoding || 'utf-8';
+                formIn.parse(request, function(err, fields) {
+                    response.write(JSON.stringify({
+                        port: port,
+                        query: fields
+                    }));
+                    response.end();
+                });
+            }else{
+                response.write(JSON.stringify({
+                    port: port,
+                    query: urlencode.parse(info.query)
+                }));
+                response.end();
+            }
         }
     }).listen(port);
 };

@@ -147,7 +147,7 @@ describe('http protocol', function () {
                     done();
                 });
             });
-            post_test.request.payload.pipe(request);
+            post_test.request.data.pipe(request);
         });
 
         it('should work fine with POST method when post a plan object', function (done) {
@@ -164,7 +164,7 @@ describe('http protocol', function () {
                     done();
                 });
             });
-            post_test.request_with_urlencode.payload.pipe(request);
+            post_test.request_with_urlencode.data.pipe(request);
         });
 
         it('should work fine with POST gbk form', function (done) {
@@ -181,7 +181,7 @@ describe('http protocol', function () {
                     done();
                 });
             });
-            post_test.request_gbk_form.payload.pipe(request);
+            post_test.request_gbk_form.data.pipe(request);
         });
 
         it('should got 404 status when GET 404', function (done) {

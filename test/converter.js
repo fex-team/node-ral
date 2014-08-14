@@ -75,47 +75,34 @@ describe('json converter', function () {
         converter.getCategory().should.be.equal('converter');
     });
 
-    it('pack and unpack should be paired', function (done) {
+    it('pack and unpack should be paired', function () {
         var jsonConverter = new JsonConverter();
         var data = {
             a: 1,
             b: "张三"
         };
         var pack = jsonConverter.pack(mockUTF8Context, data);
-        var unpack = jsonConverter.unpack(mockUTF8Context);
-        unpack.on('data', function (unpackData) {
-            data.should.be.eql(unpackData);
-            done();
-        });
-        pack.pipe(unpack);
+        var unpack = jsonConverter.unpack(mockUTF8Context, pack);
+        data.should.be.eql(unpack);
     });
 
-    it('unpack a string pack should throw error', function (done) {
+    it('unpack a string pack should throw error', function () {
         var converter = new StringConverter();
         var jsonConverter = new JsonConverter();
         var data = '张三李四';
         var pack = converter.pack(mockUTF8Context, data);
-        var unpack = jsonConverter.unpack(mockUTF8Context);
-        unpack.on('error', function (err) {
-            err.should.be.ok;
-            done();
-        });
-        pack.pipe(unpack);
+        (function(){jsonConverter.unpack(mockUTF8Context, pack);}).should.throwError();
     });
 
-    it('pack and unpack gbk correctly', function (done) {
+    it('pack and unpack gbk correctly', function () {
         var jsonConverter = new JsonConverter();
         var data = {
             a: 1,
             b: "张三"
         };
         var pack = jsonConverter.pack(mockGBKContext, data);
-        var unpack = jsonConverter.unpack(mockGBKContext);
-        unpack.on('data', function (unpackData) {
-            data.should.be.eql(unpackData);
-            done();
-        });
-        pack.pipe(unpack);
+        var unpack = jsonConverter.unpack(mockGBKContext, pack);
+        data.should.be.eql(unpack);
     });
 
     it('pack should fail if encoding is illegal', function () {
@@ -146,28 +133,20 @@ describe('string converter', function () {
         converter.getCategory().should.be.equal('converter');
     });
 
-    it('pack and unpack should be paired', function (done) {
+    it('pack and unpack should be paired', function () {
         var converter = new StringConverter();
         var data = '张三李四';
         var pack = converter.pack(mockUTF8Context, data);
-        var unpack = converter.unpack(mockUTF8Context);
-        unpack.on('data', function (unpackData) {
-            data.should.be.eql(unpackData);
-            done();
-        });
-        pack.pipe(unpack);
+        var unpack = converter.unpack(mockUTF8Context, pack);
+        data.should.be.eql(unpack);
     });
 
-    it('pack and unpack gbk correctly', function (done) {
+    it('pack and unpack gbk correctly', function () {
         var converter = new StringConverter();
         var data = '张三李四';
         var pack = converter.pack(mockGBKContext, data);
-        var unpack = converter.unpack(mockGBKContext);
-        unpack.on('data', function (unpackData) {
-            data.should.be.eql(unpackData);
-            done();
-        });
-        pack.pipe(unpack);
+        var unpack = converter.unpack(mockGBKContext, pack);
+        data.should.be.eql(unpack);
     });
 
     it('pack should fail if encoding is illegal', function () {
@@ -284,34 +263,27 @@ describe('urlencode converter', function () {
         converter.getCategory().should.be.equal('converter');
     });
 
-    it('pack and unpack should be paired', function (done) {
+    it('pack and unpack should be paired', function () {
         var converter = new UrlEncodeConverter();
         var data = {
             a: 1,
             b: "张三"
         };
         var pack = converter.pack(mockUTF8Context, data);
-        var unpack = converter.unpack(mockUTF8Context);
-        unpack.on('data', function (unpackData) {
-            data.should.be.eql(unpackData);
-            done();
-        });
-        pack.pipe(unpack);
+        var unpack = converter.unpack(mockUTF8Context, pack);
+        data.should.be.eql(unpack);
     });
 
-    it('pack and unpack gbk correctly', function (done) {
+    it('pack and unpack gbk correctly', function () {
         var converter = new UrlEncodeConverter();
         var data = {
             a: 1,
             b: "张三"
         };
         var pack = converter.pack(mockGBKContext, data);
-        var unpack = converter.unpack(mockGBKContext);
-        unpack.on('data', function (unpackData) {
-            data.should.be.eql(unpackData);
-            done();
-        });
-        pack.pipe(unpack);
+        var unpack = converter.unpack(mockGBKContext, pack);
+        data.should.be.eql(unpack);
+
     });
 
     it('pack should work if data is null', function () {
@@ -335,17 +307,17 @@ describe('urlencode converter', function () {
         options = HttpProtocol.normalizeConfig(options);
         var pack = converter.pack(options, data);
         var server = post_test.createServer();
+        options.payload = pack;
         var request = httpProtocol.talk(options);
         var response = '';
         request.on('data', function (data) {
             response += data.toString();
         });
         request.on('end', function () {
-            response.toString().should.be.equal('hear you 张三李四');
             server.close();
+            response.toString().should.be.equal('hear you 张三李四');
             done();
         });
-        pack.pipe(request);
     });
 });
 
@@ -371,7 +343,7 @@ describe('querystring converter', function () {
         mockUTF8Context.query.should.be.eql(data);
     });
 
-    it('unpack should work with urlencodeConverter', function (done) {
+    it('unpack should work with urlencodeConverter', function () {
         var converter = new QueryStringConverter();
         var urlencodeConverter = new UrlEncodeConverter();
         var data = {
@@ -379,12 +351,8 @@ describe('querystring converter', function () {
             b: "张三"
         };
         var pack = urlencodeConverter.pack(mockUTF8Context, data);
-        var unpack = converter.unpack(pack);
-        unpack.on('data', function (unpackData) {
-            data.should.be.eql(unpackData);
-            done();
-        });
-        pack.pipe(unpack);
+        var unpack = converter.unpack(mockUTF8Context, pack);
+        data.should.be.eql(unpack);
     });
 });
 
@@ -403,7 +371,7 @@ describe('raw converter', function () {
         var converter = new RawConverter();
         var data = fs.createReadStream(__dirname + path.sep + './converter.js');
         var pack = converter.pack({}, data);
-        var unpack = converter.unpack({});
+        var unpack = converter.unpack({}, pack);
         var body = '';
         unpack.on('data', function (data) {
             body += data;
@@ -412,6 +380,5 @@ describe('raw converter', function () {
             fs.readFileSync(__dirname + path.sep + './converter.js').toString().should.be.eql(body);
             done();
         });
-        pack.pipe(unpack);
     });
 });

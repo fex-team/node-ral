@@ -36,7 +36,7 @@ module.exports.__defineGetter__('request',function() {
         },
             headers:{'Content-Type':"multipart/form-data;boundary=" + form.getBoundary()
         },
-        payload: form
+        data: form
     };
 });
 
@@ -53,7 +53,7 @@ module.exports.request_with_urlencode = {
     headers : {
         'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8'
     },
-    payload: combinedStream
+    data: combinedStream
 };
 
 //create a buffer stream
@@ -69,7 +69,7 @@ module.exports.request_with_gbk = {
     headers : {
         'Content-Type' :  "application/x-www-form-urlencoded; charset=gbk"
     },
-    payload: gbkStream
+    data: gbkStream
 };
 
 var gbk_form = new formData();
@@ -87,7 +87,7 @@ module.exports.request_gbk_form = {
     headers : {
         'Content-Type' : "multipart/form-data;boundary=" + gbk_form.getBoundary()
     },
-    payload: gbk_form
+    data: gbk_form
 };
 
 module.exports.request_404 = {
