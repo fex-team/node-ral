@@ -15,11 +15,13 @@ npm install node-ral
 ### RAL init
 
 ```javascript
+var RAL = require('node-ral').RAL;
+
 RAL.init({
+    //path to config files
     confDir : __dirname + path.sep + './config',
     logger : {
-        "log_path" : __dirname + path.sep + '../logs',
-        "app" : "yog-ral"
+        "log_path" : __dirname + path.sep + '../logs'
     },
     //specify the server's idc, ral will priority use backend with same idc
     currentIDC : 'tc'
@@ -28,7 +30,10 @@ RAL.init({
 
 ### config file
 
+Every file in confDir will be loaded as config
+
 ```javascript
+// config/config.js
 module.exports = {
     'SOME_SERVICE': {
         unpack: 'json',
@@ -42,6 +47,24 @@ module.exports = {
         ]
     }
 };
+```
+
+Also support json config file
+
+```json
+{
+    'SOME_SERVICE': {
+        unpack: 'json',
+        pack: 'form',
+        method: 'POST'
+        encoding: 'gbk',
+        balance: 'random',
+        protocol: 'http',
+        server: [
+            { host: '127.0.0.1', port: 8080}
+        ]
+    }
+}
 ```
 
 ### Start a request
@@ -93,10 +116,10 @@ more usage can be found in /test/ral.js
     - Converter
         - [X] JSON
         - [X] String
-        - [X] UrlEncode
+        - [X] Form
         - [X] QueryString
         - [X] Raw
-        - [X] **Form**
+        - [X] **FormData**
         - [ ] *Protobuf*
         - [ ] *Msgpack*
     - Protocol
