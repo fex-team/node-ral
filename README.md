@@ -42,6 +42,8 @@ module.exports = {
         encoding: 'gbk',
         balance: 'random',
         protocol: 'http',
+        retry: 2,
+        timeout: 500,
         server: [
             { host: '127.0.0.1', port: 8080}
         ]
@@ -78,9 +80,7 @@ var request = RAL('SOME_SERVICE', {
         'name': 'hefangshi',
         'city': 'Beijing',
         'gender': 'Male'
-    },
-    retry: 2,
-    timeout: 500
+    }
 });
 
 request.on('data', function(data){
