@@ -18,7 +18,7 @@ describe('ralmodule', function () {
         RalModule.modules.converter.form.should.be.ok;
         RalModule.modules.converter.json.should.be.ok;
         RalModule.modules.converter.string.should.be.ok;
-        RalModule.modules.converter.urlencode.should.be.ok;
+        RalModule.modules.converter.formdata.should.be.ok;
 
         RalModule.modules.protocol.http.should.be.ok;
     });

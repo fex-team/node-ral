@@ -10,9 +10,9 @@ var logger = require('../lib/logger.js')('ConverterTest');
 var Converter = require('../lib/converter.js');
 var JsonConverter = require('../lib/ext/converter/jsonConverter.js');
 var StringConverter = require('../lib/ext/converter/stringConverter.js');
-var FormConverter = require('../lib/ext/converter/formConverter.js');
+var FormDataConverter = require('../lib/ext/converter/formDataConverter.js');
 var HttpProtocol = require('../lib/ext/protocol/httpProtocol.js');
-var UrlEncodeConverter = require('../lib/ext/converter/urlencodeConverter.js');
+var FormConverter = require('../lib/ext/converter/fromConverter.js');
 var QueryStringConverter = require('../lib/ext/converter/querystringConverter.js');
 var RawConverter = require('../lib/ext/converter/rawConverter.js');
 var util = require('../lib/util.js');
@@ -167,19 +167,19 @@ describe('string converter', function () {
     });
 });
 
-describe('form converter', function () {
+describe('formdata converter', function () {
     it('has right name', function () {
-        var converter = new FormConverter();
-        converter.getName().should.be.equal('form');
+        var converter = new FormDataConverter();
+        converter.getName().should.be.equal('formdata');
     });
 
     it('has right catagory', function () {
-        var converter = new FormConverter();
+        var converter = new FormDataConverter();
         converter.getCategory().should.be.equal('converter');
     });
 
     it('pack should work fine', function (done) {
-        var converter = new FormConverter();
+        var converter = new FormDataConverter();
         var data = {
             name: '张三李四'
         };
@@ -206,7 +206,7 @@ describe('form converter', function () {
     });
 
     it('pack gbk correctly', function (done) {
-        var converter = new FormConverter();
+        var converter = new FormDataConverter();
         var data = {
             name: '张三李四'
         };
@@ -233,7 +233,7 @@ describe('form converter', function () {
     });
 
     it('pack should fail if encoding is illegal', function () {
-        var converter = new FormConverter();
+        var converter = new FormDataConverter();
         var data = {
             name: "hefangshi"
         };
@@ -243,7 +243,7 @@ describe('form converter', function () {
     });
 
     it('pack should work if data is null', function () {
-        var converter = new FormConverter();
+        var converter = new FormDataConverter();
         var data = null;
         (function () {
             converter.pack(mockUTF8Context, data);
@@ -251,19 +251,19 @@ describe('form converter', function () {
     });
 });
 
-describe('urlencode converter', function () {
+describe('form converter', function () {
     it('has right name', function () {
-        var converter = new UrlEncodeConverter();
-        converter.getName().should.be.equal('urlencode');
+        var converter = new FormConverter();
+        converter.getName().should.be.equal('form');
     });
 
     it('has right catagory', function () {
-        var converter = new UrlEncodeConverter();
+        var converter = new FormConverter();
         converter.getCategory().should.be.equal('converter');
     });
 
     it('pack and unpack should be paired', function () {
-        var converter = new UrlEncodeConverter();
+        var converter = new FormConverter();
         var data = {
             a: 1,
             b: "张三"
@@ -274,7 +274,7 @@ describe('urlencode converter', function () {
     });
 
     it('pack and unpack gbk correctly', function () {
-        var converter = new UrlEncodeConverter();
+        var converter = new FormConverter();
         var data = {
             a: 1,
             b: "张三"
@@ -286,7 +286,7 @@ describe('urlencode converter', function () {
     });
 
     it('pack should work if data is null', function () {
-        var converter = new UrlEncodeConverter();
+        var converter = new FormConverter();
         var data = null;
         (function () {
             converter.pack(mockUTF8Context, data);
@@ -294,7 +294,7 @@ describe('urlencode converter', function () {
     });
 
     it('pack should work fine', function (done) {
-        var converter = new UrlEncodeConverter();
+        var converter = new FormConverter();
         var data = {
             name: '张三李四'
         };
@@ -343,7 +343,7 @@ describe('querystring converter', function () {
 
     it('unpack should work with urlencodeConverter', function () {
         var converter = new QueryStringConverter();
-        var urlencodeConverter = new UrlEncodeConverter();
+        var urlencodeConverter = new FormConverter();
         var data = {
             a: 1,
             b: "张三"
