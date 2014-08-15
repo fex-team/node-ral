@@ -53,15 +53,15 @@ Also support json config file
 
 ```json
 {
-    'SOME_SERVICE': {
-        unpack: 'json',
-        pack: 'form',
-        method: 'POST'
-        encoding: 'gbk',
-        balance: 'random',
-        protocol: 'http',
-        server: [
-            { host: '127.0.0.1', port: 8080}
+    "SOME_SERVICE": {
+        "unpack": "json",
+        "pack": "form",
+        "method": "POST"
+        "encoding": "gbk",
+        "balance": "random",
+        "protocol": "http",
+        "server": [
+            { "host": "127.0.0.1", "port": 8080}
         ]
     }
 }
