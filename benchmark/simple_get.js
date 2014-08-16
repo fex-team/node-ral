@@ -11,18 +11,22 @@ var async = require('async');
 var request = require('request');
 var http = require('http');
 
-//preload
-var preload  = RAL('SIMPLE_GET');
-preload.on('data', function(){
-    var tasks = [
-        function(cb){startBenchmark('ral', ralRequest, cb);},
-        function(cb){startBenchmark('request', requestRequest, cb);},
-        function(cb){startBenchmark('http', httpRequest, cb);}
-    ];
-    async.series(tasks, function(){
-        RAL.end();
+
+//wait fork server start
+setTimeout(function(){
+    //preload
+    var preload  = RAL('SIMPLE_GET');
+    preload.on('data', function(){
+        var tasks = [
+            function(cb){startBenchmark('ral', ralRequest, cb);},
+            function(cb){startBenchmark('request', requestRequest, cb);},
+            function(cb){startBenchmark('http', httpRequest, cb);}
+        ];
+        async.series(tasks, function(){
+            RAL.end();
+        });
     });
-});
+},500);
 
 var count = 10000;
 
