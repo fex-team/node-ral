@@ -14,6 +14,7 @@ module.exports = {
         encoding: 'utf-8',
         balance: 'random',
         protocol: 'http',
+        timeout: 500000,
         server: [
             { host: '127.0.0.1', port: 8192}
         ]

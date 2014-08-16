@@ -10,6 +10,7 @@ var RAL = require('./init.js');
 var async = require('async');
 var request = require('request');
 var http = require('http');
+var now = require('performance-now');
 
 
 //wait fork server start
@@ -19,8 +20,8 @@ setTimeout(function(){
     preload.on('data', function(){
         var tasks = [
             function(cb){startBenchmark('ral', ralRequest, cb);},
-            function(cb){startBenchmark('request', requestRequest, cb);},
-            function(cb){startBenchmark('http', httpRequest, cb);}
+//            function(cb){startBenchmark('request', requestRequest, cb);},
+//            function(cb){startBenchmark('http', httpRequest, cb);}
         ];
         async.series(tasks, function(){
             RAL.end();
@@ -28,17 +29,29 @@ setTimeout(function(){
     });
 },500);
 
-var count = 10000;
+var count = 8000;
 
 function startBenchmark(name, func, callback){
     var tasks = [];
     for(var i=0; i< count; i++){
         tasks.push(func);
     }
-    var start = new Date();
-    async.parallel(tasks, function(err,results){
-        var end = new Date();
-        console.log(name, 'avg:', (end-start)/count, '\r\n');
+    var start = now();
+    async.parallelLimit(tasks,1000, function(err,results){
+        var end = now();
+        var failCount = 0;
+        var succCount = 0;
+        var lastErr;
+        results.forEach(function(err){
+           if (err){
+               lastErr = err;
+               failCount++;
+           }
+           else{
+               succCount++;
+           }
+        });
+        console.log(name, 'avg:', ((end-start)/count).toFixed(3), 'ms ', 'succ:', succCount, 'failed:', failCount, 'lastError:', lastErr);
         callback();
     });
 }
@@ -49,7 +62,7 @@ function ralRequest(callback){
         callback(null);
     });
     req.on('error', function(err){
-        callback(err);
+        callback(null, err);
     });
 }
 
@@ -62,7 +75,7 @@ function requestRequest(callback){
     };
 
     var req = request(options, function(err){
-        callback(err);
+        callback(null, err);
     });
 }
 
@@ -81,7 +94,7 @@ function httpRequest(callback){
         });
     });
     req.on('error', function(err){
-        callback(err);
+        callback(null, err);
     });
     req.end();
 }
