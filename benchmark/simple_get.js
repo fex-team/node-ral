@@ -37,7 +37,7 @@ function startBenchmark(name, func, callback){
         tasks.push(func);
     }
     var start = now();
-    async.parallelLimit(tasks,500, function(err,results){
+    async.parallelLimit(tasks,300, function(err,results){
         var end = now();
         var failCount = 0;
         var succCount = 0;
@@ -51,7 +51,8 @@ function startBenchmark(name, func, callback){
                succCount++;
            }
         });
-        console.log(name, 'avg:', ((end-start)/count).toFixed(3), 'ms ', 'succ:', succCount, 'failed:', failCount, 'lastError:', lastErr);
+        lastErr = lastErr || 'none';
+        console.log(name, 'avg:', ((end-start)/count).toFixed(3), 'ms time:', (end-start).toFixed(3), 'ms ', 'succ:', succCount, 'failed:', failCount, 'lastError:', lastErr);
         callback();
     });
 }
