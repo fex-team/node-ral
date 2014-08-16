@@ -20,7 +20,7 @@ setTimeout(function(){
     preload.on('data', function(){
         var tasks = [
             function(cb){startBenchmark('ral', ralRequest, cb);},
-            function(cb){startBenchmark('request', requestRequest, cb);},
+//            function(cb){startBenchmark('request', requestRequest, cb);},
             function(cb){startBenchmark('http', httpRequest, cb);}
         ];
         async.series(tasks, function(){
@@ -37,7 +37,7 @@ function startBenchmark(name, func, callback){
         tasks.push(func);
     }
     var start = now();
-    async.parallelLimit(tasks,1000, function(err,results){
+    async.parallelLimit(tasks,500, function(err,results){
         var end = now();
         var failCount = 0;
         var succCount = 0;
