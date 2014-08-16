@@ -127,6 +127,6 @@ more usage can be found in /test/ral.js
         - [ ] *HTTPS*
         - [ ] *Socket*
 - Issue
-    - [ ] Form unpack support GBK when use form-urlencoded
+    - [X] Form unpack support GBK when use form-urlencoded
     - [X] Use Stream in Protocol
     - [X] Use Stream in Converter

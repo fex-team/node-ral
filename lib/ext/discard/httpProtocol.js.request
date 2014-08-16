@@ -12,7 +12,7 @@ var util = require('util');
 var url = require('url');
 var Stream = require('stream').Stream;
 var urlencode = require('urlencode');
-var http = require('http');
+var request = require('request');
 
 function HttpProtocol(){
     Protocol.call(this);
@@ -24,53 +24,41 @@ HttpProtocol.prototype.getName = function(){
     return 'http';
 };
 
+HttpProtocol.prototype._getUri = function(options){
+    return url.resolve(['http://', options.server.host, ':', options.server.port].join(''), options.path);
+};
+
 HttpProtocol.prototype.normalizeConfig = HttpProtocol.normalizeConfig = function(config){
     config = Protocol.normalizeConfig(config);
     if (typeof config.query !== 'object'){
-        config.query = urlencode.parse(config.query, {charset: config.encoding});
+        config.query = urlencode.parse(config.query, config.encoding);
     }
     return config;
 };
 
 HttpProtocol.prototype._request = function(config, callback){
-    var response = new ResponseStream(),
-        query = urlencode.stringify(config.query, {charset: config.encoding}),
-        path,
-        piped = false;
-    if (query){
-        path = config.path + '?' + query;
-    }else{
-        path = config.path;
-    }
     var opt = {
-        host: config.server.host,
-        port: config.server.port,
-        path: path,
+        uri: this._getUri(config),
+        qs: config.query,
         method: config.method,
         headers: config.headers,
+        gzip: config.gzip || false,
         //disable http pool to avoid connect problem https://github.com/mikeal/request/issues/465
-        agent: false
+        pool: false
     };
     logger.trace('request start ' + JSON.stringify(opt));
-    var req = http.request(opt, function(res){
+    var req = request(opt);
+    req.on('response', function(res) {
         if (res.statusCode >= 400) {
             req.emit('error', new Error('Server Status Error: ' + res.statusCode));
         }
+        var response = new ResponseStream();
         res.pipe(response);
         callback && callback(response);
     });
     if (config.payload){
         req.write(config.payload);
-        req.end();
-    }else{
-        //auto end if no pipe
-        process.nextTick(function(){
-            piped || req.end();
-        });
     }
-    req.on('pipe', function(){
-        piped = true;
-    });
     return req;
 };
 

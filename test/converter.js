@@ -192,15 +192,12 @@ describe('formdata converter', function () {
         util.merge(options, {
             server: post_test.request.server
         });
-        var request = httpProtocol.talk(options);
-        var response = '';
-        request.on('data', function (data) {
-            response += data.toString();
-        });
-        request.on('end', function () {
-            server.close();
-            response.toString().should.be.equal('hear you 张三李四');
-            done();
+        var request = httpProtocol.talk(options, function(res){
+            res.on('data', function (data) {
+                server.close();
+                data.toString().should.be.equal('hear you 张三李四');
+                done();
+            });
         });
         pack.pipe(request);
     });
@@ -219,15 +216,12 @@ describe('formdata converter', function () {
         options = HttpProtocol.normalizeConfig(options);
         var server = post_test.createServer('gbk');
         var pack = converter.pack(options, data);
-        var request = httpProtocol.talk(options);
-        var response = '';
-        request.on('data', function (data) {
-            response += data.toString();
-        });
-        request.on('end', function () {
-            response.toString().should.be.equal('hear you 张三李四');
-            server.close();
-            done();
+        var request = httpProtocol.talk(options, function (res) {
+            res.on('data', function(data){
+                data.toString().should.be.equal('hear you 张三李四');
+                server.close();
+                done();
+            });
         });
         pack.pipe(request);
     });
@@ -306,15 +300,12 @@ describe('form converter', function () {
         var pack = converter.pack(options, data);
         var server = post_test.createServer();
         options.payload = pack;
-        var request = httpProtocol.talk(options);
-        var response = '';
-        request.on('data', function (data) {
-            response += data.toString();
-        });
-        request.on('end', function () {
-            server.close();
-            response.toString().should.be.equal('hear you 张三李四');
-            done();
+        var request = httpProtocol.talk(options, function (res) {
+            res.on('data', function(data){
+                data.toString().should.be.equal('hear you 张三李四');
+                server.close();
+                done();
+            });
         });
     });
 });
