@@ -20,8 +20,8 @@ setTimeout(function(){
     preload.on('data', function(){
         var tasks = [
             function(cb){startBenchmark('ral', ralRequest, cb);},
-//            function(cb){startBenchmark('request', requestRequest, cb);},
-//            function(cb){startBenchmark('http', httpRequest, cb);}
+            function(cb){startBenchmark('request', requestRequest, cb);},
+            function(cb){startBenchmark('http', httpRequest, cb);}
         ];
         async.series(tasks, function(){
             RAL.end();
