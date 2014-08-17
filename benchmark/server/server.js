@@ -14,5 +14,7 @@ http.createServer(function (request, response) {
     }else{
         response.writeHead(200);
     }
-    response.end();
+    setTimeout(function(){
+        response.end();
+    },10);
 }).listen(8192);

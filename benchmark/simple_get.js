@@ -8,7 +8,6 @@
 
 var RAL = require('./init.js');
 var async = require('async');
-var request = require('request');
 var http = require('http');
 var now = require('performance-now');
 
@@ -20,7 +19,6 @@ setTimeout(function(){
     preload.on('data', function(){
         var tasks = [
             function(cb){startBenchmark('ral', ralRequest, cb);},
-//            function(cb){startBenchmark('request', requestRequest, cb);},
             function(cb){startBenchmark('http', httpRequest, cb);}
         ];
         async.series(tasks, function(){
@@ -29,7 +27,7 @@ setTimeout(function(){
     });
 },500);
 
-var count = 5000;
+var count = 500;
 
 function startBenchmark(name, func, callback){
     var tasks = [];
@@ -59,30 +57,10 @@ function startBenchmark(name, func, callback){
 
 function ralRequest(callback){
     var req = RAL('SIMPLE_GET');
-    var error = false;
-    var data = false;
     req.on('data', function(){
-        data = true;
-        error || callback(null);
+        callback(null);
     });
     req.on('error', function(err){
-        if (data){
-            console.log(err);
-        }
-        error = true;
-        callback(null, err);
-    });
-}
-
-function requestRequest(callback){
-    var options = {
-        url : 'http://127.0.0.1:8192',
-        path: '/',
-        method: 'GET',
-        pool: false
-    };
-
-    var req = request(options, function(err){
         callback(null, err);
     });
 }
