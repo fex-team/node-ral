@@ -29,7 +29,7 @@ setTimeout(function(){
     });
 },500);
 
-var count = 8000;
+var count = 5000;
 
 function startBenchmark(name, func, callback){
     var tasks = [];
@@ -37,7 +37,7 @@ function startBenchmark(name, func, callback){
         tasks.push(func);
     }
     var start = now();
-    async.parallelLimit(tasks,300, function(err,results){
+    async.series(tasks, function(err,results){
         var end = now();
         var failCount = 0;
         var succCount = 0;
@@ -59,10 +59,17 @@ function startBenchmark(name, func, callback){
 
 function ralRequest(callback){
     var req = RAL('SIMPLE_GET');
+    var error = false;
+    var data = false;
     req.on('data', function(){
-        callback(null);
+        data = true;
+        error || callback(null);
     });
     req.on('error', function(err){
+        if (data){
+            console.log(err);
+        }
+        error = true;
         callback(null, err);
     });
 }
@@ -90,9 +97,13 @@ function httpRequest(callback){
     };
 
     var req = http.request(options, function(res){
-        req.on('close', function(data){
-            callback(null);
-        });
+        if (res.statusCode > 200 ){
+            callback(null, new Error('503'));
+        }else{
+            req.on('close', function(data){
+                callback(null);
+            });
+        }
     });
     req.on('error', function(err){
         callback(null, err);

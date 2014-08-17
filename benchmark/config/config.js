@@ -15,6 +15,7 @@ module.exports = {
         balance: 'random',
         protocol: 'http',
         timeout: 10000,
+        retry:1,
         server: [
             { host: '127.0.0.1', port: 8192}
         ]

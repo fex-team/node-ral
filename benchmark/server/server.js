@@ -9,6 +9,10 @@
 var http = require('http');
 
 http.createServer(function (request, response) {
-    response.writeHead(200);
+    if (Math.random()>0.99){
+        response.writeHead(503);
+    }else{
+        response.writeHead(200);
+    }
     response.end();
 }).listen(8192);

@@ -103,11 +103,16 @@ describe('ral', function () {
             isInited.on('done', ok);
         });
         var req = RAL('GET_QS_SERV', {
-            path : '/404'
+            path : '/404',
+            tag: 404
         });
         req.on('error', function(err){
             err.toString().should.be.match(/404/);
-            var req_normal = RAL('GET_QS_SERV');
+            var req_normal = RAL('GET_QS_SERV',{
+                query: {
+                    normal: true
+                }
+            });
             req_normal.on('data', function(data){
                 data.query.from.should.eql('ral');
                 done();
