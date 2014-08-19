@@ -3,6 +3,9 @@
 var should = require('should');
 var config = require('../lib/config.js');
 var path = require('path');
+var RalModule = require('../lib/ralmodule.js');
+
+RalModule.load(__dirname + path.sep + '../lib/ext');
 
 describe('config parser', function() {
 
