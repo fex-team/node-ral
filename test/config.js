@@ -7,51 +7,51 @@ var RalModule = require('../lib/ralmodule.js');
 
 RalModule.load(__dirname + path.sep + '../lib/ext');
 
-describe('config parser', function() {
+describe('config loadRawConfr', function() {
 
-    it('parse right config', function() {
+    it('loadRawConf right config', function() {
         var right_conf = require('./config/right_config.js');
-        (function(){config.parse(right_conf);}).should.not.throw();
+        (function(){config.loadRawConf(right_conf);}).should.not.throw();
     });
 
-    it('parse config without balance', function() {
+    it('loadRawConf config without balance', function() {
         var wrong_conf = require('./config/wrong_config.js').without_balance;
-        (function(){config.parse(wrong_conf);}).should.throw(/balance/);
+        (function(){config.loadRawConf(wrong_conf);}).should.throw(/balance/);
     });
 
-//    it('parse config without unpack', function() {
+//    it('loadRawConf config without unpack', function() {
 //        var wrong_conf = require('./config/wrong_config.js').without_unpack;
-//        (function(){config.parse(wrong_conf);}).should.throw(/unpack/);
+//        (function(){config.loadRawConf(wrong_conf);}).should.throw(/unpack/);
 //    });
 //
-//    it('parse config without pack', function() {
+//    it('loadRawConf config without pack', function() {
 //        var wrong_conf = require('./config/wrong_config.js').without_pack;
-//        (function(){config.parse(wrong_conf);}).should.throw(/pack/);
+//        (function(){config.loadRawConf(wrong_conf);}).should.throw(/pack/);
 //    });
 
-    it('parse config without protocol', function() {
+    it('loadRawConf config without protocol', function() {
         var wrong_conf = require('./config/wrong_config.js').without_protocol;
-        (function(){config.parse(wrong_conf);}).should.throw(/protocol/);
+        (function(){config.loadRawConf(wrong_conf);}).should.throw(/protocol/);
     });
 
-    it('parse config with invalid encoding', function() {
+    it('loadRawConf config with invalid encoding', function() {
         var wrong_conf = require('./config/wrong_config.js').with_invalid_encoding;
-        (function(){config.parse(wrong_conf);}).should.throw(/encoding is valid/);
+        (function(){config.loadRawConf(wrong_conf);}).should.throw(/encoding is valid/);
     });
 
-    it('parse config with out server', function() {
+    it('loadRawConf config with out server', function() {
         var wrong_conf = require('./config/wrong_config.js').without_server;
-        (function(){config.parse(wrong_conf);}).should.throw(/server/);
+        (function(){config.loadRawConf(wrong_conf);}).should.throw(/server/);
     });
 
-    it('parse config with out server info', function() {
+    it('loadRawConf config with out server info', function() {
         var wrong_conf = require('./config/wrong_config.js').without_server_info;
-        (function(){config.parse(wrong_conf);}).should.throw(/server/);
+        (function(){config.loadRawConf(wrong_conf);}).should.throw(/server/);
     });
 
-    it('parse config with out port', function() {
+    it('loadRawConf config with out port', function() {
         var wrong_conf = require('./config/wrong_config.js').without_port;
-        (function(){config.parse(wrong_conf);}).should.throw(/port/);
+        (function(){config.loadRawConf(wrong_conf);}).should.throw(/port/);
     });
 });
 

@@ -1,6 +1,6 @@
 {
   "name": "node-ral",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "a rpc client for node",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,7 @@
     "yog-log": "0.0.10"
   },
   "devDependencies": {
-    "async": "^0.9.0",
+    "async": "0.9.0",
     "combined-stream": "0.0.5",
     "formidable": "1.0.15",
     "istanbul": "0.3.0",
