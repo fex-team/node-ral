@@ -8,6 +8,7 @@
 
 var RalModule = require('../lib/ralmodule.js');
 var path = require('path');
+var util = require('util');
 
 describe('ralmodule', function () {
     it('should load ext successfuly', function () {
@@ -22,4 +23,32 @@ describe('ralmodule', function () {
 
         RalModule.modules.protocol.http.should.be.ok;
     });
+
+    it('should skip modules not inherit RalModule', function () {
+        RalModule.load({
+            getCategory: function(){
+                return "a";
+            }
+        });
+        RalModule.load({
+            getCategory: function(){
+                return "b";
+            },
+            getName: function(){
+                return "c";
+            }
+        });
+        (RalModule.modules.a === undefined).should.be.true;
+        (RalModule.modules.b === undefined).should.be.false;
+    });
+
+    it('should throw error for unimplemented ralmodule', function () {
+        function mock (){
+            RalModule.call(this);
+        }
+        util.inherits(mock, RalModule);
+        (function(){mock.getName()}).should.throwError();
+        (function(){mock.getCategory()}).should.throwError();
+    });
+
 });
