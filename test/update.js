@@ -22,4 +22,14 @@ describe('config updater', function() {
             done();
         }, true);
     });
+
+    it('can\'t run update twice at same time', function (done) {
+        config.load(__dirname + path.sep + './update/config');
+        configUpdater.update(function(err, conf){
+        }, true);
+        configUpdater.update(function(err, conf){
+            err.should.be.match(/updater still running/);
+            done();
+        }, true);
+    });
 });
