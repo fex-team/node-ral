@@ -15,4 +15,3 @@ module.exports.Converter = require('./lib/converter.js');
 module.exports.Protocol = require('./lib/protocol.js');
 module.exports.Logger = require('./lib/logger.js');
 module.exports.ConfigNormalizer = require('./lib/config/configNormalizer.js');
-module.exports.NormalizerManager = require('./lib/config/normalizerManager.js');
