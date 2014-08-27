@@ -74,13 +74,13 @@ Also support json config file
 ```javascript
 var RAL = require('node-ral').RAL;
 
-//RAL(serviceName, data, opt)
-var request = RAL('SOME_SERVICE',{
-    'name': 'hefangshi',
-    'city': 'Beijing',
-    'gender': 'Male'
-}, {
+var request = RAL('SOME_SERVICE', {
     path: '/user/info'
+    data: {
+        'name': 'hefangshi',
+        'city': 'Beijing',
+        'gender': 'Male'
+    }
 });
 
 request.on('data', function(data){
