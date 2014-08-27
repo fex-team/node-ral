@@ -82,10 +82,8 @@ describe('ral', function () {
             isInited.on('done', ok);
         });
         var req = RAL('GET_QS_SERV', {
-            data: {
                 msg: 'hi',
                 name: '何方石'
-            }
         });
         req.on('data', function(data){
             servers.map(function(server){server.close()});
@@ -102,7 +100,7 @@ describe('ral', function () {
         before(function( ok ){
             isInited.on('done', ok);
         });
-        var req = RAL('GET_QS_SERV', {
+        var req = RAL('GET_QS_SERV',null, {
             path : '/404',
             tag: 404
         });
@@ -125,7 +123,7 @@ describe('ral', function () {
         before(function( ok ){
             isInited.on('done', ok);
         });
-        var req = RAL('GET_QS_SERV', {
+        var req = RAL('GET_QS_SERV',null, {
             path: '/largecontent'
         });
         req.on('data', function(data){
@@ -143,9 +141,8 @@ describe('ral', function () {
             isInited.on('done', ok);
         });
         var req = RAL('GET_QS_SERV', {
-            data: {
-                msg: 'hi'
-            },
+            msg: 'hi'
+        },{
             encoding: 'blah'
         });
         req.on('error', function(err){
@@ -158,12 +155,11 @@ describe('ral', function () {
         before(function( ok ){
             isInited.on('done', ok);
         });
-        var req = RAL('GET_QS_SERV', {
+        var req = RAL('GET_QS_SERV',{
+            msg: 'hi',
+            name: 'timeout'
+        }, {
             path: '/timeout',
-            data: {
-                msg: 'hi',
-                name: 'timeout'
-            },
             retry: 2,
             timeout: 100
         });
@@ -181,10 +177,8 @@ describe('ral', function () {
             isInited.on('done', ok);
         });
         var req = RAL('POST_QS_SERV', {
-            data: {
-                msg: 'hi',
-                name: '何方石'
-            }
+            msg: 'hi',
+            name: '何方石'
         });
         req.on('data', function(data){
             servers.map(function(server){server.close()});
@@ -192,6 +186,20 @@ describe('ral', function () {
             data.port.should.not.eql(8194);
             data.query.msg.should.eql('hi');
             data.query.name.should.eql('何方石');
+            done();
+        });
+    });
+
+    it('should throw error when use a invalid service', function (done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var req = RAL('POST_QS_SERV_INVALID', {
+            msg: 'hi',
+            name: '何方石'
+        });
+        req.on('error', function(err){
+            err.toString().should.be.match(/invalid service name/);
             done();
         });
     });
