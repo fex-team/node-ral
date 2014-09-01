@@ -211,4 +211,33 @@ describe('ral', function () {
             done();
         });
     });
+
+    it('should caught buffer pack error', function (done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var req = RAL('GET_QS_SERV', {
+            data: {
+                some: 'how'
+            },
+            encoding: 'blah'
+        });
+        req.on('error', function(error){
+            error.toString().should.be.match(/Encoding not recognized/);
+            done();
+        });
+    });
+
+    it('should caught buffer unpack error', function (done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var req = RAL('GET_QS_SERV', {
+            path: '/content'
+        });
+        req.on('error', function(error){
+            error.toString().should.be.match(/Unexpected token/);
+            done();
+        });
+    });
 });

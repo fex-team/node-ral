@@ -46,6 +46,12 @@ module.exports.bookService = function(port, encoding){
                 response.write(str.slice(1));
                 response.end();
             },200)
+        }else if (pathname === '/content'){
+            response.writeHead(200, {
+                'Content-Type': 'text/plain'
+            });
+            response.write("aabb");
+            response.end();
         }else{
             response.writeHead(200, {
                 'Content-Type': 'application/json'
