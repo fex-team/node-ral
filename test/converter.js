@@ -356,18 +356,17 @@ describe('raw converter', function () {
         converter.getCategory().should.be.equal('converter');
     });
 
-    it('pack and unpack should be paired', function (done) {
+    it('pack and unpack should be paired', function () {
         var converter = new RawConverter();
-        var data = fs.createReadStream(__dirname + path.sep + './converter.js');
+        var data = new Buffer("abc");
         var pack = converter.pack({}, data);
         var unpack = converter.unpack({}, pack);
-        var body = '';
-        unpack.on('data', function (data) {
-            body += data;
-        });
-        unpack.on('end', function () {
-            fs.readFileSync(__dirname + path.sep + './converter.js').toString().should.be.eql(body);
-            done();
-        });
+        unpack.toString().should.be.eql("abc");
+    });
+
+    it('should only accept buffer data', function () {
+        var converter = new RawConverter();
+        var data = "fake buffer";
+        (function(){converter.pack({}, data)}).should.be.throwError(/data should be a buffer/);
     });
 });
