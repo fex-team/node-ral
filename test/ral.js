@@ -240,4 +240,18 @@ describe('ral', function () {
             done();
         });
     });
+
+    it('should caught error when server failed', function (done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var req = RAL('GET_QS_SERV', {
+            path: '/close',
+            timeout:200
+        });
+        req.on('error', function(error){
+            error.toString().should.be.match(/request time out/);
+            done();
+        });
+    });
 });

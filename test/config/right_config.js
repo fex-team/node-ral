@@ -55,11 +55,11 @@ module.exports = {
     'bookListServiceWithCUI' : {
         retry : 1,
         timeout : 500,
-        pack : 'mcpack',
-        unpack : 'mcpack',
+        pack : 'form',
+        unpack : 'json',
         encoding : 'GBK',
         balance : 'random',
-        protocol : 'nshead',
+        protocol : 'http',
         server : [
             { host : 'st.yd.baidu.com', port : 80, idc : 'st'}
         ]

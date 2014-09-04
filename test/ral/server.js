@@ -52,6 +52,8 @@ module.exports.bookService = function(port, encoding){
             });
             response.write("aabb");
             response.end();
+        }else if (pathname === '/close'){
+            this.close();
         }else{
             response.writeHead(200, {
                 'Content-Type': 'application/json'
