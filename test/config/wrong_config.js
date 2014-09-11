@@ -111,3 +111,16 @@ module.exports.without_port = {
         ]
     }
 };
+
+module.exports.with_invalid_pack = {
+    'bookServiceBNS' : {
+        unpack : 'json',
+        pack : 'json233',
+        encoding : 'GBK',
+        balance : 'random',
+        protocol : 'http',
+        server : [
+            { host : '127.0.0.1'}
+        ]
+    }
+};

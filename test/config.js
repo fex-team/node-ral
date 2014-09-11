@@ -54,6 +54,11 @@ describe('config loadRawConfr', function() {
         var wrong_conf = require('./config/wrong_config.js').without_port;
         (function(){config.loadRawConf(wrong_conf);}).should.throw(/port/);
     });
+
+    it('loadRawConf config with invalid pack', function() {
+        var wrong_conf = require('./config/wrong_config.js').with_invalid_pack;
+        (function(){config.loadRawConf(wrong_conf);}).should.throw(/invalid pack/);
+    });
 });
 
 describe('load config', function() {
