@@ -4,6 +4,7 @@ var should = require('should');
 var config = require('../lib/config.js');
 var path = require('path');
 var RalModule = require('../lib/ralmodule.js');
+var ctx = require('../lib/ctx.js');
 
 RalModule.load(__dirname + path.sep + '../lib/ext');
 
@@ -79,5 +80,6 @@ describe('load config', function() {
         var conf = config.load(__dirname + path.sep + './config/directory');
         var confs = config.getConfNames();
         confs.should.containEql('bookService', 'bookServiceBNS', 'bookListService', 'bookListServiceWithCUI');
+        ctx.currentIDC.should.be.equal('tc');
     });
 });
