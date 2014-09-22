@@ -90,43 +90,17 @@ request.on('data', function(data){
 
 more usage can be found in /test/ral.js
 
-## TODO
+## Support
 
-*Future Feature*
-
-***Internal Only***
-
-**Complicate**
-
-- Base
-    - [X] Config
-    - [X] Balance
-    - [X] Logger
-    - [X] Converter
-    - [X] Protocol
-    - [X] **RAL**
-    - [ ] *Filter*
-- Ext
-    - Balance
-        - [X] RandomBalance
-        - [X] RoundRobinBalance
-    - Filter
-        - [ ] *ConnectFilter*
-        - [ ] *HealthFilter*
-    - Converter
-        - [X] JSON
-        - [X] String
-        - [X] Form
-        - [X] QueryString
-        - [X] Raw
-        - [X] **FormData**
-        - [ ] *Protobuf*
-        - [ ] *Msgpack*
-    - Protocol
-        - [X] HTTP
-        - [ ] *HTTPS*
-        - [ ] *Socket*
-- Issue
-    - [X] Form unpack support GBK when use form-urlencoded
-    - [X] Use Stream in Protocol
-    - [X] Use Stream in Converter
+- Balance
+    - [X] RandomBalance
+    - [X] RoundRobinBalance
+- Converter
+    - [X] JSON
+    - [X] String
+    - [X] Form
+    - [X] QueryString
+    - [X] Raw
+    - [X] FormData
+- Protocol
+    - [X] HTTP
