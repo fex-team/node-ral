@@ -254,4 +254,32 @@ describe('ral', function () {
             done();
         });
     });
+
+    it('query config should independent', function (done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var query = {"pageSize":"20","pageNo":"1","catId":"5000009","catLevel":"3"};
+        var req = RAL('TEST_QUERY_SERV', {
+            query:query
+        });
+        req.on('data', function(data){
+            data.query.should.be.eql(query);
+            query = {"pageSize":"20","pageNo":"1","keyword":"TOTO"};
+            var req2 = RAL('TEST_QUERY_SERV', {
+                query: query
+            });
+            req2.on('data', function(data){
+                data.query.should.be.eql(query);
+                query = {"pageSize":"20","pageNo":"1","catId":"5000009","catLevel":"4"};
+                var req3 = RAL('TEST_QUERY_SERV', {
+                    query: query
+                });
+                req3.on('data', function(data){
+                    data.query.should.be.eql(query);
+                    done();
+                });
+            });
+        });
+    });
 });

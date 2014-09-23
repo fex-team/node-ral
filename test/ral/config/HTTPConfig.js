@@ -21,6 +21,17 @@ module.exports = {
             { host: '127.0.0.1', port: 8194, idc: 'st'}
         ]
     },
+    'TEST_QUERY_SERV': {
+        unpack: 'json',
+        pack: 'querystring',
+        method: 'GET',
+        encoding: 'utf-8',
+        balance: 'random',
+        protocol: 'http',
+        server: [
+            { host: '127.0.0.1', port: 8193, idc: 'tc'}
+        ]
+    },
     'POST_QS_SERV': {
         unpack: 'json',
         pack: 'form',
