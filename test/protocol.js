@@ -130,6 +130,23 @@ describe('http protocol', function () {
                 done();
             });
         });
+
+        it.only('should work well with https', function(done) {
+            var get_test = require('./protocol/http_protocol_get_test.js');
+            //start a http server for get
+//            var server = get_test.createServer();
+            var httpProtocol = new HttpProtocol();
+            var context = HttpProtocol.normalizeConfig(get_test.request_https);
+            var stream = httpProtocol.talk(context, function(res){
+                res.on('data', function(data){
+                    done();
+                });
+            });
+            stream.on('error', function(err){
+                console.log(err);
+                err.should.be.null;
+            })
+        });
     });
 
     describe('http protocol with post method',function(){
