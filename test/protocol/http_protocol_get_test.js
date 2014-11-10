@@ -50,6 +50,17 @@ module.exports.request_with_query = {
     }
 };
 
+module.exports.request_https = {
+    https: true,
+    method: 'GET',
+    path: '/v2/?login',
+    rejectUnauthorized: false,
+    server : {
+        host : 'passport.baidu.com',
+        port: 443
+    }
+};
+
 module.exports.createServer = function(){
     return http.createServer(function (request, response) {
         var info = url.parse(request.url);
