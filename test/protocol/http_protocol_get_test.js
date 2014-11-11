@@ -53,10 +53,10 @@ module.exports.request_with_query = {
 module.exports.request_https = {
     https: true,
     method: 'GET',
-    path: '/v2/?login',
+    path: '/',
     rejectUnauthorized: false,
     server : {
-        host : 'passport.baidu.com',
+        host : 'travis-ci.org',
         port: 443
     }
 };
