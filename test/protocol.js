@@ -131,7 +131,7 @@ describe('http protocol', function () {
             });
         });
 
-        it.('should work well with https', function(done) {
+        it('should work well with https', function(done) {
             var get_test = require('./protocol/http_protocol_get_test.js');
             //start a http server for get
 //            var server = get_test.createServer();
