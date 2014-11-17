@@ -38,7 +38,7 @@ module.exports = {
     'SOME_SERVICE': {
         unpack: 'json',
         pack: 'form',
-        method: 'POST'
+        method: 'POST',
         encoding: 'gbk',
         balance: 'random',
         protocol: 'http',
