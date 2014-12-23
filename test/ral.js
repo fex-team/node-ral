@@ -282,4 +282,20 @@ describe('ral', function () {
             });
         });
     });
+
+    it('should catch onData error when catchCallback is true', function (done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var req = RAL('GET_QS_SERV', {
+            catchCallback: true
+        });
+        req.on('data', function(data){
+            throw new Error('lalala');
+        });
+        req.on('error', function(err){
+            err.message.should.be.match(/lalal/);
+            done();
+        });
+    });
 });

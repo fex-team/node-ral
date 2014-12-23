@@ -102,5 +102,6 @@ more usage can be found in /test/ral.js
     - [X] QueryString
     - [X] Raw
     - [X] FormData
+    - [X] Stream
 - Protocol
     - [X] HTTP

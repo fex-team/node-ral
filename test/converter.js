@@ -11,6 +11,7 @@ var Converter = require('../lib/converter.js');
 var JsonConverter = require('../lib/ext/converter/jsonConverter.js');
 var StringConverter = require('../lib/ext/converter/stringConverter.js');
 var FormDataConverter = require('../lib/ext/converter/formDataConverter.js');
+var StreamConverter = require('../lib/ext/converter/streamConverter.js');
 var HttpProtocol = require('../lib/ext/protocol/httpProtocol.js');
 var FormConverter = require('../lib/ext/converter/fromConverter.js');
 var QueryStringConverter = require('../lib/ext/converter/querystringConverter.js');
@@ -20,6 +21,7 @@ var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
 var post_test = require('./protocol/http_protocol_post_test.js');
+var FormData = require('form-data');
 
 var mockUTF8Context = {
     encoding: 'utf8'
@@ -243,6 +245,20 @@ describe('formdata converter', function () {
             converter.pack(mockUTF8Context, data);
         }).should.not.throwError();
     });
+
+    it('syncLength should send content-length', function () {
+        var converter = new FormDataConverter();
+        var data = {
+            name: '张三李四'
+        };
+        var options = _.clone(mockUTF8Context);
+        options.syncLength = true;
+        var httpProtocol = new HttpProtocol();
+        util.merge(options, post_test.service);
+        options = HttpProtocol.normalizeConfig(options);
+        var pack = converter.pack(options, data);
+        options.headers['Content-Length'].should.be.eql(169);
+    });
 });
 
 describe('form converter', function () {
@@ -368,5 +384,45 @@ describe('raw converter', function () {
         var converter = new RawConverter();
         var data = "fake buffer";
         (function(){converter.pack({}, data)}).should.be.throwError(/data should be a buffer/);
+    });
+});
+
+describe('stream converter', function () {
+    it('has right name', function () {
+        var converter = new StreamConverter();
+        converter.getName().should.be.equal('stream');
+    });
+
+    it('has right catagory', function () {
+        var converter = new StreamConverter();
+        converter.getCategory().should.be.equal('converter');
+    });
+
+    it('pack should work fine', function (done) {
+        var converter = new StreamConverter();
+        var form = new FormData();
+        form.append('name', '张三李四');
+        var options = _.clone(mockUTF8Context);
+        var httpProtocol = new HttpProtocol();
+        var server = post_test.createServer();
+        util.merge(options, post_test.service);
+        options = HttpProtocol.normalizeConfig(options);
+        var pack = converter.pack(options, form);
+        util.merge(options, {
+            server: post_test.request.server
+        });
+        options.headers = {};
+        options.headers['Content-Type'] =  "multipart/form-data;boundary=" + form.getBoundary();
+        var request = httpProtocol.talk(options, function(res){
+            res.on('data', function (data) {
+                server.close();
+                data.toString().should.be.equal('hear you 张三李四');
+                done();
+            });
+            res.on('error', function(){
+                server.close();
+            });
+        });
+        pack.pipe(request);
     });
 });
