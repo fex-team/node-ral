@@ -105,3 +105,5 @@ more usage can be found in /test/ral.js
     - [X] Stream
 - Protocol
     - [X] HTTP
+    - [X] SOAP
+

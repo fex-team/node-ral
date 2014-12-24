@@ -337,14 +337,13 @@ describe('querystring converter', function () {
         converter.getCategory().should.be.equal('converter');
     });
 
-    it('pack should change headers and query', function () {
+    it('pack should change query', function () {
         var converter = new QueryStringConverter();
         var data = {
             a: 1,
             b: "张三"
         };
         converter.pack(mockUTF8Context, data);
-        mockUTF8Context.headers['Content-Type'].should.be.eql('application/json');
         mockUTF8Context.query.should.be.eql(data);
     });
 
@@ -378,12 +377,6 @@ describe('raw converter', function () {
         var pack = converter.pack({}, data);
         var unpack = converter.unpack({}, pack);
         unpack.toString().should.be.eql("abc");
-    });
-
-    it('should only accept buffer data', function () {
-        var converter = new RawConverter();
-        var data = "fake buffer";
-        (function(){converter.pack({}, data)}).should.be.throwError(/data should be a buffer/);
     });
 });
 

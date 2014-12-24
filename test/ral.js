@@ -298,4 +298,39 @@ describe('ral', function () {
             done();
         });
     });
+
+    it('should work fine with soap', function(done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var req = RAL('SOAP', {
+            method: 'GetWeather',
+            data: {
+                CityName: 'Beijing',
+                CountryName: 'China'
+            }
+        });
+        req.on('data', function(data){
+            data.GetWeatherResult.should.be.ok;
+            done();
+        });
+    });
+
+    it('should work fine with soap timeout', function(done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var req = RAL('SOAP', {
+            method: 'GetWeather',
+            timeout: 1,
+            data: {
+                CityName: 'Beijing',
+                CountryName: 'China'
+            }
+        });
+        req.on('error', function(err){
+            err.message.should.be.match(/request time out/);
+            done();
+        });
+    });
 });

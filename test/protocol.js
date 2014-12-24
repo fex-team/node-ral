@@ -8,6 +8,7 @@
 
 var Protocol = require('../lib/protocol.js');
 var HttpProtocol = require('../lib/ext/protocol/httpProtocol.js');
+var SoapProtocol = require('../lib/ext/protocol/soapProtocol.js');
 var util = require('../lib/util.js');
 
 var mockHTTPService = {
@@ -246,5 +247,43 @@ describe('http protocol context', function () {
     it('should parse query string', function () {
         var context = HttpProtocol.normalizeConfig(mockHTTPService2);
         context.query.should.be.eql({a: '1'});
+    });
+});
+
+describe('soap protocol', function () {
+    it('should request wsdl service successfully', function (done) {
+        var soap_test = require('./protocol/soap_protocol.js');
+        var context = SoapProtocol.normalizeConfig(soap_test);
+        context.method = 'GetWeather';
+        context.payload = {
+            CityName: 'Beijing',
+            CountryName: 'China'
+        };
+        var soapProtocol = new SoapProtocol();
+        soapProtocol.talk(context, function(res){
+            res.on('data', function(data){
+                data.GetWeatherResult.should.be.ok;
+                done();
+            });
+        });
+    });
+
+    it('should request wsdl service with service.port successfully', function (done) {
+        var soap_test = require('./protocol/soap_protocol.js');
+        var context = SoapProtocol.normalizeConfig(soap_test);
+        context.soapService = 'GlobalWeather';
+        context.soapPort = 'GlobalWeatherSoap12';
+        context.method = 'GetWeather';
+        context.payload = {
+            CityName: 'Beijing',
+            CountryName: 'China'
+        };
+        var soapProtocol = new SoapProtocol();
+        soapProtocol.talk(context, function(res){
+            res.on('data', function(data){
+                data.GetWeatherResult.should.be.ok;
+                done();
+            });
+        });
     });
 });
