@@ -21,6 +21,20 @@ module.exports = {
             { host: '127.0.0.1', port: 8194, idc: 'st'}
         ]
     },
+    'CHANGE_PACK_UNPACK': {
+        unpack: 'stream',
+        pack: 'stream',
+        method: 'GET',
+        encoding: 'utf-8',
+        balance: 'random',
+        protocol: 'http',
+        query: 'from=change',
+        server: [
+            { host: '127.0.0.1', port: 8192, idc: 'tc'},
+            { host: '127.0.0.1', port: 8193, idc: 'tc'},
+            { host: '127.0.0.1', port: 8194, idc: 'st'}
+        ]
+    },
     'TEST_QUERY_SERV': {
         unpack: 'json',
         pack: 'querystring',

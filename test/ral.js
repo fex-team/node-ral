@@ -196,6 +196,39 @@ describe('ral', function () {
         });
     });
 
+    it('could change pack and unpack', function (done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var req = RAL('CHANGE_PACK_UNPACK', {
+            data: {
+                msg: 'hi',
+                name: '何方石'
+            },
+            pack: 'querystring',
+            unpack: 'json',
+            retry: 2,
+            timeout: 100
+        });
+        req.on('data', function(data){
+            data.query.msg.should.eql('hi');
+            data.query.name.should.eql('何方石');
+            data.query.from.should.eql('change');
+            req = RAL('CHANGE_PACK_UNPACK', {
+                data: {
+                    msg: 'hi',
+                    name: '何方石'
+                },
+                retry: 2,
+                timeout: 100
+            });
+            req.on('error', function(err){
+                err.message.should.be.match(/invalid pack data/);
+                done();
+            });
+        });
+    });
+
     it('should throw error when use a invalid service', function (done) {
         before(function( ok ){
             isInited.on('done', ok);
