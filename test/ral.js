@@ -77,6 +77,18 @@ describe('ral', function () {
         });
     });
 
+    // it('should get headers', function (done) {
+    //     console.log('head');
+    //     before(function( ok ){
+    //         isInited.on('done', ok);
+    //     });
+    //     var req = RAL('GET_QS_SERV');
+    //     req.on('header', function(header){
+    //         console.log(header);
+    //         done();
+    //     });
+    // });
+
     it('should make request with data correctly', function (done) {
         before(function( ok ){
             isInited.on('done', ok);

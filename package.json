@@ -1,46 +1,46 @@
 {
-  "name": "node-ral",
-  "version": "0.0.32",
-  "description": "a rpc client for node",
-  "main": "index.js",
-  "scripts": {
-    "pub": "npm publish --registry=http://registry.npmjs.org",
-    "test": "mocha -t 10000 --reporter dot --check-leaks test/",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot -t 10000 --check-leaks test/",
-    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks -t 10000 --slow 0 test/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fex-team/node-ral.git"
-  },
-  "keywords": [
-    "rpc",
-    "ral",
-    "fis"
-  ],
-  "author": "FIS",
-  "license": "BSD",
-  "bugs": {
-    "url": "https://github.com/fex-team/node-ral/issues"
-  },
-  "homepage": "https://github.com/fex-team/node-ral",
-  "dependencies": {
-    "chai": "1.9.1",
-    "form-data": "0.1.4",
-    "iconv-lite": "0.4.4",
-    "performance-now": "0.1.3",
-    "request": "2.40.0",
-    "soap": "0.8.0",
-    "underscore": "1.6.0",
-    "urlencode": "0.2.0",
-    "yog-log": "0.0.10"
-  },
-  "devDependencies": {
-    "async": "0.9.0",
-    "combined-stream": "0.0.5",
-    "formidable": "1.0.15",
-    "istanbul": "0.3.0",
-    "mocha": "1.21.3",
-    "should": "4.0.4"
-  }
+    "name": "node-ral",
+    "version": "0.0.33",
+    "description": "a rpc client for node",
+    "main": "index.js",
+    "scripts": {
+        "pub": "npm publish --registry=http://registry.npmjs.org",
+        "test": "mocha -t 10000 --reporter dot --check-leaks test/",
+        "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot -t 10000 --check-leaks test/",
+        "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks -t 10000 --slow 0 test/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fex-team/node-ral.git"
+    },
+    "keywords": [
+        "rpc",
+        "ral",
+        "fis"
+    ],
+    "author": "FIS",
+    "license": "BSD",
+    "bugs": {
+        "url": "https://github.com/fex-team/node-ral/issues"
+    },
+    "homepage": "https://github.com/fex-team/node-ral",
+    "dependencies": {
+        "chai": "1.9.1",
+        "form-data": "0.1.4",
+        "iconv-lite": "0.4.4",
+        "performance-now": "0.1.3",
+        "request": "2.40.0",
+        "soap": "0.8.0",
+        "underscore": "1.6.0",
+        "urlencode": "0.2.0",
+        "yog-log": "0.0.10"
+    },
+    "devDependencies": {
+        "async": "0.9.0",
+        "combined-stream": "0.0.5",
+        "formidable": "1.0.15",
+        "istanbul": "0.3.0",
+        "mocha": "1.21.3",
+        "should": "4.0.4"
+    }
 }
