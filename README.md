@@ -10,11 +10,11 @@ node-ral
 
 ## 快速开始
 
-`node-ral` 为了实现后端服务配置的统一管理，要求后端服务请求的配置与业务实现分离，因此在使用 `node-ral` 之前必须创建后端服务的配置文件。
+`node-ral` 为了实现后端服务配置的统一管理，要求后端服务请求的配置与业务实现分离，因此在使用之前必须创建后端服务的配置文件。
 
 我们以 [百度地图WebAPI](http://developer.baidu.com/map/index.php?title=webapi/guide/webservice-placeapi#Place.E5.8C.BA.E5.9F.9F.E6.A3.80.E7.B4.A2POI.E6.9C.8D.E5.8A.A1) 为例做一个简单的DEMO，你也可以直接在[example/MAPAPI](./example/MAPAPI)中直接下载。
 
-### 安装 `node-ral`
+### 安装
 
 ```bash
 npm init
@@ -44,7 +44,7 @@ module.exports.MAPAPI= {           // 声明服务名为MAPAPI
         output: 'json',
         page_size: 10,
         page_num: 0,
-        scope: 2
+        scope: 1
     },
     path: '/place/v2/search',      // API路径
     headers: {                     // 服务的全局headers
@@ -60,7 +60,7 @@ module.exports.MAPAPI= {           // 声明服务名为MAPAPI
 }
 ```
 
-### 初始化RAL
+### 初始化
 
 ```javascript
 // ral.js
