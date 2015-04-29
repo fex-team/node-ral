@@ -10,10 +10,10 @@ node-ral
 
 ## 兼容性
 
-[x] node 0.8.x
-[x] node 0.10.x
-[x] node 0.12.x
-[x] io.js
+- [x] node 0.8.x
+- [x] node 0.10.x
+- [x] node 0.12.x
+- [x] io.js
 
 > io.js 1.63至1.8.1版本不支持GBK编码
 
