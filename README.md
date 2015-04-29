@@ -10,7 +10,12 @@ node-ral
 
 ## 兼容性
 
-支持 node 0.8 0.10 0.12
+[x] node 0.8.x
+[x] node 0.10.x
+[x] node 0.12.x
+[x] io.js
+
+> io.js 1.63至1.8.1版本不支持GBK编码
 
 ## 快速开始
 
@@ -131,26 +136,6 @@ TRACE: 15-04-28 17:07:45 [-:-] errno[-] logId[-] uri[-] user[-] refer[-] cookie[
 NOTICE: 15-04-28 17:07:45 [-:-] errno[-] logId[-] uri[-] user[-] refer[-] cookie[-]  [yog-ral] [cluster main][RAL] request end service=MAPAPI requestID=22268922 conv=querystring/json prot=http method=GET path=/place/v2/search remote=api.map.baidu.com:80 cost=116.579 talk=115.316 write=108.190 read=3.633 pack=0.744 unpack=1.056 retry=0/1 
 ```
 
-## 目录
+## 文档
 
-## 通用配置
-
-## 内置支持
-
-### 请求协议
-
-### 数据格式
-
-## 扩展能力
-
-### 请求协议
-
-### 数据格式
-
-## API
-
-### 执行请求
-
-### 异常处理
-
-### 封装
+请查阅文档[WIKI](https://github.com/fex-team/node-ral/wiki)
