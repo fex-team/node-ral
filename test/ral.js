@@ -378,4 +378,46 @@ describe('ral', function () {
             done();
         });
     });
+
+    it('should use right context when concurrency request', function(done) {
+        before(function( ok ){
+            isInited.on('done', ok);
+        });
+        var count = 2;
+        RAL('CHANGE_PACK_UNPACK', {
+            data: {
+                msg: 'hi',
+                name: '何方石'
+            },
+            pack: 'querystring',
+            unpack: 'json',
+            retry: 2,
+            timeout: 100
+        }).on('data', function(data){
+            data.query.msg.should.eql('hi');
+            data.query.name.should.eql('何方石');
+            data.query.from.should.eql('change');
+            partialDone();
+        });
+        RAL('CHANGE_PACK_UNPACK', {
+            data: {
+                msg: 'hi',
+                name: '何方石'
+            },
+            pack: 'stream',
+            unpack: 'stream',
+            retry: 2,
+            timeout: 100
+        }).on('error', function(err){
+            err.message.should.be.match(/invalid pack data/);
+            partialDone();
+        });
+
+        function partialDone() {
+            count--;
+            if (count === 0) {
+                done();
+            }
+        }
+    });
 });
