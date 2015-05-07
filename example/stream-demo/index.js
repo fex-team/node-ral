@@ -18,13 +18,13 @@ var server = http.createServer(function(req, res){
     /* 如果使用express，可以传递
         headers: req.headers, // 传递headers
         path: req.path, // 传递path
-        query: req.query, // 传递path
+        query: req.query, // 传递query
         method: req.method // 传递method
     */
     ral('PROXY', {
         data: req,  // 直接将req作为stream源传递，主要是对body数据做流式转发
         headers: req.headers, // 传递headers
-        path: req.url, // 传递path
+        path: req.url, // 传递url
         method: req.method // 传递method
     }).on('data', function (data) {
         assert.notEqual(data.indexOf('Node.js'), -1);
