@@ -10,7 +10,7 @@ var config = {
     https: false,
     path: '/globalweather.asmx?WSDL',
     server: {
-        host: 'www.webservicex.com',
+        host: 'www.webservicex.net',
         port: 80
     }
 };
