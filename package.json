@@ -38,7 +38,7 @@
     "devDependencies": {
         "async": "0.9.0",
         "combined-stream": "0.0.5",
-        "formidable": "1.0.15",
+        "formidable": "1.0.17",
         "istanbul": "0.3.0",
         "mocha": "1.21.3",
         "should": "4.0.4"
