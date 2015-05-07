@@ -349,14 +349,13 @@ describe('ral', function () {
             isInited.on('done', ok);
         });
         var req = RAL('SOAP', {
-            method: 'GetWeather',
+            method: 'GetCityForecastByZIP',
             data: {
-                CityName: 'Beijing',
-                CountryName: 'China'
+                ZIP: 10020 // 纽约的邮编
             }
         });
         req.on('data', function(data){
-            data.GetWeatherResult.should.be.ok;
+            data.GetCityForecastByZIPResult.should.be.ok;
             done();
         });
     });
@@ -366,11 +365,10 @@ describe('ral', function () {
             isInited.on('done', ok);
         });
         var req = RAL('SOAP', {
-            method: 'GetWeather',
             timeout: 1,
+            method: 'GetCityForecastByZIP',
             data: {
-                CityName: 'Beijing',
-                CountryName: 'China'
+                ZIP: 10020 // 纽约的邮编
             }
         });
         req.on('error', function(err){

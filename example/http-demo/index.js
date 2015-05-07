@@ -10,7 +10,7 @@ ral('DEMO', {
     assert.fail(err, null);
 });
 
-// // 使用UTF8编码抓取百度文库首页
+// 使用UTF8编码抓取百度文库首页
 ral('DEMO', {
     data: {},
     encoding: 'utf-8' // 修改编码格式
@@ -22,7 +22,7 @@ ral('DEMO', {
 });
 
 
-// // 抓取检索结果, 访问 http://wenku.baidu.com/search?word=Node.js
+// 抓取检索结果, 访问 http://wenku.baidu.com/search?word=Node.js
 ral('DEMO', {
     // 由于pack设置为 querystring，数据会设置到query中
     data: {
@@ -36,7 +36,7 @@ ral('DEMO', {
     assert.fail(err, null);
 });
 
-// // pack设置为form，提交POST请求，由于接口支持，也可以返回正确结果
+// pack设置为form，提交POST请求，由于接口支持，也可以返回正确结果
 ral('DEMO', {
     pack: 'form',
     method: 'POST',
