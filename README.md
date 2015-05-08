@@ -23,14 +23,14 @@ node-ral
 
 我们以 [百度地图WebAPI](http://developer.baidu.com/map/index.php?title=webapi/guide/webservice-placeapi#Place.E5.8C.BA.E5.9F.9F.E6.A3.80.E7.B4.A2POI.E6.9C.8D.E5.8A.A1) 为例做一个简单的DEMO，你也可以直接在[example/baidumap](./example/baidumap)中直接下载。
 
-### 安装
+##### 安装
 
 ```bash
 npm init
 npm i node-ral --save
 ```
 
-### 创建配置
+##### 创建配置
 
 ```javascript
 
@@ -69,7 +69,7 @@ module.exports.MAPAPI= {           // 声明服务名为MAPAPI
 }
 ```
 
-### 初始化
+##### 初始化
 
 ```javascript
 // ral.js
@@ -86,7 +86,7 @@ RAL.init({
 module.exports = RAL;
 ``` 
 
-### 调用服务
+##### 调用服务
 
 ```javascript
 // map.js
@@ -107,7 +107,7 @@ ral('MAPAPI', {
 });
 ```
 
-### 执行结果
+##### 执行结果
 
 执行一下 `node map.js` 我们就可以看到奥林匹克森林公园的搜索结果了
 
