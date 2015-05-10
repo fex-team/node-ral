@@ -89,7 +89,7 @@ module.exports = RAL;
 ##### 调用服务
 
 ```javascript
-// map.js
+// index.js
 
 var ral = require('./ral.js');
 var assert = require('assert');
@@ -109,7 +109,7 @@ ral('MAPAPI', {
 
 ##### 执行结果
 
-执行一下 `node map.js` 我们就可以看到奥林匹克森林公园的搜索结果了
+执行一下 `node index.js` 我们就可以看到奥林匹克森林公园的搜索结果了
 
 ```
  {
