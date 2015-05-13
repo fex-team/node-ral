@@ -8,7 +8,7 @@
 
 module.exports.SOAP = {
     https: false,
-    path: '/globalweather.asmx?WSDL',
+    path: '/WeatherWS/Weather.asmx?WSDL',
     protocol: 'soap',
     pack: 'raw',
     unpack: 'raw',
@@ -16,7 +16,7 @@ module.exports.SOAP = {
     timeout: 100000,
     server: [
         {
-            host: 'www.webservicex.com',
+            host: 'wsf.cdyne.com',
             port: 80
         }
     ]

@@ -8,9 +8,9 @@
 
 var config = {
     https: false,
-    path: '/globalweather.asmx?WSDL',
+    path: '/WeatherWS/Weather.asmx?WSDL',
     server: {
-        host: 'www.webservicex.com',
+        host: 'wsf.cdyne.com',
         port: 80
     }
 };

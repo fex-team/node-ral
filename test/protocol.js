@@ -254,15 +254,14 @@ describe('soap protocol', function () {
     it('should request wsdl service successfully', function (done) {
         var soap_test = require('./protocol/soap_protocol.js');
         var context = SoapProtocol.normalizeConfig(soap_test);
-        context.method = 'GetWeather';
+        context.method = 'GetCityForecastByZIP';
         context.payload = {
-            CityName: 'Beijing',
-            CountryName: 'China'
+            ZIP: 10020
         };
         var soapProtocol = new SoapProtocol();
         soapProtocol.talk(context, function(res){
             res.on('data', function(data){
-                data.GetWeatherResult.should.be.ok;
+                data.GetCityForecastByZIPResult.should.be.ok;
                 done();
             });
         });
@@ -271,17 +270,16 @@ describe('soap protocol', function () {
     it('should request wsdl service with service.port successfully', function (done) {
         var soap_test = require('./protocol/soap_protocol.js');
         var context = SoapProtocol.normalizeConfig(soap_test);
-        context.soapService = 'GlobalWeather';
-        context.soapPort = 'GlobalWeatherSoap12';
-        context.method = 'GetWeather';
+        context.soapService = 'Weather';
+        context.soapPort = 'WeatherSoap12';
+        context.method = 'GetCityForecastByZIP';
         context.payload = {
-            CityName: 'Beijing',
-            CountryName: 'China'
+            ZIP: 10020
         };
         var soapProtocol = new SoapProtocol();
         soapProtocol.talk(context, function(res){
             res.on('data', function(data){
-                data.GetWeatherResult.should.be.ok;
+                data.GetCityForecastByZIPResult.should.be.ok;
                 done();
             });
         });
