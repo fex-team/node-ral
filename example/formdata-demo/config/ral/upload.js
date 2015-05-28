@@ -1,3 +1,10 @@
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
+ * http://fis.baidu.com/
+ * 2015/5/10
+ */
+
 'use strict';
 
 module.exports.PIC_UPLOAD = {
@@ -9,10 +16,8 @@ module.exports.PIC_UPLOAD = {
     unpack: 'string',
     balance: 'random',
     timeout: 100000,
-    server: [
-        {
-            host: 'www.chuantu.biz',
-            port: 80
-        }
-    ]
+    server: [{
+        host: 'www.chuantu.biz',
+        port: 80
+    }]
 };

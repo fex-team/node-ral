@@ -1,5 +1,6 @@
-/*
- * fis
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
  * http://fis.baidu.com/
  * 2014/8/16
  */
@@ -9,12 +10,13 @@
 var http = require('http');
 
 http.createServer(function (request, response) {
-    if (Math.random()>0.99){
+    if (Math.random() > 0.99) {
         response.writeHead(503);
-    }else{
+    }
+    else {
         response.writeHead(200);
     }
-    setTimeout(function(){
+    setTimeout(function () {
         response.end();
-    },10);
+    }, 10);
 }).listen(8192);

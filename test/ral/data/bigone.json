@@ -2496,7 +2496,7 @@
         },
         "pkg": {}
     },
-    "more3":{
+    "more3": {
         "res": {
             "index:page/areamap.tpl": {
                 "uri": "/template/index/page/areamap.tpl",

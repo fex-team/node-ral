@@ -1,5 +1,6 @@
-/*
- * fis
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
  * http://fis.baidu.com/
  * 2014/8/8
  */
@@ -13,27 +14,30 @@ var formidable = require('formidable');
 var fs = require('fs');
 var path = require('path');
 
-module.exports.bookService = function(port, encoding){
+module.exports.bookService = function (port, encoding) {
     return http.createServer(function (request, response) {
         var info = url.parse(request.url);
-        var pathname =info.pathname;
-        if (pathname === '/error'){
+        var pathname = info.pathname;
+        if (pathname === '/error') {
             response.writeHead(503, {
                 'Content-Type': 'text/plain'
             });
             response.end();
-        }else if (pathname === '/404'){
+        }
+        else if (pathname === '/404') {
             response.writeHead(404, {
                 'Content-Type': 'text/plain'
             });
             response.write('404');
             response.end();
-        }else if (pathname === '/largecontent'){
+        }
+        else if (pathname === '/largecontent') {
             response.writeHead(200, {
                 'Content-Type': 'text/plain'
             });
-            fs.createReadStream(__dirname + path.sep + './data/bigone.json').pipe(response);
-        }else if (pathname === '/timeout'){
+            fs.createReadStream(path.join(__dirname, './data/bigone.json')).pipe(response);
+        }
+        else if (pathname === '/timeout') {
             response.writeHead(200, {
                 'Content-Type': 'text/plain'
             });
@@ -42,33 +46,37 @@ module.exports.bookService = function(port, encoding){
                 query: urlencode.parse(info.query)
             });
             response.write(str.slice(0, 1));
-            setTimeout(function(){
+            setTimeout(function () {
                 response.write(str.slice(1));
                 response.end();
-            },200)
-        }else if (pathname === '/content'){
+            }, 200);
+        }
+        else if (pathname === '/content') {
             response.writeHead(200, {
                 'Content-Type': 'text/plain'
             });
-            response.write("aabb");
+            response.write('aabb');
             response.end();
-        }else if (pathname === '/close'){
+        }
+        else if (pathname === '/close') {
             this.close();
-        }else{
+        }
+        else {
             response.writeHead(200, {
                 'Content-Type': 'application/json'
             });
-            if (request.method == 'POST'){
+            if (request.method === 'POST') {
                 var formIn = new formidable.IncomingForm();
                 formIn.encoding = encoding || 'utf-8';
-                formIn.parse(request, function(err, fields) {
+                formIn.parse(request, function (err, fields) {
                     response.write(JSON.stringify({
                         port: port,
                         query: fields
                     }));
                     response.end();
                 });
-            }else{
+            }
+            else {
                 response.write(JSON.stringify({
                     port: port,
                     query: urlencode.parse(info.query)

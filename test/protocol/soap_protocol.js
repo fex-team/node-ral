@@ -1,5 +1,6 @@
-/*
- * fis
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
  * http://fis.baidu.com/
  * 2014/12/24
  */

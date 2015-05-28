@@ -1,8 +1,11 @@
-/*
- * fis
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
  * http://fis.baidu.com/
  * 2014/8/20
  */
+
+/* eslint-disable no-wrap-func */
 
 'use strict';
 
@@ -10,16 +13,15 @@ var config = require('../lib/config.js');
 var path = require('path');
 var fs = require('fs');
 var RalModule = require('../lib/ralmodule.js');
-var CTX = require('../lib/ctx.js');
 var configUpdater = require('../lib/config/configUpdater.js');
 var normalizeManager = require('../lib/config.js').normalizerManager;
 
-RalModule.load(__dirname + path.sep + '../lib/ext');
+RalModule.load(path.join(__dirname, '../lib/ext'));
 
 describe('config updater', function () {
 
     it('update config successful', function (done) {
-        config.load(__dirname + path.sep + './update/config');
+        config.load(path.join(__dirname, './update/config'));
         configUpdater.update(function (err, conf) {
             conf.SIMPLE.__from__.should.be.startWith('updater');
             done();
@@ -27,7 +29,7 @@ describe('config updater', function () {
     });
 
     it('can\'t run update twice at same time', function (done) {
-        config.load(__dirname + path.sep + './update/config');
+        config.load(path.join(__dirname, './update/config'));
         configUpdater.update(function (err, conf) {}, true);
         configUpdater.update(function (err, conf) {
             err.should.be.match(/updater still running/);
@@ -36,43 +38,45 @@ describe('config updater', function () {
     });
 
     it('updater will create cache folder on start', function () {
-        var tmpPath = __dirname + path.sep + './tmp';
-        var filePath = __dirname + path.sep + './tmp/data_cache.json';
+        var tmpPath = path.join(__dirname, './tmp');
+        var filePath = path.join(__dirname, './tmp/data_cache.json');
         try {
             fs.unlinkSync(filePath);
             fs.rmdirSync(tmpPath);
-        } catch (e) {
-
         }
+        catch (e) {}
         var myUpdater = new configUpdater.Updater({
             tmpPath: tmpPath,
             dataPath: filePath
         });
+        myUpdater.should.be.ok;
         fs.existsSync(tmpPath).should.be.true;
     });
 
     it('updater will delete cache file on start', function () {
-        var tmpPath = __dirname + path.sep + './tmp';
-        var filePath = __dirname + path.sep + './tmp/data_cache.json';
+        var tmpPath = path.join(__dirname, './tmp');
+        var filePath = path.join(__dirname, './tmp/data_cache.json');
         try {
             if (!fs.existsSync(tmpPath)) {
                 fs.mkdirSync(tmpPath);
             }
             var fd = fs.openSync(filePath, 'w');
             fs.closeSync(fd);
-        } catch (e) {}
+        }
+        catch (e) {}
         fs.existsSync(filePath).should.be.true;
         var myUpdater = new configUpdater.Updater({
             tmpPath: tmpPath,
             dataPath: filePath
         });
+        myUpdater.should.be.ok;
         fs.existsSync(filePath).should.be.false;
     });
 
     it('updater will fail when normlizer throw error', function (done) {
-        var tmpPath = __dirname + path.sep + './tmp';
-        var filePath = __dirname + path.sep + './tmp/data_cache.json';
-        config.load(__dirname + path.sep + './update/config');
+        var tmpPath = path.join(__dirname, './tmp');
+        var filePath = path.join(__dirname, './tmp/data_cache.json');
+        config.load(path.join(__dirname, './update/config'));
         var fake = {
             normalizeConfig: function () {
                 throw new Error('fake');
@@ -92,15 +96,15 @@ describe('config updater', function () {
 
     it('auto updater should be triggered is normalizer need update', function () {
         var fake = {
-            normalizeConfig: function (config) {
-                return config;
+            normalizeConfig: function (conf) {
+                return conf;
             },
             needUpdate: function () {
                 return true;
             }
         };
         normalizeManager.setConfigNormalizer([fake, 'default']);
-        config.load(__dirname + path.sep + './update/config');
+        config.load(path.join(__dirname, './update/config'));
         config.isAutoUpdateEnabled().should.be.true;
         config.disableUpdate();
         config.isAutoUpdateEnabled().should.be.false;
@@ -109,20 +113,21 @@ describe('config updater', function () {
 
     it('auto updater should work fine 1', function (done) {
         var fake = {
-            normalizeConfig: function (config) {
-                return config;
+            normalizeConfig: function (conf) {
+                return conf;
             },
             needUpdate: function () {
                 return false;
             }
         };
         normalizeManager.setConfigNormalizer([fake, 'default']);
-        config.load(__dirname + path.sep + './update/config');
-        //delete config cache produced by previous tests
-        var filePath = __dirname + path.sep + '../tmp/config_cache.json';
+        config.load(path.join(__dirname, './update/config'));
+        // delete config cache produced by previous tests
+        var filePath = path.join(__dirname, '../tmp/config_cache.json');
         try {
             fs.unlinkSync(filePath);
-        } catch (e) {}
+        }
+        catch (e) {}
         config.enableUpdate(100, false, function (err, confs) {
             confs.should.be.eql({});
             config.disableUpdate();
@@ -133,21 +138,22 @@ describe('config updater', function () {
 
     it('auto updater should work fine 2', function (done) {
         var fake = {
-            normalizeConfig: function (config) {
-                return config;
+            normalizeConfig: function (conf) {
+                return conf;
             },
             needUpdate: function () {
-                //need update
+                // need update
                 return true;
             }
         };
         normalizeManager.setConfigNormalizer([fake, 'default']);
-        config.load(__dirname + path.sep + './update/config');
-        //delete config cache produced by previous tests
-        var filePath = __dirname + path.sep + '../tmp/config_cache.json';
+        config.load(path.join(__dirname, './update/config'));
+        // delete config cache produced by previous tests
+        var filePath = path.join(__dirname, '../tmp/config_cache.json');
         try {
             fs.unlinkSync(filePath);
-        } catch (e) {}
+        }
+        catch (e) {}
         config.enableUpdate(100, false, function (err, confs) {
             confs.SIMPLE.__from__.should.be.match(/updater/);
             config.disableUpdate();
@@ -158,22 +164,23 @@ describe('config updater', function () {
 
     it('auto updater should not change raw conf', function (done) {
         var fake = {
-            normalizeConfig: function (config) {
-                config._TEST_RAW_CONF_ = true;
-                return config;
+            normalizeConfig: function (conf) {
+                conf._TEST_RAW_CONF_ = true;
+                return conf;
             },
             needUpdate: function () {
-                //need update
+                // need update
                 return true;
             }
         };
         normalizeManager.setConfigNormalizer([fake, 'default']);
-        config.load(__dirname + path.sep + './update/config');
-        //delete config cache produced by previous tests
-        var filePath = __dirname + path.sep + '../tmp/config_cache.json';
+        config.load(path.join(__dirname, './update/config'));
+        // delete config cache produced by previous tests
+        var filePath = path.join(__dirname, '../tmp/config_cache.json');
         try {
             fs.unlinkSync(filePath);
-        } catch (e) {}
+        }
+        catch (e) {}
         config.enableUpdate(100, false, function (err, confs) {
             confs.SIMPLE.__from__.should.be.match(/updater/);
             confs.SIMPLE._TEST_RAW_CONF_.should.be.equal(true);

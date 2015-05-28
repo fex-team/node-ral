@@ -1,8 +1,17 @@
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
+ * http://fis.baidu.com/
+ * 2015/5/10
+ */
+
+'use strict';
+
 var ral = require('./ral.js');
 var assert = require('assert');
 
 
-/** 
+/**
 stream 数据类型最常见的用途就是转发请求
 
 这种方式的优点是转发数据可以节省前端数据的解包和打包时间，并且无需等待前端传回的数据接收完毕就可以发起转发请求
@@ -13,7 +22,7 @@ stream 数据类型最常见的用途就是转发请求
 **/
 
 var http = require('http');
-var server = http.createServer(function(req, res){
+var server = http.createServer(function (req, res) {
     delete req.headers.host; // 删除host，避免后端识别host错误，绝大部分情况都建议这样处理
     /* 如果使用express，可以传递
         headers: req.headers, // 传递headers
@@ -22,7 +31,7 @@ var server = http.createServer(function(req, res){
         method: req.method // 传递method
     */
     ral('PROXY', {
-        data: req,  // 直接将req作为stream源传递，主要是对body数据做流式转发
+        data: req, // 直接将req作为stream源传递，主要是对body数据做流式转发
         headers: req.headers, // 传递headers
         path: req.url, // 传递url
         method: req.method // 传递method

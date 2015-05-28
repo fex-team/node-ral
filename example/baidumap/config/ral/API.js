@@ -1,3 +1,12 @@
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
+ * http://fis.baidu.com/
+ * 2015/5/10
+ */
+
+/* eslint-disable fecs-camelcase, camelcase */
+
 module.exports.MAPAPI = { // 声明服务名为MAPAPI
     // 请求协议与数据格式配置
     protocol: 'http', // 使用http协议请求

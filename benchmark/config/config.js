@@ -1,5 +1,6 @@
-/*
- * fis
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
  * http://fis.baidu.com/
  * 2014/8/16
  */
@@ -7,7 +8,7 @@
 'use strict';
 
 module.exports = {
-    'SIMPLE_GET': {
+    SIMPLE_GET: {
         unpack: 'raw',
         pack: 'raw',
         method: 'GET',
@@ -15,9 +16,10 @@ module.exports = {
         balance: 'random',
         protocol: 'http',
         timeout: 10000,
-        retry:1,
-        server: [
-            { host: '127.0.0.1', port: 8192}
-        ]
+        retry: 1,
+        server: [{
+            host: '127.0.0.1',
+            port: 8192
+        }]
     }
 };

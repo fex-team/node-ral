@@ -1,8 +1,11 @@
-/*
- * fis
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
  * http://fis.baidu.com/
  * 2014/8/5
  */
+
+/* eslint-disable no-wrap-func, max-nested-callbacks */
 
 'use strict';
 
@@ -18,10 +21,8 @@ var QueryStringConverter = require('../lib/ext/converter/querystringConverter.js
 var RawConverter = require('../lib/ext/converter/rawConverter.js');
 var util = require('../lib/util.js');
 var _ = require('underscore');
-var fs = require('fs');
-var path = require('path');
-var post_test = require('./protocol/http_protocol_post_test.js');
-var FormData = require('form-data');
+var postTest = require('./protocol/http_protocol_post_test.js');
+var FormDataCls = require('form-data');
 
 var mockUTF8Context = {
     encoding: 'utf8'
@@ -82,7 +83,7 @@ describe('json converter', function () {
         var jsonConverter = new JsonConverter();
         var data = {
             a: 1,
-            b: "张三"
+            b: '张三'
         };
         var pack = jsonConverter.pack(mockUTF8Context, data);
         var unpack = jsonConverter.unpack(mockUTF8Context, pack);
@@ -94,14 +95,16 @@ describe('json converter', function () {
         var jsonConverter = new JsonConverter();
         var data = '张三李四';
         var pack = converter.pack(mockUTF8Context, data);
-        (function(){jsonConverter.unpack(mockUTF8Context, pack);}).should.throwError();
+        (function () {
+            jsonConverter.unpack(mockUTF8Context, pack);
+        }).should.throwError();
     });
 
     it('pack and unpack gbk correctly', function () {
         var jsonConverter = new JsonConverter();
         var data = {
             a: 1,
-            b: "张三"
+            b: '张三'
         };
         var pack = jsonConverter.pack(mockGBKContext, data);
         var unpack = jsonConverter.unpack(mockGBKContext, pack);
@@ -187,17 +190,17 @@ describe('formdata converter', function () {
         };
         var options = _.clone(mockUTF8Context);
         var httpProtocol = new HttpProtocol();
-        var server = post_test.createServer();
-        util.merge(options, post_test.service);
+        var server = postTest.createServer();
+        util.merge(options, postTest.service);
         options = HttpProtocol.normalizeConfig(options);
         var pack = converter.pack(options, data);
         util.merge(options, {
-            server: post_test.request.server
+            server: postTest.request.server
         });
-        var request = httpProtocol.talk(options, function(res){
-            res.on('data', function (data) {
+        var request = httpProtocol.talk(options, function (res) {
+            res.on('data', function (data2) {
                 server.close();
-                data.toString().should.be.equal('hear you 张三李四');
+                data2.toString().should.be.equal('hear you 张三李四');
                 done();
             });
         });
@@ -211,17 +214,17 @@ describe('formdata converter', function () {
         };
         var options = _.clone(mockGBKContext);
         var httpProtocol = new HttpProtocol();
-        util.merge(options, post_test.service);
+        util.merge(options, postTest.service);
         util.merge(options, {
-            server: post_test.request.server
+            server: postTest.request.server
         });
         options = HttpProtocol.normalizeConfig(options);
-        var server = post_test.createServer('gbk');
+        var server = postTest.createServer('gbk');
         var pack = converter.pack(options, data);
         var request = httpProtocol.talk(options, function (res) {
-            res.on('data', function(data){
-                data.toString().should.be.equal('hear you 张三李四');
+            res.on('data', function (data2) {
                 server.close();
+                data2.toString().should.be.equal('hear you 张三李四');
                 done();
             });
         });
@@ -231,7 +234,7 @@ describe('formdata converter', function () {
     it('pack should fail if encoding is illegal', function () {
         var converter = new FormDataConverter();
         var data = {
-            name: "hefangshi"
+            name: 'hefangshi'
         };
         (function () {
             converter.pack(mockBlahContext, data);
@@ -253,10 +256,10 @@ describe('formdata converter', function () {
         };
         var options = _.clone(mockUTF8Context);
         options.syncLength = true;
-        var httpProtocol = new HttpProtocol();
-        util.merge(options, post_test.service);
+        // var httpProtocol = new HttpProtocol();
+        util.merge(options, postTest.service);
         options = HttpProtocol.normalizeConfig(options);
-        var pack = converter.pack(options, data);
+        converter.pack(options, data);
         options.headers['Content-Length'].should.be.eql(169);
     });
 });
@@ -276,7 +279,7 @@ describe('form converter', function () {
         var converter = new FormConverter();
         var data = {
             a: 1,
-            b: "张三"
+            b: '张三'
         };
         var pack = converter.pack(mockUTF8Context, data);
         var unpack = converter.unpack(mockUTF8Context, pack);
@@ -287,7 +290,7 @@ describe('form converter', function () {
         var converter = new FormConverter();
         var data = {
             a: 1,
-            b: "张三"
+            b: '张三'
         };
         var pack = converter.pack(mockGBKContext, data);
         var unpack = converter.unpack(mockGBKContext, pack);
@@ -310,16 +313,16 @@ describe('form converter', function () {
         };
         var options = _.clone(mockUTF8Context);
         var httpProtocol = new HttpProtocol();
-        util.merge(options, post_test.service);
-        util.merge(options, post_test.request);
+        util.merge(options, postTest.service);
+        util.merge(options, postTest.request);
         options = HttpProtocol.normalizeConfig(options);
         var pack = converter.pack(options, data);
-        var server = post_test.createServer();
+        var server = postTest.createServer();
         options.payload = pack;
-        var request = httpProtocol.talk(options, function (res) {
-            res.on('data', function(data){
-                data.toString().should.be.equal('hear you 张三李四');
+        httpProtocol.talk(options, function (res) {
+            res.on('data', function (resData) {
                 server.close();
+                resData.toString().should.be.equal('hear you 张三李四');
                 done();
             });
         });
@@ -341,7 +344,7 @@ describe('querystring converter', function () {
         var converter = new QueryStringConverter();
         var data = {
             a: 1,
-            b: "张三"
+            b: '张三'
         };
         converter.pack(mockUTF8Context, data);
         mockUTF8Context.query.should.be.eql(data);
@@ -352,7 +355,7 @@ describe('querystring converter', function () {
         var urlencodeConverter = new FormConverter();
         var data = {
             a: 1,
-            b: "张三"
+            b: '张三'
         };
         var pack = urlencodeConverter.pack(mockUTF8Context, data);
         var unpack = converter.unpack(mockUTF8Context, pack);
@@ -373,10 +376,10 @@ describe('raw converter', function () {
 
     it('pack and unpack should be paired', function () {
         var converter = new RawConverter();
-        var data = new Buffer("abc");
+        var data = new Buffer('abc');
         var pack = converter.pack({}, data);
         var unpack = converter.unpack({}, pack);
-        unpack.toString().should.be.eql("abc");
+        unpack.toString().should.be.eql('abc');
     });
 });
 
@@ -393,26 +396,26 @@ describe('stream converter', function () {
 
     it('pack should work fine', function (done) {
         var converter = new StreamConverter();
-        var form = new FormData();
+        var form = new FormDataCls();
         form.append('name', '张三李四');
         var options = _.clone(mockUTF8Context);
         var httpProtocol = new HttpProtocol();
-        var server = post_test.createServer();
-        util.merge(options, post_test.service);
+        var server = postTest.createServer();
+        util.merge(options, postTest.service);
         options = HttpProtocol.normalizeConfig(options);
         var pack = converter.pack(options, form);
         util.merge(options, {
-            server: post_test.request.server
+            server: postTest.request.server
         });
         options.headers = {};
-        options.headers['Content-Type'] =  "multipart/form-data;boundary=" + form.getBoundary();
-        var request = httpProtocol.talk(options, function(res){
+        options.headers['Content-Type'] = 'multipart/form-data;boundary=' + form.getBoundary();
+        var request = httpProtocol.talk(options, function (res) {
             res.on('data', function (data) {
                 server.close();
                 data.toString().should.be.equal('hear you 张三李四');
                 done();
             });
-            res.on('error', function(){
+            res.on('error', function () {
                 server.close();
             });
         });

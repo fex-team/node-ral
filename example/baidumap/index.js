@@ -1,3 +1,13 @@
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
+ * http://fis.baidu.com/
+ * 2015/5/10
+ */
+/* eslint-disable no-console */
+
+'use strict';
+
 var ral = require('./ral.js');
 var assert = require('assert');
 

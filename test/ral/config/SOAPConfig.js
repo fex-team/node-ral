@@ -1,5 +1,6 @@
-/*
- * fis
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
  * http://fis.baidu.com/
  * 2014/12/24
  */
@@ -14,10 +15,8 @@ module.exports.SOAP = {
     unpack: 'raw',
     balance: 'random',
     timeout: 100000,
-    server: [
-        {
-            host: 'wsf.cdyne.com',
-            port: 80
-        }
-    ]
+    server: [{
+        host: 'wsf.cdyne.com',
+        port: 80
+    }]
 };

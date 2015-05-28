@@ -1,8 +1,12 @@
-/*
- * fis
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
  * http://fis.baidu.com/
  * 2014/8/5
  */
+
+/* eslint-disable no-wrap-func */
+/* eslint-disable max-nested-callbacks, no-console */
 
 'use strict';
 
@@ -34,16 +38,6 @@ var mockHTTPService2 = {
     }
 };
 
-var mockRequest = {
-    options: {
-        timeout: 100,
-        query: 'b=1',
-        headers: {
-            'User-Agent': 'Webkit'
-        }
-    }
-};
-
 describe('protocol', function () {
     it('should fail when get name', function () {
         var protocol = new Protocol();
@@ -69,16 +63,16 @@ describe('http protocol', function () {
         protocol.getCategory().should.be.equal('protocol');
     });
 
-    describe('http protocol with get method',function(){
+    describe('http protocol with get method', function () {
         it('should work fine with GET method', function (done) {
-            var get_test = require('./protocol/http_protocol_get_test.js');
-            //start a http server for get
-            var server = get_test.createServer();
+            var getTest = require('./protocol/http_protocol_get_test.js');
+            // start a http server for get
+            var server = getTest.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeConfig(get_test.service);
-            util.merge(context, get_test.request);
-            httpProtocol.talk(context, function(res){
-                res.on('data', function(data){
+            var context = HttpProtocol.normalizeConfig(getTest.service);
+            util.merge(context, getTest.request);
+            httpProtocol.talk(context, function (res) {
+                res.on('data', function (data) {
                     server.close();
                     data.toString().should.be.equal('hear you');
                     done();
@@ -87,14 +81,14 @@ describe('http protocol', function () {
         });
 
         it('should work fine with GET method and querystring', function (done) {
-            var get_test = require('./protocol/http_protocol_get_test.js');
-            //start a http server for get
-            var server = get_test.createServer();
+            var getTest = require('./protocol/http_protocol_get_test.js');
+            // start a http server for get
+            var server = getTest.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeConfig(get_test.service);
-            util.merge(context, get_test.request_with_query);
-            httpProtocol.talk(context, function(res){
-                res.on('data', function(data){
+            var context = HttpProtocol.normalizeConfig(getTest.service);
+            util.merge(context, getTest.requestWithQuery);
+            httpProtocol.talk(context, function (res) {
+                res.on('data', function (data) {
                     server.close();
                     data.toString().should.be.equal('hear you hefangshi');
                     done();
@@ -103,14 +97,14 @@ describe('http protocol', function () {
         });
 
         it('should got 404 status when GET 404', function (done) {
-            var get_test = require('./protocol/http_protocol_get_test.js');
-            //start a http server for get
-            var server = get_test.createServer();
+            var getTest = require('./protocol/http_protocol_get_test.js');
+            // start a http server for get
+            var server = getTest.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeConfig(get_test.service);
-            util.merge(context, get_test.request_404);
+            var context = HttpProtocol.normalizeConfig(getTest.service);
+            util.merge(context, getTest.request404);
             var stream = httpProtocol.talk(context);
-            stream.on('error', function(err){
+            stream.on('error', function (err) {
                 server.close();
                 err.should.match(/Server Status Error: 404/);
                 done();
@@ -118,99 +112,101 @@ describe('http protocol', function () {
         });
 
         it('should got 503 status when GET 503', function (done) {
-            var get_test = require('./protocol/http_protocol_get_test.js');
-            //start a http server for get
-            var server = get_test.createServer();
+            var getTest = require('./protocol/http_protocol_get_test.js');
+            // start a http server for get
+            var server = getTest.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeConfig(get_test.service);
-            util.merge(context, get_test.request_404);
+            var context = HttpProtocol.normalizeConfig(getTest.service);
+            util.merge(context, getTest.request404);
             var stream = httpProtocol.talk(context);
-            stream.on('error', function(err){
+            stream.on('error', function (err) {
                 server.close();
                 err.should.match(/Server Status Error: 503/);
                 done();
             });
         });
 
-        it('should work well with https', function(done) {
-            var get_test = require('./protocol/http_protocol_get_test.js');
-            //start a http server for get
-//            var server = get_test.createServer();
+        it('should work well with https', function (done) {
+            var getTest = require('./protocol/http_protocol_get_test.js');
+            // start a http server for get
+            //            var server = getTest.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeConfig(get_test.request_https);
-            var stream = httpProtocol.talk(context, function(res){
-                res.on('data', function(data){
+            var context = HttpProtocol.normalizeConfig(getTest.requestHttps);
+            var stream = httpProtocol.talk(context, function (res) {
+                res.on('data', function (data) {
                     done();
                 });
             });
-            stream.on('error', function(err){
+            stream.on('error', function (err) {
                 console.log(err);
                 err.should.be.null;
-            })
+            });
         });
     });
 
-    describe('http protocol with post method',function(){
+    describe('http protocol with post method', function () {
         it('should work fine with POST method', function (done) {
-            var post_test = require('./protocol/http_protocol_post_test.js');
-            //start a http server for post
-            var server = post_test.createServer();
+            var postTest = require('./protocol/http_protocol_post_test.js');
+            // start a http server for post
+            var server = postTest.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeConfig(post_test.service);
-            util.merge(context, post_test.request);
-            var request = httpProtocol.talk(context, function(res){
-                res.on('data', function(data){
+            var context = HttpProtocol.normalizeConfig(postTest.service);
+            util.merge(context, postTest.request);
+            var request = httpProtocol.talk(context, function (res) {
+                res.on('data', function (data) {
                     server.close();
-                    data.toString().should.be.equal('hear you hefangshi with file http_protocol_post_test.js');
+                    data.toString().should.be.equal(
+                        'hear you hefangshi with file http_protocol_post_test.js');
                     done();
                 });
             });
-            post_test.request.data.pipe(request);
+            postTest.request.data.pipe(request);
         });
 
         it('should work fine with POST method when post a plan object', function (done) {
-            var post_test = require('./protocol/http_protocol_post_test.js');
-            //start a http server for post
-            var server = post_test.createServer();
+            var postTest = require('./protocol/http_protocol_post_test.js');
+            // start a http server for post
+            var server = postTest.createServer();
             var httpProtocol = new HttpProtocol();
-            var context =HttpProtocol.normalizeConfig(post_test.service);
-            util.merge(context, post_test.request_with_urlencode);
-            var request = httpProtocol.talk(context, function(res){
-                res.on('data', function(data){
+            var context = HttpProtocol.normalizeConfig(postTest.service);
+            util.merge(context, postTest.requestWithUrlencode);
+            var request = httpProtocol.talk(context, function (res) {
+                res.on('data', function (data) {
                     server.close();
                     data.toString().should.be.equal('hear you hefangshi');
                     done();
                 });
             });
-            post_test.request_with_urlencode.data.pipe(request);
+            postTest.requestWithUrlencode.data.pipe(request);
         });
 
         it('should work fine with POST gbk form', function (done) {
-            var post_test = require('./protocol/http_protocol_post_test.js');
-            //start a http server for post
-            var server = post_test.createServer('gbk');
+            var postTest = require('./protocol/http_protocol_post_test.js');
+            // start a http server for post
+            var server = postTest.createServer('gbk');
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeConfig(post_test.service);
-            util.merge(context, post_test.request_gbk_form);
-            var request = httpProtocol.talk(context, function(res){
-                res.on('data', function(data){
+            var context = HttpProtocol.normalizeConfig(postTest.service);
+            util.merge(context, postTest.requestGBKForm);
+            var request = httpProtocol.talk(context, function (res) {
+                res.on('data', function (data) {
                     server.close();
-                    data.toString().should.be.equal('hear you 何方石 with file http_protocol_post_test.js');
+                    data.toString().should.be.equal(
+                        'hear you 何方石 with file http_protocol_post_test.js');
                     done();
                 });
             });
-            post_test.request_gbk_form.data.pipe(request);
+            postTest.requestGBKForm.data.pipe(request);
         });
 
         it('should got 404 status when GET 404', function (done) {
-            var post_test = require('./protocol/http_protocol_post_test.js');
-            //start a http server for post
-            var server = post_test.createServer();
+            var postTest = require('./protocol/http_protocol_post_test.js');
+            // start a http server for post
+            var server = postTest.createServer();
             var httpProtocol = new HttpProtocol();
-            var context = HttpProtocol.normalizeConfig(post_test.service);
-            util.merge(context, post_test.request_404);
+            var context = HttpProtocol.normalizeConfig(postTest.service);
+            util.merge(context, postTest.request404);
             var stream = httpProtocol.talk(context);
-            stream.on('error', function(err){
+            stream.on('error', function (err) {
                 server.close();
                 err.should.match(/Server Status Error: 404/);
                 done();
@@ -218,14 +214,14 @@ describe('http protocol', function () {
         });
 
         it('should got 503 status when GET 503', function (done) {
-            var post_test = require('./protocol/http_protocol_post_test.js');
-            //start a http server for post
-            var server = post_test.createServer();
+            var postTest = require('./protocol/http_protocol_post_test.js');
+            // start a http server for post
+            var server = postTest.createServer();
             var httpProtocol = new HttpProtocol();
-            var options = HttpProtocol.normalizeConfig(post_test.service);
-            util.merge(options, post_test.request_404);
+            var options = HttpProtocol.normalizeConfig(postTest.service);
+            util.merge(options, postTest.request404);
             var stream = httpProtocol.talk(options);
-            stream.on('error', function(err){
+            stream.on('error', function (err) {
                 server.close();
                 err.should.match(/Server Status Error: 503/);
                 done();
@@ -246,21 +242,23 @@ describe('http protocol context', function () {
 
     it('should parse query string', function () {
         var context = HttpProtocol.normalizeConfig(mockHTTPService2);
-        context.query.should.be.eql({a: '1'});
+        context.query.should.be.eql({
+            a: '1'
+        });
     });
 });
 
 describe('soap protocol', function () {
     it('should request wsdl service successfully', function (done) {
-        var soap_test = require('./protocol/soap_protocol.js');
-        var context = SoapProtocol.normalizeConfig(soap_test);
+        var soapTest = require('./protocol/soap_protocol.js');
+        var context = SoapProtocol.normalizeConfig(soapTest);
         context.method = 'GetCityForecastByZIP';
         context.payload = {
             ZIP: 10020
         };
         var soapProtocol = new SoapProtocol();
-        soapProtocol.talk(context, function(res){
-            res.on('data', function(data){
+        soapProtocol.talk(context, function (res) {
+            res.on('data', function (data) {
                 data.GetCityForecastByZIPResult.should.be.ok;
                 done();
             });
@@ -268,8 +266,8 @@ describe('soap protocol', function () {
     });
 
     it('should request wsdl service with service.port successfully', function (done) {
-        var soap_test = require('./protocol/soap_protocol.js');
-        var context = SoapProtocol.normalizeConfig(soap_test);
+        var soapTest = require('./protocol/soap_protocol.js');
+        var context = SoapProtocol.normalizeConfig(soapTest);
         context.soapService = 'Weather';
         context.soapPort = 'WeatherSoap12';
         context.method = 'GetCityForecastByZIP';
@@ -277,8 +275,8 @@ describe('soap protocol', function () {
             ZIP: 10020
         };
         var soapProtocol = new SoapProtocol();
-        soapProtocol.talk(context, function(res){
-            res.on('data', function(data){
+        soapProtocol.talk(context, function (res) {
+            res.on('data', function (data) {
                 data.GetCityForecastByZIPResult.should.be.ok;
                 done();
             });

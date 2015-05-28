@@ -1,4 +1,13 @@
-//var RAL = require('node-ral').RAL;
+/**
+ * @file node-ral
+ * @author hefangshi@baidu.com
+ * http://fis.baidu.com/
+ * 2015/5/10
+ */
+
+'use strict';
+
+// var RAL = require('node-ral').RAL;
 // DEMO直接使用入口函数，正式使用通过require('node-ral').RAL调用
 var RAL = require('../../index.js').RAL;
 var path = require('path');
