@@ -154,7 +154,7 @@
         "soap": "0.8.0",
         "underscore": "1.6.0",
         "urlencode": "0.2.0",
-        "yog-log": "0.0.10"
+        "yog-log": "0.0.16"
     },
     "devDependencies": {
         "async": "0.9.0",
