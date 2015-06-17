@@ -94,7 +94,7 @@ describe('config updater', function () {
         }, true);
     });
 
-    it('auto updater should be triggered is normalizer need update', function () {
+    it('auto updater should be triggered is normalizer need update', function (done) {
         var fake = {
             normalizeConfig: function (conf) {
                 return conf;
@@ -105,10 +105,13 @@ describe('config updater', function () {
         };
         normalizeManager.setConfigNormalizer([fake, 'default']);
         config.load(path.join(__dirname, './update/config'));
-        config.isAutoUpdateEnabled().should.be.true;
-        config.disableUpdate();
-        config.isAutoUpdateEnabled().should.be.false;
-        normalizeManager.setConfigNormalizer(['default']);
+        setTimeout(function () {
+            config.isAutoUpdateEnabled().should.be.true;
+            config.disableUpdate();
+            config.isAutoUpdateEnabled().should.be.false;
+            normalizeManager.setConfigNormalizer(['default']);
+            done();
+        }, 60 * 1000);
     });
 
     it('auto updater should work fine 1', function (done) {
