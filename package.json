@@ -1,6 +1,6 @@
 {
     "name": "node-ral",
-    "version": "0.0.37",
+    "version": "0.0.38",
     "description": "a rpc client for node",
     "main": "index.js",
     "scripts": {
