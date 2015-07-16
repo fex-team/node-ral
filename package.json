@@ -1,6 +1,6 @@
 {
     "name": "node-ral",
-    "version": "0.0.41",
+    "version": "0.0.42",
     "description": "a rpc client for node",
     "main": "index.js",
     "scripts": {
@@ -154,7 +154,7 @@
         "soap": "0.8.0",
         "underscore": "1.6.0",
         "urlencode": "0.2.0",
-        "yog-log": "0.0.19"
+        "yog-log": "0.0.x"
     },
     "devDependencies": {
         "async": "0.9.0",
