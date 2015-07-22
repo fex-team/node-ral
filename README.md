@@ -1,8 +1,7 @@
 node-ral
 ===========
 
-[![Build Status](https://travis-ci.org/fex-team/node-ral.svg?branch=master)](https://travis-ci.org/fex-team/node-ral)[![Coverage Status](https://coveralls.io/repos/fex-team/node-ral/badge.png)](https://coveralls.io/r/fex-team/node-ral)[![NPM version][npm-image]][npm-url]
-[![Downloads][downloads-image]][npm-url]
+ [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]
 
 
 `node-ral` 是一个专为 `Node` 服务端应用打造的一款工业级后端服务管理库，它的特色是统一了各种通信协议、数据格式的请求接口，提供了集中化的服务资源配置管理能力，以及完善的异常处理和日志记录。
@@ -145,3 +144,8 @@ NOTICE: 15-04-28 17:07:45 [-:-] errno[-] logId[-] uri[-] user[-] refer[-] cookie
 [npm-url]: https://npmjs.org/package/node-ral
 [npm-image]: http://img.shields.io/npm/v/node-ral.svg
 
+[travis-url]: https://travis-ci.org/fex-team/node-ral
+[travis-image]: http://img.shields.io/travis/fex-team/node-ral.svg
+
+[coveralls-url]: https://coveralls.io/r/fex-team/node-ral
+[coveralls-image]: http://img.shields.io/coveralls/fex-team/node-ral/master.svg
