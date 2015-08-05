@@ -12,6 +12,7 @@
 
 var Protocol = require('../lib/protocol.js');
 var HttpProtocol = require('../lib/ext/protocol/httpProtocol.js');
+var HttpsProtocol = require('../lib/ext/protocol/httpsProtocol.js');
 var SoapProtocol = require('../lib/ext/protocol/soapProtocol.js');
 var util = require('../lib/util.js');
 
@@ -138,7 +139,22 @@ describe('http protocol', function () {
                 });
             });
             stream.on('error', function (err) {
-                console.log(err);
+                err.should.be.null;
+            });
+        });
+
+        it('should work well with https protocol', function (done) {
+            var getTest = require('./protocol/http_protocol_get_test.js');
+            // start a http server for get
+            //            var server = getTest.createServer();
+            var httpsProtocol = new HttpsProtocol();
+            var context = HttpsProtocol.normalizeConfig(getTest.requestHttpsWithProtocol);
+            var stream = httpsProtocol.talk(context, function (res) {
+                res.on('data', function (data) {
+                    done();
+                });
+            });
+            stream.on('error', function (err) {
                 err.should.be.null;
             });
         });

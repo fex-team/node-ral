@@ -62,6 +62,16 @@ module.exports.requestHttps = {
     }
 };
 
+module.exports.requestHttpsWithProtocol = {
+    method: 'GET',
+    path: '/',
+    rejectUnauthorized: false,
+    server: {
+        host: 'travis-ci.org',
+        port: 443
+    }
+};
+
 module.exports.createServer = function () {
     return http.createServer(function (request, response) {
         var info = url.parse(request.url);
