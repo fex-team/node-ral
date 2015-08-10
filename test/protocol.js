@@ -298,4 +298,5 @@ describe('soap protocol', function () {
             });
         });
     });
+
 });
