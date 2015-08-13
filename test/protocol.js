@@ -265,7 +265,7 @@ describe('http protocol context', function () {
 });
 
 describe('soap protocol', function () {
-    it('should request wsdl service successfully', function (done) {
+    it.skip('should request wsdl service successfully', function (done) {
         var soapTest = require('./protocol/soap_protocol.js');
         var context = SoapProtocol.normalizeConfig(soapTest);
         context.method = 'GetCityForecastByZIP';
@@ -281,7 +281,7 @@ describe('soap protocol', function () {
         });
     });
 
-    it('should request wsdl service with service.port successfully', function (done) {
+    it.skip('should request wsdl service with service.port successfully', function (done) {
         var soapTest = require('./protocol/soap_protocol.js');
         var context = SoapProtocol.normalizeConfig(soapTest);
         context.soapService = 'Weather';
