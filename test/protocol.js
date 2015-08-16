@@ -107,7 +107,8 @@ describe('http protocol', function () {
             var stream = httpProtocol.talk(context);
             stream.on('error', function (err) {
                 server.close();
-                err.should.match(/Server Status Error: 404/);
+                err.statusCode.should.be.equal(404);
+                err.message.should.match(/Server Status Error: 404/);
                 done();
             });
         });
@@ -118,11 +119,12 @@ describe('http protocol', function () {
             var server = getTest.createServer();
             var httpProtocol = new HttpProtocol();
             var context = HttpProtocol.normalizeConfig(getTest.service);
-            util.merge(context, getTest.request404);
+            util.merge(context, getTest.request503);
             var stream = httpProtocol.talk(context);
             stream.on('error', function (err) {
                 server.close();
-                err.should.match(/Server Status Error: 503/);
+                err.statusCode.should.be.equal(503);
+                err.message.should.match(/Server Status Error: 503/);
                 done();
             });
         });
@@ -224,7 +226,8 @@ describe('http protocol', function () {
             var stream = httpProtocol.talk(context);
             stream.on('error', function (err) {
                 server.close();
-                err.should.match(/Server Status Error: 404/);
+                err.statusCode.should.be.equal(404);
+                err.message.should.match(/Server Status Error: 404/);
                 done();
             });
         });
@@ -235,11 +238,12 @@ describe('http protocol', function () {
             var server = postTest.createServer();
             var httpProtocol = new HttpProtocol();
             var options = HttpProtocol.normalizeConfig(postTest.service);
-            util.merge(options, postTest.request404);
+            util.merge(options, postTest.request503);
             var stream = httpProtocol.talk(options);
             stream.on('error', function (err) {
                 server.close();
-                err.should.match(/Server Status Error: 503/);
+                err.statusCode.should.be.equal(503);
+                err.message.should.match(/Server Status Error: 503/);
                 done();
             });
         });
