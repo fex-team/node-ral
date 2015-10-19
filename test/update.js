@@ -94,7 +94,7 @@ describe('config updater', function () {
         }, true);
     });
 
-    it.skip('auto updater should be triggered is normalizer need update', function (done) {
+    it('auto updater should be triggered is normalizer need update', function (done) {
         var fake = {
             normalizeConfig: function (conf) {
                 return conf;
