@@ -77,7 +77,10 @@ var server;
 
 module.exports.createServer = function () {
     if (server) {
-        server.close();
+        try {
+            server.close();
+        }
+        catch (e) {}
         server.close = function () {};
     }
     server = http.createServer(function (request, response) {
