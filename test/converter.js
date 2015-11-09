@@ -203,6 +203,9 @@ describe('formdata converter', function () {
                 data2.toString().should.be.equal('hear you 张三李四');
                 done();
             });
+            res.on('error', function () {
+                server.close();
+            });
         });
         pack.pipe(request);
     });
@@ -224,8 +227,11 @@ describe('formdata converter', function () {
         var request = httpProtocol.talk(options, function (res) {
             res.on('data', function (data2) {
                 server.close();
-                data2.toString().should.be.equal('hear you 张三李四');
+                data2.toString().should.be.equal('hear you �������');
                 done();
+            });
+            res.on('error', function () {
+                server.close();
             });
         });
         pack.pipe(request);

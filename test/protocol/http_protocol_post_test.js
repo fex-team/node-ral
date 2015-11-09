@@ -14,7 +14,6 @@ var fs = require('fs');
 var CombinedStream = require('combined-stream');
 var iconv = require('iconv-lite');
 var path = require('path');
-iconv.extendNodeEncodings();
 
 module.exports.__defineGetter__('service', function () {
     return {
@@ -124,15 +123,36 @@ module.exports.requestWithQuery = {
     }
 };
 
+
+var server;
+module.exports.closeServer = function () {
+    if (server) {
+        server.close();
+        server.close = function () {};
+    }
+};
+
 module.exports.createServer = function (encoding) {
-    return http.createServer(function (request, response) {
+    module.exports.closeServer();
+    server = http.createServer(function (request, response) {
         var info = url.parse(request.url);
         var pathname = info.pathname;
         if (pathname === '/hello' && request.method === 'POST') {
-            var content = 'hear you';
             var formIn = new formidable.IncomingForm();
-            formIn.encoding = encoding || 'utf-8';
+            // var decodeStream = iconv.decodeStream(encoding || 'utf-8');
+            // decodeStream.headers = request.headers;
+            // decodeStream.rawHeaders = request.rawHeaders;
+            // decodeStream.httpVersionMajor = request.httpVersionMajor;
+            // decodeStream.httpVersionMinor = request.httpVersionMinor;
+            // decodeStream.httpVersion = request.httpVersion;
+            // decodeStream.trailers = request.trailers;
+            // decodeStream.rawTrailers = request.rawTrailers;
+            // decodeStream.url = request.url;
+            // decodeStream.method = request.method;
+            // decodeStream.statusCode = request.statusCode;
+            // decodeStream.statusMessage = request.statusMessage;
             formIn.parse(request, function (err, fields, files) {
+                var content = 'hear you';
                 response.writeHead(200, {
                     'content-type': 'text/plain'
                 });
@@ -145,6 +165,7 @@ module.exports.createServer = function (encoding) {
                 response.write(content);
                 response.end();
             });
+            // request.pipe(decodeStream);
         }
         else if (pathname === '/error' && request.method === 'POST') {
             response.writeHead(503, {
@@ -160,4 +181,5 @@ module.exports.createServer = function (encoding) {
             response.end();
         }
     }).listen(8934);
+    return server;
 };
