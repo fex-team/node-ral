@@ -127,7 +127,10 @@ module.exports.requestWithQuery = {
 var server;
 module.exports.closeServer = function () {
     if (server) {
-        server.close();
+        try {
+            server.close();
+        }
+        catch (e) {}
         server.close = function () {};
     }
 };
