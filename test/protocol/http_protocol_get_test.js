@@ -72,8 +72,18 @@ module.exports.requestHttpsWithProtocol = {
     }
 };
 
+var server;
+
+
 module.exports.createServer = function () {
-    return http.createServer(function (request, response) {
+    if (server) {
+        try {
+            server.close();
+        }
+        catch (e) {}
+        server.close = function () {};
+    }
+    server = http.createServer(function (request, response) {
         var info = url.parse(request.url);
         var pathname = info.pathname;
         if (pathname === '/hello') {
@@ -104,4 +114,5 @@ module.exports.createServer = function () {
             response.end();
         }
     }).listen(8934);
+    return server;
 };

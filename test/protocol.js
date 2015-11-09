@@ -129,7 +129,7 @@ describe('http protocol', function () {
             });
         });
 
-        it('should work well with https', function (done) {
+        (process.env.CI ? it : it.skip)('should work well with https', function (done) {
             var getTest = require('./protocol/http_protocol_get_test.js');
             // start a http server for get
             //            var server = getTest.createServer();
@@ -145,7 +145,7 @@ describe('http protocol', function () {
             });
         });
 
-        it('should work well with https protocol', function (done) {
+        (process.env.CI ? it : it.skip)('should work well with https protocol', function (done) {
             var getTest = require('./protocol/http_protocol_get_test.js');
             // start a http server for get
             //            var server = getTest.createServer();
@@ -177,6 +177,9 @@ describe('http protocol', function () {
                         'hear you hefangshi with file http_protocol_post_test.js');
                     done();
                 });
+                res.on('error', function (data) {
+                    server.close();
+                });
             });
             postTest.request.data.pipe(request);
         });
@@ -194,6 +197,10 @@ describe('http protocol', function () {
                     data.toString().should.be.equal('hear you hefangshi');
                     done();
                 });
+
+                res.on('error', function (data) {
+                    server.close();
+                });
             });
             postTest.requestWithUrlencode.data.pipe(request);
         });
@@ -209,8 +216,11 @@ describe('http protocol', function () {
                 res.on('data', function (data) {
                     server.close();
                     data.toString().should.be.equal(
-                        'hear you 何方石 with file http_protocol_post_test.js');
+                        'hear you �η�ʯ with file http_protocol_post_test.js');
                     done();
+                });
+                res.on('error', function (data) {
+                    server.close();
                 });
             });
             postTest.requestGBKForm.data.pipe(request);
@@ -282,6 +292,7 @@ describe('soap protocol', function () {
                 data.GetCityForecastByZIPResult.should.be.ok;
                 done();
             });
+
         });
     });
 

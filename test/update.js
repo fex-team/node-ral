@@ -94,7 +94,7 @@ describe('config updater', function () {
         }, true);
     });
 
-    it('auto updater should be triggered is normalizer need update', function (done) {
+    (process.env.CI ? it : it.skip)('auto updater should be triggered is normalizer need update', function (done) {
         var fake = {
             normalizeConfig: function (conf) {
                 return conf;
@@ -114,7 +114,7 @@ describe('config updater', function () {
         }, 60 * 1000);
     });
 
-    it('auto updater should work fine 1', function (done) {
+    (process.env.CI ? it : it.skip)('auto updater should work fine 1', function (done) {
         var fake = {
             normalizeConfig: function (conf) {
                 return conf;
@@ -139,7 +139,7 @@ describe('config updater', function () {
         });
     });
 
-    it('auto updater should work fine 2', function (done) {
+    (process.env.CI ? it : it.skip)('auto updater should work fine 2', function (done) {
         var fake = {
             normalizeConfig: function (conf) {
                 return conf;
@@ -165,7 +165,7 @@ describe('config updater', function () {
         });
     });
 
-    it('auto updater should not change raw conf', function (done) {
+    (process.env.CI ? it : it.skip)('auto updater should not change raw conf', function (done) {
         var fake = {
             normalizeConfig: function (conf) {
                 conf._TEST_RAW_CONF_ = true;
