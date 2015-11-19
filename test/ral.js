@@ -196,7 +196,7 @@ describe('ral', function () {
             console.log(data);
         });
         req.on('error', function (err) {
-            err.should.be.match(/request time out/);
+            err.message.should.be.match(/request timeout/);
             done();
         });
     });
@@ -310,7 +310,7 @@ describe('ral', function () {
             timeout: 200
         });
         req.on('error', function (error) {
-            error.toString().should.be.match(/request time out/);
+            error.toString().should.be.match(/request timeout/);
             done();
         });
     });
@@ -401,7 +401,7 @@ describe('ral', function () {
             }
         });
         req.on('error', function (err) {
-            err.message.should.be.match(/request time out/);
+            err.message.should.be.match(/request timeout/);
             done();
         });
     });
