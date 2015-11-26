@@ -51,6 +51,17 @@ module.exports.requestWithQuery = {
     }
 };
 
+module.exports.requestWithQueryInPath = {
+    path: '/hello?a=1',
+    query: {
+        name: 'hefangshi'
+    },
+    server: {
+        host: '127.0.0.1',
+        port: 8934
+    }
+};
+
 module.exports.requestHttps = {
     https: true,
     method: 'GET',

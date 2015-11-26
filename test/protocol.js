@@ -39,6 +39,16 @@ var mockHTTPService2 = {
     }
 };
 
+var mockHTTPService3 = {
+    timeout: 1000,
+    path: 'path/to/service',
+    method: 'POST',
+    query: 'a=1',
+    headers: {
+        'User-Agent': 'Chrome'
+    }
+};
+
 describe('protocol', function () {
     it('should fail when get name', function () {
         var protocol = new Protocol();
@@ -88,6 +98,22 @@ describe('http protocol', function () {
             var httpProtocol = new HttpProtocol();
             var context = HttpProtocol.normalizeConfig(getTest.service);
             util.merge(context, getTest.requestWithQuery);
+            httpProtocol.talk(context, function (res) {
+                res.on('data', function (data) {
+                    server.close();
+                    data.toString().should.be.equal('hear you hefangshi');
+                    done();
+                });
+            });
+        });
+
+        it('should work fine with GET when already has query in path', function (done) {
+            var getTest = require('./protocol/http_protocol_get_test.js');
+            // start a http server for get
+            var server = getTest.createServer();
+            var httpProtocol = new HttpProtocol();
+            var context = HttpProtocol.normalizeConfig(getTest.service);
+            util.merge(context, getTest.requestWithQueryInPath);
             httpProtocol.talk(context, function (res) {
                 res.on('data', function (data) {
                     server.close();
@@ -275,6 +301,11 @@ describe('http protocol context', function () {
         context.query.should.be.eql({
             a: '1'
         });
+    });
+
+    it('should fix path to be started with /', function () {
+        var context = HttpProtocol.normalizeConfig(mockHTTPService3);
+        context.path.should.be.eql('/path/to/service');
     });
 });
 
