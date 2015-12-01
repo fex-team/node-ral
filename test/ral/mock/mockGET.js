@@ -9,7 +9,10 @@
 
 module.exports = {
     GET_QS_SERV: {
-        mock: function () {
+        mock: function (options) {
+            if (options.query.type === 'error') {
+                throw new Error('mock error');
+            }
             return {
                 query: {
                     from: 'mock'
@@ -27,16 +30,25 @@ module.exports = {
                 query: {
                     from: 'mock'
                 },
-                port: 8192
+                port: 8193
             };
         }
     },
     TEST_QUERY_SERV: {
         mock: {
             query: {
-                from: 'mock'
+                from: 'mock_plan'
+            },
+            port: 8194
+        }
+    },
+    POST_QS_SERV: {
+        fatalRate: 1,
+        mock: {
+            query: {
+                from: 'mock_fatal'
             },
             port: 8192
         }
-    },
+    }
 };

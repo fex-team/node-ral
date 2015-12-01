@@ -227,7 +227,8 @@ describe('ral', function () {
             data: {
                 msg: 'hi',
                 name: '何方石'
-            }
+            },
+            enableMock: false
         });
         req.on('data', function (data) {
             servers.map(function (srv) {

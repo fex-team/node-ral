@@ -75,7 +75,7 @@ describe('mock', function () {
         var start = Date.now();
         req.on('data', function (data) {
             data.query.from.should.eql('mock');
-            data.port.should.eql(8192);
+            data.port.should.eql(8193);
             (Date.now() - start > 500).should.be.true;
             (Date.now() - start < 1000).should.be.true;
             done();
@@ -86,12 +86,123 @@ describe('mock', function () {
         before(function (ok) {
             isInited.on('done', ok);
         });
-        var req = ral('CHANGE_PACK_UNPACK');
-        var start = Date.now();
+        var req = ral('TEST_QUERY_SERV');
         req.on('data', function (data) {
-            data.query.from.should.eql('mock');
-            data.port.should.eql(8192);
+            data.query.from.should.eql('mock_plan');
+            data.port.should.eql(8194);
             done();
         });
     });
+
+    it('support degrade on fatal', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        var req = ral('POST_QS_SERV', {
+            degrade: {
+                query: {
+                    from: 'degrade'
+                },
+                port: 0
+            }
+        });
+        req.on('data', function (data) {
+            data.query.from.should.eql('degrade');
+            data.port.should.eql(0);
+            done();
+        });
+
+        req.on('error', function (err) {
+            done(err);
+        });
+    });
+
+
+    it('should catch mock error', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        var req = ral('GET_QS_SERV', {
+            query: {
+                type: 'error'
+            }
+        });
+        req.on('data', function (data) {
+            done(new Error());
+        });
+        req.on('error', function (err) {
+            err.message.should.eql('mock error');
+            done();
+        });
+    });
+
+    it('support RAL_MOCK to set mock service', function (done) {
+        process.env.RAL_MOCK = 'TEST_QUERY_SERV,CHANGE_PACK_UNPACK';
+        ral.init({
+            confDir: path.join(__dirname, './ral/config'),
+            mockDir: path.join(__dirname, './ral/mock'),
+            logger: {
+                log_path: path.join(__dirname, '../logs'),
+                app: 'yog-ral'
+            },
+            currentIDC: 'tc'
+        });
+        process.env.RAL_MOCK = false;
+        var req = ral('GET_QS_SERV');
+        var count = 3;
+        req.on('data', function (data) {
+            [8192, 8193].should.containEql(data.port);
+            data.port.should.not.eql(8194);
+            data.query.from.should.eql('ral');
+            count--;
+            !count && done();
+        });
+        var req2 = ral('TEST_QUERY_SERV');
+        req2.on('data', function (data) {
+            data.query.from.should.eql('mock_plan');
+            data.port.should.eql(8194);
+            count--;
+            !count && done();
+        });
+        var req3 = ral('CHANGE_PACK_UNPACK');
+        var start = Date.now();
+        req3.on('data', function (data) {
+            data.query.from.should.eql('mock');
+            data.port.should.eql(8193);
+            (Date.now() - start > 500).should.be.true;
+            (Date.now() - start < 1000).should.be.true;
+            count--;
+            !count && done();
+        });
+    });
+
+    it('support enableMock in service conf', function (done) {
+        process.env.RAL_MOCK = 'what';
+        ral.init({
+            confDir: path.join(__dirname, './ral/config'),
+            mockDir: path.join(__dirname, './ral/mock'),
+            logger: {
+                log_path: path.join(__dirname, '../logs'),
+                app: 'yog-ral'
+            },
+            currentIDC: 'tc'
+        });
+        process.env.RAL_MOCK = false;
+        // should degrade since POST_QS_SERV's enableMock=true
+        var req = ral('POST_QS_SERV', {
+            data: {
+                msg: 'hi',
+                name: '何方石'
+            }
+        });
+        req.on('data', function (data) {
+            console.log(data);
+            done();
+        });
+        req.on('error', function (err) {
+            err.message.should.eql('mock fatal hit');
+            done();
+        });
+    });
+
 });
