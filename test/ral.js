@@ -373,7 +373,7 @@ describe('ral', function () {
         });
     });
 
-    it('should work fine with soap', function (done) {
+    it.skip('should work fine with soap', function (done) {
         before(function (ok) {
             isInited.on('done', ok);
         });
@@ -389,7 +389,7 @@ describe('ral', function () {
         });
     });
 
-    it('should work fine with soap timeout', function (done) {
+    it.skip('should work fine with soap timeout', function (done) {
         before(function (ok) {
             isInited.on('done', ok);
         });
