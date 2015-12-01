@@ -66,6 +66,7 @@ module.exports = {
         }]
     },
     POST_QS_SERV: {
+        enableMock: true,
         unpack: 'json',
         pack: 'form',
         method: 'POST',

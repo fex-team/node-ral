@@ -86,6 +86,13 @@ describe('ral', function () {
             data.query.from.should.eql('ral');
             done();
         });
+        req.on('error', function (err) {
+            (err === null).should.be.true;
+            servers.map(function (srv) {
+                srv.close();
+            });
+            done();
+        });
     });
 
     // it('should get headers', function (done) {
@@ -121,6 +128,13 @@ describe('ral', function () {
             data.query.name.should.eql('何方石');
             done();
         });
+        req.on('error', function (err) {
+            (err === null).should.be.true;
+            servers.map(function (srv) {
+                srv.close();
+            });
+            done();
+        });
     });
 
     it('should override the options correctly', function (done) {
@@ -130,6 +144,10 @@ describe('ral', function () {
         var req = ral('GET_QS_SERV', {
             path: '/404',
             tag: 404
+        });
+        req.on('data', function (data) {
+            (data === null).should.be.true;
+            done();
         });
         req.on('error', function (err) {
             err.toString().should.be.match(/404/);
@@ -209,7 +227,8 @@ describe('ral', function () {
             data: {
                 msg: 'hi',
                 name: '何方石'
-            }
+            },
+            enableMock: false
         });
         req.on('data', function (data) {
             servers.map(function (srv) {
