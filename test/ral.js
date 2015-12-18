@@ -192,6 +192,35 @@ describe('ral', function () {
         });
     });
 
+    it('should support custom extra keys', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        var req = ral('GET_QS_SERV', {
+            includeExtras: true,
+            extrasKey: '_extras_',
+            data: {
+                msg: 'hi',
+                name: '何方石'
+            }
+        });
+        req.on('data', function (data) {
+            servers.map(function (srv) {
+                srv.close();
+            });
+            data._extras_.statusCode.should.eql(200);
+            data._extras_.headers['content-type'].should.eql('application/json');
+            done();
+        });
+        req.on('error', function (err) {
+            (err === null).should.be.true;
+            servers.map(function (srv) {
+                srv.close();
+            });
+            done();
+        });
+    });
+
     it('should override the options correctly', function (done) {
         before(function (ok) {
             isInited.on('done', ok);
