@@ -137,6 +137,61 @@ describe('ral', function () {
         });
     });
 
+    it('should get extras data with http', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        var req = ral('GET_QS_SERV', {
+            data: {
+                msg: 'hi',
+                name: '何方石'
+            }
+        });
+        req.on('data', function (data, extras) {
+            servers.map(function (srv) {
+                srv.close();
+            });
+            extras.statusCode.should.eql(200);
+            extras.headers['content-type'].should.eql('application/json');
+            done();
+        });
+        req.on('error', function (err) {
+            (err === null).should.be.true;
+            servers.map(function (srv) {
+                srv.close();
+            });
+            done();
+        });
+    });
+
+    it('should get extras in data with includeExtras', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        var req = ral('GET_QS_SERV', {
+            includeExtras: true,
+            data: {
+                msg: 'hi',
+                name: '何方石'
+            }
+        });
+        req.on('data', function (data) {
+            servers.map(function (srv) {
+                srv.close();
+            });
+            data._extras.statusCode.should.eql(200);
+            data._extras.headers['content-type'].should.eql('application/json');
+            done();
+        });
+        req.on('error', function (err) {
+            (err === null).should.be.true;
+            servers.map(function (srv) {
+                srv.close();
+            });
+            done();
+        });
+    });
+
     it('should override the options correctly', function (done) {
         before(function (ok) {
             isInited.on('done', ok);
@@ -478,7 +533,7 @@ describe('ral', function () {
                 name: 'hefangshi'
             }
         });
-        req.on('data', function (data) {
+        req.on('data', function (data, extras) {
             data.should.be.eql({
                 name: 'hefangshi'
             });
