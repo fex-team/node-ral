@@ -618,4 +618,19 @@ describe('ral', function () {
             done();
         });
     });
+
+    it('should catch sync error with http', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        var req = ral('GET_QS_SERV', {
+            path: '/cl ose',
+            timeout: 200,
+            degrade: false
+        });
+        req.on('error', function (error) {
+            error.toString().should.be.match(/Request path contains unescaped characters/);
+            done();
+        });
+    });
 });
