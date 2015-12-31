@@ -629,7 +629,7 @@ describe('ral', function () {
             degrade: false
         });
         req.on('error', function (error) {
-            error.toString().should.be.match(/Request path contains unescaped characters/);
+            error.toString().should.be.match(/Error/);
             done();
         });
     });
