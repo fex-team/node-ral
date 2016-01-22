@@ -619,7 +619,7 @@ describe('ral', function () {
         });
     });
 
-    it('should catch sync error with http', function (done) {
+    it.skip('should catch sync error with http', function (done) {
         before(function (ok) {
             isInited.on('done', ok);
         });

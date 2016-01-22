@@ -15,6 +15,7 @@ var HttpProtocol = require('../lib/ext/protocol/httpProtocol.js');
 var HttpsProtocol = require('../lib/ext/protocol/httpsProtocol.js');
 var SoapProtocol = require('../lib/ext/protocol/soapProtocol.js');
 var util = require('../lib/util.js');
+var CTX = require('../lib/ctx.js');
 
 var mockHTTPService = {
     timeout: 1000,
@@ -49,6 +50,91 @@ var mockHTTPService3 = {
     }
 };
 
+var mockHTTPService4 = {
+    timeout: 1000,
+    path: 'path/to/ service',
+    method: 'POST',
+    query: 'a=1',
+    headers: {
+        'User-Agent': 'Chrome'
+    }
+};
+
+var mockProxyService = {
+    timeout: 1000,
+    path: 'path/to/service',
+    method: 'POST',
+    query: 'a=1',
+    headers: {
+        'User-Agent': 'Chrome'
+    },
+    proxy: [
+        {
+            uri: 'http://127.0.0.1:8083',
+            idc: 'jx'
+        },
+        {
+            uri: 'http://127.0.0.1:8084',
+            idc: 'tc'
+        },
+        {
+            uri: 'http://127.0.0.1:8085',
+            idc: 'default'
+        }
+    ]
+};
+
+var mockProxyService2 = {
+    timeout: 1000,
+    path: 'path/to/service',
+    method: 'POST',
+    query: 'a=1',
+    headers: {
+        'User-Agent': 'Chrome'
+    },
+    proxy: [
+        {
+            uri: 'http://127.0.0.1:8085',
+            idc: 'default'
+        },
+        {
+            uri: 'http://127.0.0.1:8084',
+            idc: 'tc'
+        }
+    ]
+};
+
+var mockProxyService3 = {
+    timeout: 1000,
+    path: 'path/to/service',
+    method: 'POST',
+    query: 'a=1',
+    headers: {
+        'User-Agent': 'Chrome'
+    },
+    proxy: 'http://127.0.0.1:8085'
+};
+
+var mockProxyService4 = {
+    timeout: 1000,
+    path: 'path/to/service',
+    method: 'POST',
+    query: 'a=1',
+    headers: {
+        'User-Agent': 'Chrome'
+    },
+    proxy: [
+        {
+            uri: 'http://127.0.0.1:8088',
+            idc: 'jx-fake'
+        },
+        {
+            uri: 'http://127.0.0.1:8084',
+            idc: 'tc'
+        }
+    ]
+};
+
 describe('protocol', function () {
     it('should fail when get name', function () {
         var protocol = new Protocol();
@@ -75,6 +161,7 @@ describe('http protocol', function () {
     });
 
     describe('http protocol with get method', function () {
+
         it('should work fine with GET method', function (done) {
             var getTest = require('./protocol/http_protocol_get_test.js');
             // start a http server for get
@@ -306,6 +393,46 @@ describe('http protocol context', function () {
     it('should fix path to be started with /', function () {
         var context = HttpProtocol.normalizeConfig(mockHTTPService3);
         context.path.should.be.eql('/path/to/service');
+    });
+
+    it('should fix path when contains spaces', function () {
+        var context = HttpProtocol.normalizeConfig(mockHTTPService4);
+        context.path.should.be.eql('/path/to/%20service');
+    });
+});
+
+describe('http proxy', function () {
+    it('should get correct idc proxy config', function () {
+        var originIDC = CTX.currentIDC;
+        CTX.currentIDC = 'jx';
+        var context = HttpProtocol.normalizeConfig(mockProxyService);
+        context.proxy.should.be.equal('http://127.0.0.1:8083');
+        CTX.currentIDC = originIDC;
+    });
+
+    it('should get default proxy when idc is not match', function () {
+        var originIDC = CTX.currentIDC;
+        CTX.currentIDC = 'jx';
+        var context = HttpProtocol.normalizeConfig(mockProxyService2);
+        context.proxy.should.be.equal('http://127.0.0.1:8085');
+        CTX.currentIDC = originIDC;
+    });
+
+    it('should get proxy when none idc is set', function () {
+        var originIDC = CTX.currentIDC;
+        CTX.currentIDC = 'jx';
+        var context = HttpProtocol.normalizeConfig(mockProxyService3);
+        context.proxy.should.be.equal('http://127.0.0.1:8085');
+        CTX.currentIDC = originIDC;
+    });
+
+
+    it('should get first proxy when idc proxy is not found and no default proxy', function () {
+        var originIDC = CTX.currentIDC;
+        CTX.currentIDC = 'jx';
+        var context = HttpProtocol.normalizeConfig(mockProxyService4);
+        context.proxy.should.be.equal('http://127.0.0.1:8088');
+        CTX.currentIDC = originIDC;
     });
 });
 
