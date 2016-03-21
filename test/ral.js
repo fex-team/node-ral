@@ -683,15 +683,15 @@ describe('ral', function () {
         before(function (ok) {
             isInited.on('done', ok);
         });
-        ralP('GET_QS_SERV', {
+        ral('GET_QS_SERV', {
             url: 'https://www.baidu.com/search/error.html',
             unpack: 'string',
             timeout: 5000,
             rejectUnauthorized: false
-        }).then(function (data) {
+        }).on('data', function (data) {
             data.should.match(/STATUS OK/);
             done();
-        }).catch(function (err) {
+        }).on('error', function (err) {
             should.not.exist(err);
             done();
         });
@@ -701,15 +701,15 @@ describe('ral', function () {
         before(function (ok) {
             isInited.on('done', ok);
         });
-        ralP('GET_QS_SERV', {
+        ral('GET_QS_SERV', {
             url: 'http://www.baidu.com/search/error.html',
             unpack: 'string',
             timeout: 5000,
             rejectUnauthorized: false
-        }).then(function (data) {
+        }).on('data', function (data) {
             data.should.match(/STATUS OK/);
             done();
-        }).catch(function (err) {
+        }).on('error', function (err) {
             should.not.exist(err);
             done();
         });
