@@ -20,7 +20,7 @@ module.exports.bookService = function (port, encoding) {
         var pathname = info.pathname;
         if (pathname === '/error') {
             response.writeHead(503, {
-                'Content-Type': 'text/plain'
+                'Content-Type': 'text/plain',
             });
             response.end();
         }
