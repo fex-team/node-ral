@@ -10,7 +10,6 @@ node-ral
 
 ## 兼容性
 
-- [x] node 0.8.x
 - [x] node 0.10.x
 - [x] node 0.12.x
 - [x] node 4.x
