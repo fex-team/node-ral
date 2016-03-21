@@ -27,6 +27,7 @@ describe('middleware', function () {
         var req = {};
         m(req, {}, function () {
             req.RAL.should.be.ok;
+            req.RALPromise.should.be.ok;
             config.getConf('FROM_MIDDLEWARE').should.be.ok;
             done();
         });

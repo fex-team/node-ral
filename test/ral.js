@@ -13,6 +13,7 @@
 'use strict';
 
 var ral = require('../lib/ral.js');
+var ralP = require('../lib/promise.js');
 var path = require('path');
 var server = require('./ral/server.js');
 var EE = require('events').EventEmitter;
@@ -630,6 +631,44 @@ describe('ral', function () {
         });
         req.on('error', function (error) {
             error.toString().should.be.match(/Error/);
+            done();
+        });
+    });
+
+    it('work fine with promise api', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        ralP('POST_QS_SERV', {
+            data: {
+                msg: 'hi',
+                name: '何方石'
+            },
+            enableMock: false
+        }).then(function (data) {
+            servers.map(function (srv) {
+                srv.close();
+            });
+            [8192, 8193].should.containEql(data.port);
+            data.port.should.not.eql(8194);
+            data.query.msg.should.eql('hi');
+            data.query.name.should.eql('何方石');
+            done();
+        });
+    });
+
+    it('work fine with promise api on error', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        ralP('GET_QS_SERV', {
+            path: '/close',
+            timeout: 200,
+            degrade: function (options) {
+                throw new Error('degrade failed');
+            }
+        }).catch(function (err) {
+            err.toString().should.be.match(/degrade failed/);
             done();
         });
     });
