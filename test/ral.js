@@ -639,6 +639,9 @@ describe('ral', function () {
         before(function (ok) {
             isInited.on('done', ok);
         });
+        if (!global.Promise) {
+            return done();
+        }
         ralP('POST_QS_SERV', {
             data: {
                 msg: 'hi',
@@ -661,6 +664,9 @@ describe('ral', function () {
         before(function (ok) {
             isInited.on('done', ok);
         });
+        if (!global.Promise) {
+            return done();
+        }
         ralP('GET_QS_SERV', {
             path: '/close',
             timeout: 200,
