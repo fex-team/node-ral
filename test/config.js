@@ -124,13 +124,14 @@ describe('load config', function () {
         ctx.env = undefined;
         config.load(path.join(__dirname, './config/envconfig'));
         ctx.env = origin;
-        config.getRawConf().should.have.keys('a', 'b', 'c', 'd', 'e', 'g');
+        config.getRawConf().should.have.keys('a', 'b', 'c', 'd', 'e', 'g', 'h');
         config.getConf('a').query.name.should.equal('normal');
         config.getConf('b').query.name.should.equal('normal');
         config.getConf('c').query.name.should.equal('default');
         config.getConf('d').query.name.should.equal('normal');
         config.getConf('e').query.name.should.equal('normal');
         config.getConf('g').query.name.should.equal('default');
+        config.getConf('h').query.name.should.equal('normal');
     });
 
     it('load with env prod', function () {
@@ -139,13 +140,14 @@ describe('load config', function () {
         ctx.env = 'prod';
         config.load(path.join(__dirname, './config/envconfig'));
         ctx.env = origin;
-        config.getRawConf().should.have.keys('a', 'b', 'c', 'd', 'e', 'g');
+        config.getRawConf().should.have.keys('a', 'b', 'c', 'd', 'e', 'g', 'h');
         config.getConf('a').query.name.should.equal('normal');
         config.getConf('b').query.name.should.equal('normal');
         config.getConf('c').query.name.should.equal('default');
         config.getConf('d').query.name.should.equal('normal');
         config.getConf('e').query.name.should.equal('prod');
         config.getConf('g').query.name.should.equal('default');
+        config.getConf('h').query.name.should.equal('prod');
     });
 
     it('load with env kk', function () {
@@ -154,13 +156,14 @@ describe('load config', function () {
         ctx.env = 'kk';
         config.load(path.join(__dirname, './config/envconfig'));
         ctx.env = origin;
-        config.getRawConf().should.have.keys('a', 'b', 'c', 'd', 'e', 'g');
+        config.getRawConf().should.have.keys('a', 'b', 'c', 'd', 'e', 'g', 'h');
         config.getConf('a').query.name.should.equal('kk');
         config.getConf('b').query.name.should.equal('normal');
         config.getConf('c').query.name.should.equal('default');
         config.getConf('d').query.name.should.equal('normal');
         config.getConf('e').query.name.should.equal('normal');
         config.getConf('g').query.name.should.equal('default');
+        config.getConf('h').query.name.should.equal('normal');
     });
 
 
@@ -170,7 +173,7 @@ describe('load config', function () {
         ctx.env = 'dev';
         config.load(path.join(__dirname, './config/envconfig'));
         ctx.env = origin;
-        config.getRawConf().should.have.keys('a', 'b', 'c', 'd', 'e', 'f', 'g');
+        config.getRawConf().should.have.keys('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h');
         config.getConf('a').query.name.should.equal('dev');
         config.getConf('b').query.name.should.equal('normal');
         config.getConf('c').query.name.should.equal('default');
@@ -178,5 +181,7 @@ describe('load config', function () {
         config.getConf('e').query.name.should.equal('normal');
         config.getConf('f').query.name.should.equal('dev');
         config.getConf('g').query.name.should.equal('dev');
+        config.getConf('h').query.name.should.equal('dev');
     });
+
 });
