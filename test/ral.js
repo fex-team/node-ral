@@ -692,7 +692,8 @@ describe('ral', function () {
             data.should.match(/STATUS OK/);
             done();
         }).on('error', function (err) {
-            should.not.exist(err);
+            err.should.not.be.ok;
+            console.error(err);
             done();
         });
     });
@@ -710,7 +711,8 @@ describe('ral', function () {
             data.should.match(/STATUS OK/);
             done();
         }).on('error', function (err) {
-            should.not.exist(err);
+            err.should.not.be.ok;
+            console.error(err);
             done();
         });
     });
