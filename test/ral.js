@@ -689,7 +689,7 @@ describe('ral', function () {
             timeout: 5000,
             rejectUnauthorized: false
         }).on('data', function (data) {
-            data.should.match(/STATUS OK/);
+            data.should.match(/html/);
             done();
         }).on('error', function (err) {
             err.should.not.be.ok;
@@ -708,7 +708,7 @@ describe('ral', function () {
             timeout: 5000,
             rejectUnauthorized: false
         }).on('data', function (data) {
-            data.should.match(/STATUS OK/);
+            data.should.match(/html/);
             done();
         }).on('error', function (err) {
             err.should.not.be.ok;
