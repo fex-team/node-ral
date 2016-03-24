@@ -27,6 +27,7 @@
   "dependencies": {
     "chai": "1.9.1",
     "form-data": "0.1.4",
+    "https-proxy-agent": "1.0.0",
     "iconv-lite": "0.4.13",
     "performance-now": "0.2.0",
     "soap": "0.8.0",
