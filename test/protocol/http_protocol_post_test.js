@@ -141,6 +141,7 @@ module.exports.createServer = function (encoding) {
         var info = url.parse(request.url);
         var pathname = info.pathname;
         if (pathname === '/hello' && request.method === 'POST') {
+
             var formIn = new formidable.IncomingForm();
             // var decodeStream = iconv.decodeStream(encoding || 'utf-8');
             // decodeStream.headers = request.headers;
@@ -155,6 +156,7 @@ module.exports.createServer = function (encoding) {
             // decodeStream.statusCode = request.statusCode;
             // decodeStream.statusMessage = request.statusMessage;
             formIn.parse(request, function (err, fields, files) {
+
                 var content = 'hear you';
                 response.writeHead(200, {
                     'content-type': 'text/plain'

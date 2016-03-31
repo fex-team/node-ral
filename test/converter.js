@@ -85,18 +85,20 @@ describe('json converter', function () {
             a: 1,
             b: '张三'
         };
-        var pack = jsonConverter.pack(mockUTF8Context, data);
-        var unpack = jsonConverter.unpack(mockUTF8Context, pack);
+        var options = _.clone(mockUTF8Context);
+        var pack = jsonConverter.pack(options, data);
+        var unpack = jsonConverter.unpack(_.clone(mockUTF8Context), pack);
         data.should.be.eql(unpack);
+        options.headers['Content-Length'].should.be.eql(20);
     });
 
     it('unpack a string pack should throw error', function () {
         var converter = new StringConverter();
         var jsonConverter = new JsonConverter();
         var data = '张三李四';
-        var pack = converter.pack(mockUTF8Context, data);
+        var pack = converter.pack(_.clone(mockUTF8Context), data);
         (function () {
-            jsonConverter.unpack(mockUTF8Context, pack);
+            jsonConverter.unpack(_.clone(mockUTF8Context), pack);
         }).should.throwError();
     });
 
@@ -106,16 +108,32 @@ describe('json converter', function () {
             a: 1,
             b: '张三'
         };
-        var pack = jsonConverter.pack(mockGBKContext, data);
-        var unpack = jsonConverter.unpack(mockGBKContext, pack);
+        var options = _.clone(mockGBKContext);
+        var pack = jsonConverter.pack(options, data);
+        var unpack = jsonConverter.unpack(_.clone(mockGBKContext), pack);
         data.should.be.eql(unpack);
+        options.headers['Content-Length'].should.be.eql(18);
+    });
+
+    it('pack and unpack could skip header', function () {
+        var jsonConverter = new JsonConverter();
+        var data = {
+            a: 1,
+            b: '张三'
+        };
+        var options = _.clone(mockGBKContext);
+        options.skipContentLength = true;
+        var pack = jsonConverter.pack(options, data);
+        var unpack = jsonConverter.unpack(_.clone(mockGBKContext), pack);
+        data.should.be.eql(unpack);
+        (options.headers === undefined).should.be.true;
     });
 
     it('pack should fail if encoding is illegal', function () {
         var converter = new JsonConverter();
         var data = null;
         (function () {
-            converter.pack(mockBlahContext, data);
+            converter.pack(_.clone(mockBlahContext), data);
         }).should.throwError();
     });
 
@@ -123,7 +141,7 @@ describe('json converter', function () {
         var jsonConverter = new JsonConverter();
         var data = null;
         (function () {
-            jsonConverter.pack(mockUTF8Context, data);
+            jsonConverter.pack(_.clone(mockUTF8Context), data);
         }).should.not.throwError();
     });
 });
@@ -142,24 +160,39 @@ describe('string converter', function () {
     it('pack and unpack should be paired', function () {
         var converter = new StringConverter();
         var data = '张三李四';
-        var pack = converter.pack(mockUTF8Context, data);
-        var unpack = converter.unpack(mockUTF8Context, pack);
+        var options = _.clone(mockUTF8Context);
+        var pack = converter.pack(options, data);
+        var unpack = converter.unpack(_.clone(mockUTF8Context), pack);
         data.should.be.eql(unpack);
+        options.headers['Content-Length'].should.be.eql(12);
     });
 
     it('pack and unpack gbk correctly', function () {
         var converter = new StringConverter();
         var data = '张三李四';
-        var pack = converter.pack(mockGBKContext, data);
-        var unpack = converter.unpack(mockGBKContext, pack);
+        var options = _.clone(mockGBKContext);
+        var pack = converter.pack(options, data);
+        var unpack = converter.unpack(_.clone(mockGBKContext), pack);
         data.should.be.eql(unpack);
+        options.headers['Content-Length'].should.be.eql(8);
+    });
+
+    it('pack and unpack could skip header', function () {
+        var converter = new StringConverter();
+        var data = '张三李四';
+        var options = _.clone(mockGBKContext);
+        options.skipContentLength = true;
+        var pack = converter.pack(options, data);
+        var unpack = converter.unpack(_.clone(mockGBKContext), pack);
+        data.should.be.eql(unpack);
+        (options.headers === undefined).should.be.true;
     });
 
     it('pack should fail if encoding is illegal', function () {
         var converter = new StringConverter();
         var data = null;
         (function () {
-            converter.pack(mockBlahContext, data);
+            converter.pack(_.clone(mockBlahContext), data);
         }).should.throwError();
     });
 
@@ -167,7 +200,7 @@ describe('string converter', function () {
         var converter = new StringConverter();
         var data = null;
         (function () {
-            converter.pack(mockUTF8Context, data);
+            converter.pack(_.clone(mockUTF8Context), data);
         }).should.not.throwError();
     });
 });
