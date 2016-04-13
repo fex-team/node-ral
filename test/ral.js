@@ -583,7 +583,7 @@ describe('ral', function () {
             }
         });
         req.on('data', function (data) {
-            data.path.should.be.eql('/close');
+            data.path.should.be.eql('/close?from=ral');
             done();
         });
     });
