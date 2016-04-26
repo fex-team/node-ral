@@ -1,6 +1,6 @@
 {
   "name": "node-ral",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "a rpc client for node",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/fex-team/node-ral",
   "dependencies": {
-    "binary-search": "^1.2.0",
+    "binary-search": "1.2.0",
     "chai": "1.9.1",
     "form-data": "0.1.4",
     "https-proxy-agent": "1.0.0",
