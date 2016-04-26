@@ -18,6 +18,7 @@ var path = require('path');
 var ctx = require('../lib/ctx.js');
 var BalanceContext = Balance.BalanceContext;
 var RandomBalance = require('../lib/ext/balance/random.js');
+var HashringBalance = require('../lib/ext/balance/hashring.js');
 var RoundRobinBalance = require('../lib/ext/balance/roundrobin.js');
 var SourceRandom = Math.random;
 
@@ -166,5 +167,111 @@ describe('roundrobin balance', function () {
         var server = balance.fetchServer(context);
         server.should.be.eql(conf.bookService.server[0]);
         (context.lastRoundRobinID === undefined).should.be.true;
+    });
+});
+
+
+describe('hashring balance', function () {
+    it('has right name', function () {
+        var balance = new HashringBalance();
+        balance.getName().should.be.equal('hashring');
+    });
+
+    it('has right catagory', function () {
+        var balance = new HashringBalance();
+        balance.getCategory().should.be.equal('balance');
+    });
+
+    it('has right context class', function () {
+        var converter = new HashringBalance();
+        converter.getContextClass().should.be.equal(BalanceContext);
+    });
+
+    it('hash result should stable', function () {
+        var conf = config.load(path.join(__dirname, './config/idc_config.js'));
+        var context = new BalanceContext('bookService4', conf.bookService4);
+        var balance = new HashringBalance();
+        var resultStore = {};
+        for (var i = 0; i < 100; i++) {
+            context.balanceKey = i;
+            var server = balance.fetchServer(context);
+            resultStore[server.index] = resultStore[server.index] || [];
+            resultStore[server.index].push(i);
+        }
+        // 哈希应该是稳定的
+        for (i = 0; i < 100; i++) {
+            context.balanceKey = i;
+            server = balance.fetchServer(context);
+            resultStore[server.index].should.containEql(i);
+        }
+    });
+
+    it('hash result should be same after server delete', function () {
+        var conf = config.load(path.join(__dirname, './config/idc_config.js'));
+        var context = new BalanceContext('bookService4', conf.bookService4);
+        var balance = new HashringBalance();
+        var resultStore = {};
+        for (var i = 0; i < 100; i++) {
+            context.balanceKey = i;
+            var server = balance.fetchServer(context);
+            resultStore[server.index] = resultStore[server.index] || [];
+            resultStore[server.index].push(i);
+        }
+
+        // 删除最后一个服务器，不应该影响之前服务的命中
+        var lastServer = context.reqIDCServers.pop();
+        context.hashring = null;
+        for (i = 0; i < 100; i++) {
+            context.balanceKey = i;
+            server = balance.fetchServer(context);
+            if (resultStore[server.index].indexOf(i) === -1) {
+                resultStore[9].should.containEql(i);
+            }
+        }
+        context.reqIDCServers.push(lastServer);
+    });
+
+    it('hash result should be same after server add', function () {
+        var conf = config.load(path.join(__dirname, './config/idc_config.js'));
+        var context = new BalanceContext('bookService4', conf.bookService4);
+        var balance = new HashringBalance();
+        var resultStore = {};
+        for (var i = 0; i < 100; i++) {
+            context.balanceKey = i;
+            var server = balance.fetchServer(context);
+            resultStore[server.index] = resultStore[server.index] || [];
+            resultStore[server.index].push(i);
+        }
+        // 添加一个服务器，只应该命中原来的服务或者新的服务
+        context.reqIDCServers.push({
+            host: '127.0.0.11',
+            port: 80,
+            index: '10'
+        });
+        context.hashring = null;
+        for (i = 0; i < 100; i++) {
+            context.balanceKey = i;
+            server = balance.fetchServer(context);
+            if (server.index !== '10') {
+                resultStore[server.index].should.containEql(i);
+            }
+        }
+    });
+
+    it('direct use single server', function () {
+        var conf = config.load(path.join(__dirname, './config/singleserver_config.js'));
+        ctx.currentIDC = 'st';
+        var context = new BalanceContext('bookService', conf.bookService);
+        var balance = new HashringBalance();
+        Math.random = function () {
+            throw new Error();
+        };
+        (function () {
+            context.balanceKey = 1;
+            balance.fetchServer(context);
+        }).should.not.throwError();
+        var server = balance.fetchServer(context);
+        Math.random = SourceRandom;
+        server.should.be.eql(conf.bookService.server[0]);
     });
 });

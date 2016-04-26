@@ -716,4 +716,17 @@ describe('ral', function () {
             done();
         });
     });
+
+    it('catch balance exception', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        ral('hashringService', {}).on('data', function (data) {
+            data.should.not.be.ok;
+            done();
+        }).on('error', function (err) {
+            err.should.be.match(/balanceKey/);
+            done();
+        });
+    });
 });

@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/fex-team/node-ral",
   "dependencies": {
+    "binary-search": "^1.2.0",
     "chai": "1.9.1",
     "form-data": "0.1.4",
     "https-proxy-agent": "1.0.0",
