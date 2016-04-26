@@ -721,11 +721,11 @@ describe('ral', function () {
         before(function (ok) {
             isInited.on('done', ok);
         });
-        ral('hashringService', {}).on('data', function (data) {
+        ral('hashService', {}).on('data', function (data) {
             data.should.not.be.ok;
             done();
         }).on('error', function (err) {
-            err.should.be.match(/balanceKey/);
+            err.toString().should.be.match(/balanceKey/);
             done();
         });
     });
