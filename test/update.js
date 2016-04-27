@@ -94,7 +94,7 @@ describe('config updater', function () {
         }, true);
     });
 
-    (process.env.CI ? it : it.skip)('auto updater should be triggered is normalizer need update', function (done) {
+    (process.env.CI ? it : it.skip)('auto updater should be triggered when normalizer need update', function (done) {
         var fake = {
             normalizeConfig: function (conf) {
                 return conf;
