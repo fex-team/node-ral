@@ -34,7 +34,7 @@
     "soap": "0.8.0",
     "underscore": "1.6.0",
     "urlencode": "1.1.0",
-    "yog-log": "0.0.24"
+    "yog-log": "0.1.0"
   },
   "devDependencies": {
     "request": "2.40.0",

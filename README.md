@@ -13,7 +13,8 @@ node-ral
 - [x] node 0.10.x
 - [x] node 0.12.x
 - [x] node 4.x
-- [x] io.js
+- [x] node 5.x
+- [x] node 6.x
 
 > io.js 1.63至1.8.1版本不支持GBK编码
 
