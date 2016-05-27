@@ -317,7 +317,7 @@ describe('form converter', function () {
     it('pack and unpack should be paired', function () {
         var converter = new FormConverter();
         var data = {
-            a: 1,
+            a: '1',
             b: '张三'
         };
         var pack = converter.pack(mockUTF8Context, data);
@@ -328,7 +328,7 @@ describe('form converter', function () {
     it('pack and unpack gbk correctly', function () {
         var converter = new FormConverter();
         var data = {
-            a: 1,
+            a: '1',
             b: '张三'
         };
         var pack = converter.pack(mockGBKContext, data);
@@ -382,7 +382,7 @@ describe('querystring converter', function () {
     it('pack should change query', function () {
         var converter = new QueryStringConverter();
         var data = {
-            a: 1,
+            a: '1',
             b: '张三'
         };
         converter.pack(mockUTF8Context, data);
@@ -393,7 +393,7 @@ describe('querystring converter', function () {
         var converter = new QueryStringConverter();
         var urlencodeConverter = new FormConverter();
         var data = {
-            a: 1,
+            a: '1',
             b: '张三'
         };
         var pack = urlencodeConverter.pack(mockUTF8Context, data);
