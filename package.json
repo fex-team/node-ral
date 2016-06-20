@@ -42,7 +42,7 @@
     "async": "1.5.2",
     "combined-stream": "1.0.5",
     "formidable": "1.0.17",
-    "istanbul": "0.4.3",
+    "istanbul": "0.4.4",
     "mocha": "2.5.3",
     "should": "9.0.2"
   }
