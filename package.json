@@ -32,7 +32,7 @@
     "iconv-lite": "0.4.13",
     "performance-now": "0.2.0",
     "protobufjs": "5.0.1",
-    "soap": "0.15.0",
+    "soap": "0.16.0",
     "underscore": "1.8.3",
     "urlencode": "1.1.0",
     "yog-log": "0.1.0"
