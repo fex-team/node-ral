@@ -34,12 +34,11 @@ var server = http.createServer(function (req, res) {
         data: req, // 直接将req作为stream源传递，主要是对body数据做流式转发
         headers: req.headers, // 传递headers
         path: req.url, // 传递url
-        method: req.method // 传递method
+        method: req.method, // 传递method
+        includeExtras: true // 获取额外的头信息
     }).on('data', function (data) {
-        assert.notEqual(data.indexOf('Node.js'), -1);
-        res.write('<!-- from proxy -->');
-        res.write(data);
-        res.end();
+        res.statusCode = data._extras.statusCode;
+        data.pipe(res);
     }).on('error', function (err) {
         assert.fail(err, null);
     });
@@ -56,8 +55,6 @@ ral('DEMO_SERVER', {
 }).on('data', function (data) {
     server.close();
     // 接收到服务器返回的信息
-    // 检查proxy的信息
-    assert.notEqual(data.indexOf('from proxy'), -1);
     assert.notEqual(data.indexOf('Node.js'), -1);
 }).on('error', function (err) {
     server.close();

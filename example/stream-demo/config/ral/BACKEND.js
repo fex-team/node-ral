@@ -10,12 +10,12 @@
 module.exports.PROXY = {
     protocol: 'http',
     pack: 'stream',
-    unpack: 'string',
+    unpack: 'stream',
     method: 'POST',
     balance: 'roundrobin',
     timeout: 5000,
     retry: 0,
-    encoding: 'gbk', // wenku.baidu.com编码为GBK
+    encoding: 'utf-8',
     path: '/',
     server: [{
         host: 'wenku.baidu.com',
@@ -29,7 +29,7 @@ module.exports.DEMO_SERVER = {
     unpack: 'string',
     method: 'POST',
     balance: 'roundrobin',
-    encoding: 'utf-8', // 由于DEMO SERVER的返回值是经过转码的，因此直接使用UTF-8
+    encoding: 'gbk', // wenku.baidu.com编码为GBK
     timeout: 5000,
     retry: 0,
     path: '/',
