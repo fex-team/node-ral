@@ -170,9 +170,9 @@ describe('http protocol', function () {
             var context = HttpProtocol.normalizeConfig(getTest.service);
             util.merge(context, getTest.request);
             httpProtocol.talk(context, function (res) {
-                res.on('data', function (data) {
+                res.on('end', function (data) {
                     server.close();
-                    data.toString().should.be.equal('hear you');
+                    data.toString().should.be.match(/hear you.*9999$/);
                     done();
                 });
             });
@@ -186,9 +186,9 @@ describe('http protocol', function () {
             var context = HttpProtocol.normalizeConfig(getTest.service);
             util.merge(context, getTest.requestWithQuery);
             httpProtocol.talk(context, function (res) {
-                res.on('data', function (data) {
+                res.on('end', function (data) {
                     server.close();
-                    data.toString().should.be.equal('hear you hefangshi');
+                    data.toString().should.be.match(/hear you hefangshi.*9999$/);
                     done();
                 });
             });
@@ -202,9 +202,9 @@ describe('http protocol', function () {
             var context = HttpProtocol.normalizeConfig(getTest.service);
             util.merge(context, getTest.requestWithQueryInPath);
             httpProtocol.talk(context, function (res) {
-                res.on('data', function (data) {
+                res.on('end', function (data) {
                     server.close();
-                    data.toString().should.be.equal('hear you hefangshi');
+                    data.toString().should.be.match(/hear you hefangshi.*9999$/);
                     done();
                 });
             });
@@ -249,7 +249,7 @@ describe('http protocol', function () {
             var httpProtocol = new HttpProtocol();
             var context = HttpProtocol.normalizeConfig(getTest.requestHttps);
             var stream = httpProtocol.talk(context, function (res) {
-                res.on('data', function (data) {
+                res.on('end', function (data) {
                     done();
                 });
             });
@@ -265,7 +265,7 @@ describe('http protocol', function () {
             var httpsProtocol = new HttpsProtocol();
             var context = HttpsProtocol.normalizeConfig(getTest.requestHttpsWithProtocol);
             var stream = httpsProtocol.talk(context, function (res) {
-                res.on('data', function (data) {
+                res.on('end', function (data) {
                     done();
                 });
             });
@@ -284,10 +284,10 @@ describe('http protocol', function () {
             var context = HttpProtocol.normalizeConfig(postTest.service);
             util.merge(context, postTest.request);
             var request = httpProtocol.talk(context, function (res) {
-                res.on('data', function (data) {
+                res.on('end', function (data) {
                     server.close();
-                    data.toString().should.be.equal(
-                        'hear you hefangshi with file http_protocol_post_test.js');
+                    data.toString().should.be.match(
+                        /hear you hefangshi with file http_protocol_post_test.js.*9999$/);
                     done();
                 });
                 res.on('error', function (data) {
@@ -305,9 +305,9 @@ describe('http protocol', function () {
             var context = HttpProtocol.normalizeConfig(postTest.service);
             util.merge(context, postTest.requestWithUrlencode);
             var request = httpProtocol.talk(context, function (res) {
-                res.on('data', function (data) {
+                res.on('end', function (data) {
                     server.close();
-                    data.toString().should.be.equal('hear you hefangshi');
+                    data.toString().should.be.match(/hear you hefangshi.*9999$/);
                     done();
                 });
 
@@ -326,10 +326,10 @@ describe('http protocol', function () {
             var context = HttpProtocol.normalizeConfig(postTest.service);
             util.merge(context, postTest.requestGBKForm);
             var request = httpProtocol.talk(context, function (res) {
-                res.on('data', function (data) {
+                res.on('end', function (data) {
                     server.close();
-                    data.toString().should.be.equal(
-                        'hear you �η�ʯ with file http_protocol_post_test.js');
+                    data.toString().should.be.match(
+                        /hear you �η�ʯ with file http_protocol_post_test.js.*9999$/);
                     done();
                 });
                 res.on('error', function (data) {
@@ -446,7 +446,7 @@ describe('soap protocol', function () {
         };
         var soapProtocol = new SoapProtocol();
         soapProtocol.talk(context, function (res) {
-            res.on('data', function (data) {
+            res.on('end', function (data) {
                 data.GetCityForecastByZIPResult.should.be.ok;
                 done();
             });
@@ -465,7 +465,7 @@ describe('soap protocol', function () {
         };
         var soapProtocol = new SoapProtocol();
         soapProtocol.talk(context, function (res) {
-            res.on('data', function (data) {
+            res.on('end', function (data) {
                 data.GetCityForecastByZIPResult.should.be.ok;
                 done();
             });

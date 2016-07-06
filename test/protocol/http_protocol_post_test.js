@@ -168,6 +168,11 @@ module.exports.createServer = function (encoding) {
                     content += ' with file ' + files.file.name;
                 }
                 response.write(content);
+                var padding = [];
+                for (var i = 0; i < 10000; i++) {
+                    padding.push(i);
+                }
+                response.write(padding.join());
                 response.end();
             });
             // request.pipe(decodeStream);

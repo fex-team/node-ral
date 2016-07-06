@@ -109,6 +109,11 @@ module.exports.createServer = function () {
                 }
             }
             response.write(content);
+            var padding = [];
+            for (var i = 0; i < 10000; i++) {
+                padding.push(i);
+            }
+            response.write(padding.join());
             response.end();
         }
         else if (pathname === '/error') {
