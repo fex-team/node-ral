@@ -231,9 +231,9 @@ describe('formdata converter', function () {
             server: postTest.request.server
         });
         var request = httpProtocol.talk(options, function (res) {
-            res.on('data', function (data2) {
+            res.on('end', function (data2) {
                 server.close();
-                data2.toString().should.be.equal('hear you 张三李四');
+                data2.toString().should.be.match(/hear you 张三李四.*9999$/);
                 done();
             });
             res.on('error', function () {
@@ -258,9 +258,9 @@ describe('formdata converter', function () {
         var server = postTest.createServer('gbk');
         var pack = converter.pack(options, data);
         var request = httpProtocol.talk(options, function (res) {
-            res.on('data', function (data2) {
+            res.on('end', function (data2) {
                 server.close();
-                data2.toString().should.be.equal('hear you �������');
+                data2.toString().should.be.match(/hear you �������.*9999$/);
                 done();
             });
             res.on('error', function () {
@@ -359,9 +359,9 @@ describe('form converter', function () {
         var server = postTest.createServer();
         options.payload = pack;
         httpProtocol.talk(options, function (res) {
-            res.on('data', function (resData) {
+            res.on('end', function (resData) {
                 server.close();
-                resData.toString().should.be.equal('hear you 张三李四');
+                resData.toString().should.be.match(/hear you 张三李四.*9999$/);
                 done();
             });
         });
@@ -449,9 +449,9 @@ describe('stream converter', function () {
         options.headers = {};
         options.headers['Content-Type'] = 'multipart/form-data;boundary=' + form.getBoundary();
         var request = httpProtocol.talk(options, function (res) {
-            res.on('data', function (data) {
+            res.on('end', function (data) {
                 server.close();
-                data.toString().should.be.equal('hear you 张三李四');
+                data.toString().should.be.match(/hear you 张三李四.*9999$/);
                 done();
             });
             res.on('error', function () {
