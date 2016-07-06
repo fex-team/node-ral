@@ -8,6 +8,7 @@
 var http = require('http');
 var url = require('url');
 var urlencode = require('urlencode');
+var zlib = require('zlib');
 
 module.exports.__defineGetter__('service', function () {
     return {
@@ -110,6 +111,55 @@ module.exports.createServer = function () {
             }
             response.write(content);
             response.end();
+        }
+        else if (pathname === '/gzip') {
+            response.writeHead(200, {
+                'Content-Type': 'text/plain',
+                'Content-Encoding': 'gzip'
+            });
+            var content = 'hear you';
+            if (info.query) {
+                info.query = urlencode.parse(info.query);
+                if (info.query.name) {
+                    content += ' ' + info.query.name;
+                }
+            }
+            zlib.gzip(content, function (err, compressed) {
+                response.write(compressed);
+                response.end();
+            });    
+        } else if (pathname === '/gziperror') {
+            response.writeHead(200, {
+                'Content-Type': 'text/plain',
+                'Content-Encoding': 'gzip'
+            });
+            var content = 'hear you';
+            if (info.query) {
+                info.query = urlencode.parse(info.query);
+                if (info.query.name) {
+                    content += ' ' + info.query.name;
+                }
+            }
+            zlib.gzip(content, function (err, compressed) {
+                response.write(compressed.slice(0, compressed.length / 2));
+                response.end();
+            });
+        }  else if (pathname === '/deflate') {
+            response.writeHead(200, {
+                'Content-Type': 'text/plain',
+                'Content-Encoding': 'deflate'
+            });
+            var content = 'hear you';
+            if (info.query) {
+                info.query = urlencode.parse(info.query);
+                if (info.query.name) {
+                    content += ' ' + info.query.name;
+                }
+            }
+            zlib.deflate(content, function (err, compressed) {
+                response.write(compressed);
+                response.end();
+            });    
         }
         else if (pathname === '/error') {
             response.writeHead(503, {

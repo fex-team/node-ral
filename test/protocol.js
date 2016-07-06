@@ -370,6 +370,65 @@ describe('http protocol', function () {
                 done();
             });
         });
+
+        it('should unzip gzip content', function (done) {
+            var getTest = require('./protocol/http_protocol_get_test.js');
+            // start a http server for get
+            var server = getTest.createServer();
+            var httpProtocol = new HttpProtocol();
+            var context = HttpProtocol.normalizeConfig(getTest.service);
+            context.path = '/gzip';
+            context.disableGzip = false;
+            util.merge(context, getTest.request);
+            httpProtocol.talk(context, function (res) {
+                res.on('data', function (data) {
+                    server.close();
+                    data.toString().should.be.equal('hear you');
+                    done();
+                });
+            });
+        });
+
+        it('should inflate deflate content', function (done) {
+            var getTest = require('./protocol/http_protocol_get_test.js');
+            // start a http server for get
+            var server = getTest.createServer();
+            var httpProtocol = new HttpProtocol();
+            var context = HttpProtocol.normalizeConfig(getTest.service);
+            context.path = '/deflate';
+            context.disableGzip = false;
+            util.merge(context, getTest.request);
+            httpProtocol.talk(context, function (res) {
+                res.on('data', function (data) {
+                    server.close();
+                    data.toString().should.be.equal('hear you');
+                    done();
+                });
+            });
+        });
+
+        it('should handle unzip error', function (done) {
+            var getTest = require('./protocol/http_protocol_get_test.js');
+            // start a http server for get
+            var server = getTest.createServer();
+            var httpProtocol = new HttpProtocol();
+            var context = HttpProtocol.normalizeConfig(getTest.service);
+            context.path = '/gziperror';
+            context.disableGzip = false;
+            util.merge(context, getTest.request);
+            httpProtocol.talk(context, function (res) {
+                res.on('data', function (data) {
+                    server.close();
+                    data.toString().should.not.be.ok;
+                    done();
+                });
+                res.on('error', function (err) {
+                    server.close();
+                    err.message.should.be.match(/unexpected end of file/);
+                    done();
+                });
+            });
+        });
     });
 });
 
