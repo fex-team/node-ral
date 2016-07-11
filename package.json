@@ -38,7 +38,7 @@
     "yog-log": "0.1.0"
   },
   "devDependencies": {
-    "request": "2.72.0",
+    "request": "2.73.0",
     "async": "1.5.2",
     "combined-stream": "1.0.5",
     "formidable": "1.0.17",
