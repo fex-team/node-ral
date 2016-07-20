@@ -76,6 +76,7 @@ module.exports.MAPAPI= {           // 声明服务名为MAPAPI
 // ral.js
 
 var RAL = require('node-ral').RAL;
+var ralP = require('node-ral').RALPromise; // 使用Ral的Promise版接口
 var path = require('path');
 
 // 初始化RAL，只需在程序入口运行一次
@@ -84,7 +85,7 @@ RAL.init({
     confDir: path.join(__dirname, 'config/ral')
 });
 
-module.exports = RAL;
+module.exports = ralP;
 ``` 
 
 ##### 调用服务
@@ -92,18 +93,18 @@ module.exports = RAL;
 ```javascript
 // index.js
 
-var ral = require('./ral.js');
+var ralP = require('./ral.js');
 var assert = require('assert');
 
-ral('MAPAPI', {
+ralP('MAPAPI', {
     data: {
         region: '北京',
         query: '奥林匹克森林公园'
     }
-}).on('data', function (data) {
+}).then(function (data) {
     assert.equal(data.status, 0);
     console.dir(data.results[0]);
-}).on('error', function (err) {
+}).catch(function (err) {
     console.error(err);
 });
 ```
