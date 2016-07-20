@@ -7,7 +7,7 @@
 
 'use strict';
 
-var ral = require('./ral.js');
+var ralP = require('./ral.js');
 var assert = require('assert');
 
 
@@ -30,33 +30,33 @@ var server = http.createServer(function (req, res) {
         query: req.query, // 传递query
         method: req.method // 传递method
     */
-    ral('PROXY', {
+    ralP('PROXY', {
         data: req, // 直接将req作为stream源传递，主要是对body数据做流式转发
         headers: req.headers, // 传递headers
         path: req.url, // 传递url
         method: req.method, // 传递method
         includeExtras: true // 获取额外的头信息
-    }).on('data', function (data) {
+    }).then(function (data) {
         res.statusCode = data._extras.statusCode;
         data.pipe(res);
-    }).on('error', function (err) {
+    }).catch(function (err) {
         assert.fail(err, null);
     });
 }).listen(9032);
 
 
 // 请求发往 http://127.0.0.1:9032
-ral('DEMO_SERVER', {
+ralP('DEMO_SERVER', {
     data: {
         word: 'Node.js'
     },
     path: '/search',
     query: 'st=3'
-}).on('data', function (data) {
+}).then(function (data) {
     server.close();
     // 接收到服务器返回的信息
     assert.notEqual(data.indexOf('Node.js'), -1);
-}).on('error', function (err) {
+}).catch(function (err) {
     server.close();
     assert.fail(err, null);
 });

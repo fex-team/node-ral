@@ -7,17 +7,17 @@
 
 'use strict';
 
-var ral = require('./ral.js');
+var ralP = require('./ral.js');
 var assert = require('assert');
 
-ral('WEATHER', {
+ralP('WEATHER', {
     // 指定SOAP method
     method: 'GetCityForecastByZIP',
     data: {
         ZIP: 10020 // 纽约的邮编
     }
-}).on('data', function (data) {
+}).then(function (data) {
     assert.equal(data.GetCityForecastByZIPResult.City, 'New York');
-}).on('error', function (err) {
+}).catch(function (err) {
     assert.fail(err, null);
 });

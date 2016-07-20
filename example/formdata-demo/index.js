@@ -1,5 +1,5 @@
 /**
- * @file node-ral
+ * @file node-ralP
  * @author hefangshi@baidu.com
  * http://fis.baidu.com/
  * 2015/5/10
@@ -9,39 +9,41 @@
 
 'use strict';
 
-var ral = require('./ral.js');
+var ralP = require('./ral.js');
 var assert = require('assert');
 var fs = require('fs');
+var path = require('path');
+var GIF = path.join(__dirname, 'baidu.gif');
 
 // 使用文件流上传图片，不需要等文件完全读完就可以开始上传
-ral('PIC_UPLOAD', {
+ralP('PIC_UPLOAD', {
     data: {
         MAX_FILE_SIZE: 200000000,
-        uploadimg: fs.createReadStream('./baidu.gif')
+        uploadimg: fs.createReadStream(GIF)
     }
-}).on('data', function (data) {
+}).then(function (data) {
     var uploadimg = data.match(/http:\/\/chuantu\.biz\/.*\.gif/img)[0];
     console.log('pic url:', uploadimg);
     assert.ok(uploadimg);
-}).on('error', function (err) {
+}).catch(function (err) {
     assert.fail(err, null);
 });
 
 // 使用Buffer上传图片，需要等待文件全部读入Node后，才可以上传
 
-var picData = fs.readFileSync('./baidu.gif');
+var picData = fs.readFileSync(GIF);
 picData.options = {
     filename: 'whatever.gif'
 };
 
-ral('PIC_UPLOAD', {
+ralP('PIC_UPLOAD', {
     data: {
         MAX_FILE_SIZE: 200000000,
         uploadimg: picData
     }
-}).on('data', function (data) {
+}).then(function (data) {
     var uploadimg = data.match(/http:\/\/chuantu\.biz\/.*\.gif/img)[0];
     assert.ok(uploadimg);
-}).on('error', function (err) {
+}).catch(function (err) {
     assert.fail(err, null);
 });
