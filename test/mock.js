@@ -1,4 +1,8 @@
 /**
+
+
+
+
  * @file node-ral
  * @author hefangshi@baidu.com
  * http://fis.baidu.com/
@@ -205,4 +209,31 @@ describe('mock', function () {
         });
     });
 
+
+    it.only('should dont mock anything when RAL_MOCK is null', function (done) {
+        delete process.env.RAL_MOCK;
+        ral.init({
+            confDir: path.join(__dirname, './ral/config'),
+            mockDir: path.join(__dirname, './ral/mock'),
+            logger: {
+                log_path: path.join(__dirname, '../logs'),
+                app: 'yog-ral'
+            },
+            currentIDC: 'tc'
+        });
+        // should degrade since POST_QS_SERV's enableMock=true
+        var req = ral('POST_QS_SERV', {
+            data: {
+                msg: 'hi',
+                name: '何方石'
+            }
+        });
+        req.on('data', function (data) {
+            done();
+        });
+        req.on('error', function (err) {
+            err.message.should.eql('mock fatal hit');
+            done();
+        });
+    });
 });
