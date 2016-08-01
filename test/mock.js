@@ -210,7 +210,7 @@ describe('mock', function () {
     });
 
 
-    it.only('should dont mock anything when RAL_MOCK is null', function (done) {
+    it('should dont mock anything when RAL_MOCK is null', function (done) {
         delete process.env.RAL_MOCK;
         ral.init({
             confDir: path.join(__dirname, './ral/config'),
