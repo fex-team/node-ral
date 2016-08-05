@@ -110,11 +110,11 @@ module.exports.createServer = function () {
                 }
             }
             response.write(content);
-            var padding = [];
-            for (var i = 0; i < 10000; i++) {
-                padding.push(i);
+            // var padding = [];
+            for (var i = 0; i < 100000; i++) {
+                response.write(i.toString());
             }
-            response.write(padding.join());
+            response.write('end');
             response.end();
         }
         else if (pathname === '/gzip') {

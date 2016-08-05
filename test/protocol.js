@@ -172,7 +172,7 @@ describe('http protocol', function () {
             httpProtocol.talk(context, function (res) {
                 res.on('end', function (data) {
                     server.close();
-                    data.toString().should.be.match(/hear you.*9999$/);
+                    data.toString().should.be.match(/hear you.*end$/);
                     done();
                 });
             });
@@ -188,7 +188,7 @@ describe('http protocol', function () {
             httpProtocol.talk(context, function (res) {
                 res.on('end', function (data) {
                     server.close();
-                    data.toString().should.be.match(/hear you hefangshi.*9999$/);
+                    data.toString().should.be.match(/hear you hefangshi.*end$/);
                     done();
                 });
             });
@@ -204,7 +204,7 @@ describe('http protocol', function () {
             httpProtocol.talk(context, function (res) {
                 res.on('end', function (data) {
                     server.close();
-                    data.toString().should.be.match(/hear you hefangshi.*9999$/);
+                    data.toString().should.be.match(/hear you hefangshi.*end$/);
                     done();
                 });
             });
@@ -287,7 +287,7 @@ describe('http protocol', function () {
                 res.on('end', function (data) {
                     server.close();
                     data.toString().should.be.match(
-                        /hear you hefangshi with file http_protocol_post_test.js.*9999$/);
+                        /hear you hefangshi with file http_protocol_post_test.js.*end$/);
                     done();
                 });
                 res.on('error', function (data) {
@@ -307,7 +307,7 @@ describe('http protocol', function () {
             var request = httpProtocol.talk(context, function (res) {
                 res.on('end', function (data) {
                     server.close();
-                    data.toString().should.be.match(/hear you hefangshi.*9999$/);
+                    data.toString().should.be.match(/hear you hefangshi.*end$/);
                     done();
                 });
 
@@ -329,7 +329,7 @@ describe('http protocol', function () {
                 res.on('end', function (data) {
                     server.close();
                     data.toString().should.be.match(
-                        /hear you �η�ʯ with file http_protocol_post_test.js.*9999$/);
+                        /hear you �η�ʯ with file http_protocol_post_test.js.*end$/);
                     done();
                 });
                 res.on('error', function (data) {

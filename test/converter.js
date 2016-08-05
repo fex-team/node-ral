@@ -233,7 +233,7 @@ describe('formdata converter', function () {
         var request = httpProtocol.talk(options, function (res) {
             res.on('end', function (data2) {
                 server.close();
-                data2.toString().should.be.match(/hear you 张三李四.*9999$/);
+                data2.toString().should.be.match(/hear you 张三李四.*end$/);
                 done();
             });
             res.on('error', function () {
@@ -260,7 +260,7 @@ describe('formdata converter', function () {
         var request = httpProtocol.talk(options, function (res) {
             res.on('end', function (data2) {
                 server.close();
-                data2.toString().should.be.match(/hear you �������.*9999$/);
+                data2.toString().should.be.match(/hear you �������.*end$/);
                 done();
             });
             res.on('error', function () {
@@ -361,7 +361,7 @@ describe('form converter', function () {
         httpProtocol.talk(options, function (res) {
             res.on('end', function (resData) {
                 server.close();
-                resData.toString().should.be.match(/hear you 张三李四.*9999$/);
+                resData.toString().should.be.match(/hear you 张三李四.*end$/);
                 done();
             });
         });
@@ -451,7 +451,7 @@ describe('stream converter', function () {
         var request = httpProtocol.talk(options, function (res) {
             res.on('end', function (data) {
                 server.close();
-                data.toString().should.be.match(/hear you 张三李四.*9999$/);
+                data.toString().should.be.match(/hear you 张三李四.*end$/);
                 done();
             });
             res.on('error', function () {

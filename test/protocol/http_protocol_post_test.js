@@ -169,10 +169,11 @@ module.exports.createServer = function (encoding) {
                 }
                 response.write(content);
                 var padding = [];
-                for (var i = 0; i < 10000; i++) {
-                    padding.push(i);
+                for (var i = 0; i < 100000; i++) {
+                    response.write(i.toString());
                 }
-                response.write(padding.join());
+                response.write('end');
+                // response.write(padding.join());
                 response.end();
             });
             // request.pipe(decodeStream);
