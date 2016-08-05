@@ -698,6 +698,24 @@ describe('ral', function () {
         });
     });
 
+    it('work fine with large data request', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        ral('GET_QS_SERV', {
+            url: 'http://tb1.bdstatic.com/tb/mobile/n/static/beyond/widget/thread-submit/index_8a04bf5.js',
+            unpack: 'string',
+            timeout: 5000,
+            rejectUnauthorized: false
+        }).on('data', function (data) {
+            data.should.match(/\}\);\n$/);
+            done();
+        }).on('error', function (err) {
+            err.should.not.be.ok;
+            done();
+        });
+    });
+
     it('work fine with http url request', function (done) {
         before(function (ok) {
             isInited.on('done', ok);
