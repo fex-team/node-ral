@@ -43,7 +43,7 @@
     "combined-stream": "1.0.5",
     "formidable": "1.0.17",
     "istanbul": "0.4.4",
-    "mocha": "3.0.1",
+    "mocha": "3.0.2",
     "should": "10.0.0"
   }
 }
