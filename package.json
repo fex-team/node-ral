@@ -44,6 +44,6 @@
     "formidable": "1.0.17",
     "istanbul": "0.4.4",
     "mocha": "3.0.2",
-    "should": "11.0.0"
+    "should": "11.1.0"
   }
 }
