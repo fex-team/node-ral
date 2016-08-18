@@ -15,6 +15,6 @@ module.exports.REDIS = {
     timeout: 100,
     server: [{
         host: '127.0.0.1',
-        port: 8324
+        port: 6379
     }]
 };
