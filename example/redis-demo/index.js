@@ -9,7 +9,6 @@
 
 var ralP = require('./ral.js');
 var assert = require('assert');
-
 ralP('REDIS', {
     // 指定SOAP method
     method: 'set',
@@ -18,14 +17,13 @@ ralP('REDIS', {
         value: 'bar'
     }
 }).then(function (data) {
-    console.log(data);
     return ralP('REDIS', {
         // 指定SOAP method
         method: 'get',
         data: {
             key: 'foo',
         }
-    }
+    });
 }).then(function (data) {
     assert.ok(data === 'bar');
     return ralP('REDIS', {
@@ -34,16 +32,16 @@ ralP('REDIS', {
         data: {
             key: 'foo',
         }
-    }
+    });
 }).then(function (data) {
     assert.ok(data === 'bar');
     return ralP('REDIS', {
         // 指定SOAP method
         method: 'get',
         data: 'foo'
-    }
+    });
 }).then(function (data) {
     assert.ok(data === 'bar');
 }).catch(function (err) {
-    assert.fail(err, null);
+    console.log(err);
 });

@@ -14,7 +14,7 @@ module.exports.REDIS = {
     balance: 'random',
     timeout: 100,
     server: [{
-        host: '10.50.82.55',
-        port: 3003
+        host: '127.0.0.1',
+        port: 8324
     }]
 };
