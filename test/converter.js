@@ -19,6 +19,7 @@ var HttpProtocol = require('../lib/ext/protocol/httpProtocol.js');
 var FormConverter = require('../lib/ext/converter/formConverter.js');
 var QueryStringConverter = require('../lib/ext/converter/querystringConverter.js');
 var RawConverter = require('../lib/ext/converter/rawConverter.js');
+var RedisConverter = require('../lib/ext/converter/redisConverter.js');
 var util = require('../lib/util.js');
 var _ = require('underscore');
 var postTest = require('./protocol/http_protocol_post_test.js');
@@ -419,6 +420,84 @@ describe('raw converter', function () {
         var pack = converter.pack({}, data);
         var unpack = converter.unpack({}, pack);
         unpack.toString().should.be.eql('abc');
+    });
+});
+
+describe('redis converter', function () {
+    it('has right name', function () {
+        var converter = new RedisConverter();
+        converter.getName().should.be.equal('redis');
+    });
+
+    it('has right catagory', function () {
+        var converter = new RedisConverter();
+        converter.getCategory().should.be.equal('converter');
+    });
+
+    it('direct pass array data', function () {
+        var converter = new RedisConverter();
+        var data = ['a', 'b'];
+        var pack = converter.pack({}, data);
+        pack.should.be.eql(['a', 'b']);
+    });
+
+    it('convert key value to array data', function () {
+        var converter = new RedisConverter();
+        var data = {
+            key: 'foo',
+            value: 'bar'
+        };
+        var pack = converter.pack({}, data);
+        pack.should.be.eql(['foo', 'bar']);
+    });
+
+    it('convert multi value', function () {
+        var converter = new RedisConverter();
+        var data = {
+            key: 'foo',
+            value: ['bar1', 'bar2']
+        };
+        var pack = converter.pack({}, data);
+        pack.should.be.eql(['foo', 'bar1', 'bar2']);
+    });
+
+    it('convert array value in multi value', function () {
+        var converter = new RedisConverter();
+        var data = {
+            key: 'foo',
+            value: [['bar1'], 'bar2']
+        };
+        var pack = converter.pack({}, data);
+        pack.should.be.eql(['foo', ['bar1'], 'bar2']);
+    });
+
+    it('only use key', function () {
+        var converter = new RedisConverter();
+        var data = {
+            key: 'foo'
+        };
+        var pack = converter.pack({}, data);
+        pack.should.be.eql(['foo']);
+    });
+
+    it('use raw key', function () {
+        var converter = new RedisConverter();
+        var data = 'foo';
+        var pack = converter.pack({}, data);
+        pack.should.be.eql(['foo']);
+    });
+
+    it('invalid param', function () {
+        var converter = new RedisConverter();
+        var data = {
+            foo: 'bar'
+        };
+        try {
+            var pack = converter.pack({}, data);
+            (pack === null).should.be.ok;
+        } catch (e) {
+            e.should.be.ok;
+        }
     });
 });
 
