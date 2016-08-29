@@ -10,7 +10,7 @@
 var ralP = require('./ral.js');
 var assert = require('assert');
 ralP('REDIS', {
-    // 指定SOAP method
+    // redis method
     method: 'set',
     data: {
         key: 'foo',
@@ -18,7 +18,7 @@ ralP('REDIS', {
     }
 }).then(function (data) {
     return ralP('REDIS', {
-        // 指定SOAP method
+        // redis method
         method: 'get',
         data: {
             key: 'foo',
@@ -27,7 +27,7 @@ ralP('REDIS', {
 }).then(function (data) {
     assert.ok(data === 'bar');
     return ralP('REDIS', {
-        // 指定SOAP method
+        // redis method
         method: 'get',
         data: {
             key: 'foo',
@@ -36,7 +36,7 @@ ralP('REDIS', {
 }).then(function (data) {
     assert.ok(data === 'bar');
     return ralP('REDIS', {
-        // 指定SOAP method
+        // redis method
         method: 'get',
         data: 'foo'
     });
