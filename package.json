@@ -33,7 +33,7 @@
     "performance-now": "0.2.0",
     "protobufjs": "5.0.1",
     "redis": "^2.6.2",
-    "soap": "0.13.0",
+    "soap": "0.17.0",
     "underscore": "1.8.3",
     "urlencode": "1.1.0",
     "yog-log": "0.1.1"
