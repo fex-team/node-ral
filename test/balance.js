@@ -193,15 +193,17 @@ describe('hashring balance', function () {
         var balance = new HashringBalance();
         var resultStore = {};
         for (var i = 0; i < 100; i++) {
-            context.balanceKey = i;
-            var server = balance.fetchServer(context);
+            var server = balance.fetchServer(context, {
+                balanceKey: i
+            });
             resultStore[server.index] = resultStore[server.index] || [];
             resultStore[server.index].push(i);
         }
         // 哈希应该是稳定的
         for (i = 0; i < 100; i++) {
-            context.balanceKey = i;
-            server = balance.fetchServer(context);
+            server = balance.fetchServer(context, {
+                balanceKey: i
+            });
             resultStore[server.index].should.containEql(i);
         }
     });
@@ -212,8 +214,9 @@ describe('hashring balance', function () {
         var balance = new HashringBalance();
         var resultStore = {};
         for (var i = 0; i < 100; i++) {
-            context.balanceKey = i;
-            var server = balance.fetchServer(context);
+            var server = balance.fetchServer(context, {
+                balanceKey: i
+            });
             resultStore[server.index] = resultStore[server.index] || [];
             resultStore[server.index].push(i);
         }
@@ -222,8 +225,9 @@ describe('hashring balance', function () {
         var lastServer = context.reqIDCServers.pop();
         context.hashring = null;
         for (i = 0; i < 100; i++) {
-            context.balanceKey = i;
-            server = balance.fetchServer(context);
+            server = balance.fetchServer(context, {
+                balanceKey: i
+            });
             if (resultStore[server.index].indexOf(i) === -1) {
                 resultStore[9].should.containEql(i);
             }
@@ -237,8 +241,9 @@ describe('hashring balance', function () {
         var balance = new HashringBalance();
         var resultStore = {};
         for (var i = 0; i < 100; i++) {
-            context.balanceKey = i;
-            var server = balance.fetchServer(context);
+            var server = balance.fetchServer(context, {
+                balanceKey: i
+            });
             resultStore[server.index] = resultStore[server.index] || [];
             resultStore[server.index].push(i);
         }
@@ -250,8 +255,9 @@ describe('hashring balance', function () {
         });
         context.hashring = null;
         for (i = 0; i < 100; i++) {
-            context.balanceKey = i;
-            server = balance.fetchServer(context);
+            server = balance.fetchServer(context, {
+                balanceKey: i
+            });
             if (server.index !== '10') {
                 resultStore[server.index].should.containEql(i);
             }
@@ -267,10 +273,13 @@ describe('hashring balance', function () {
             throw new Error();
         };
         (function () {
-            context.balanceKey = 1;
-            balance.fetchServer(context);
+            balance.fetchServer(context, {
+                balanceKey: 1
+            });
         }).should.not.throwError();
-        var server = balance.fetchServer(context);
+        var server = balance.fetchServer(context, {
+            balanceKey: 1
+        });
         Math.random = SourceRandom;
         server.should.be.eql(conf.bookService.server[0]);
     });

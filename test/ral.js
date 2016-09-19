@@ -350,7 +350,7 @@ describe('ral', function () {
                     msg: 'hi',
                     name: '何方石'
                 },
-                retry: 2,
+                retry: 0,
                 timeout: 100
             });
             req.on('error', function (err) {
@@ -537,7 +537,7 @@ describe('ral', function () {
             },
             pack: 'stream',
             unpack: 'stream',
-            retry: 2,
+            retry: 0,
             timeout: 100
         }).on('error', function (err) {
             err.message.should.be.match(/invalid pack data/);
@@ -739,7 +739,8 @@ describe('ral', function () {
         before(function (ok) {
             isInited.on('done', ok);
         });
-        ral('hashService', {}).on('data', function (data) {
+        ral('hashService', {
+        }).on('data', function (data) {
             data.should.not.be.ok;
             done();
         }).on('error', function (err) {
