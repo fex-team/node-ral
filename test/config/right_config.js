@@ -8,6 +8,23 @@
 'use strict';
 
 module.exports = {
+    withPortOffset: {
+        unpack: 'json',
+        pack: 'json',
+        // 指定服务端交互的编码格式，由于Node.js环境只支持UTF-8，因此yog-ral会自动进行转码工作
+        encoding: 'GBK',
+        balance: 'random',
+        protocol: 'http',
+        portOffset: 10,
+        server: [{
+            host: 'st.yd.baidu.com',
+            idc: 'st'
+        }, {
+            host: 'tc.yd.baidu.com',
+            port: 70,
+            idc: 'tc'
+        }]
+    },
     bookService: {
         unpack: 'json',
         pack: 'json',

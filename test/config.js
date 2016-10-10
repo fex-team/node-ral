@@ -73,9 +73,8 @@ describe('config loadRawConfr', function () {
 
     it('loadRawConf config with out port', function () {
         var wrongConf = require('./config/wrong_config.js').withoutPort;
-        (function () {
-            config.loadRawConf(wrongConf);
-        }).should.throw(/port/);
+        var conf = config.loadRawConf(wrongConf);
+        conf.bookServiceBNS.server[0].port.should.be.equal(80);
     });
 
     it('loadRawConf config with invalid pack', function () {
@@ -83,6 +82,13 @@ describe('config loadRawConfr', function () {
         (function () {
             config.loadRawConf(wrongConf);
         }).should.throw(/invalid pack/);
+    });
+
+    it('loadRawConf config with portOffset', function () {
+        var rightConf = require('./config/right_config.js');
+        var conf = config.loadRawConf(rightConf);
+        conf.withPortOffset.server[0].port.should.be.equal(90);
+        conf.withPortOffset.server[1].port.should.be.equal(80);
     });
 });
 
