@@ -27,7 +27,7 @@
   "dependencies": {
     "binary-search": "1.3.2",
     "chai": "3.5.0",
-    "form-data": "0.2.0",
+    "form-data": "2.1.1",
     "https-proxy-agent": "1.0.0",
     "iconv-lite": "0.4.13",
     "performance-now": "0.2.0",
