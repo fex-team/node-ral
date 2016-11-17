@@ -762,7 +762,7 @@ describe('ral', function () {
                 logInstance: function () {
                     return {
                         notice: function (msg) {
-                            if (msg.match(/tracecode=1, 2/) && msg.match(/logid=123/)  && msg.match(/none=undefined/)) {
+                            if (msg.match(/tracecode=1/) && msg.match(/logid=123/)  && msg.match(/none=undefined/)) {
                                 done();
                             }
                         },
