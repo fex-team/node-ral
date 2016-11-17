@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "pub": "npm publish --registry=http://registry.npmjs.org",
-    "test": "mocha -t 200000 --check-leaks test/",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot -t 200000 --check-leaks test/",
+    "test": "mocha -t 5000 --check-leaks test/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot -t 5000 --check-leaks test/",
     "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks -t 200000 --slow 0 test/"
   },
   "repository": {

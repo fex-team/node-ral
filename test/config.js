@@ -190,4 +190,17 @@ describe('load config', function () {
         config.getConf('h').query.name.should.equal('dev');
     });
 
+    it('parse customLog', function () {
+        config.clearConf();
+        config.load(path.join(__dirname, './config/customLogConfig'));
+        config.getConf('CUSTOM_LOG').customLog.length.should.equal(3);
+        config.getConf('CUSTOM_LOG').customLog[0].key.should.equal('tracecode');
+        config.getConf('CUSTOM_LOG').customLog[1].key.should.equal('logid');
+        config.getConf('CUSTOM_LOG').customLog[0].param.length.should.equal(4);
+        config.getConf('CUSTOM_LOG').customLog[0].param[0].should.equal("responseContext");
+        config.getConf('CUSTOM_LOG').customLog[0].param[1].should.equal("extras");
+        config.getConf('CUSTOM_LOG').customLog[0].param[2].should.equal("headers");
+        config.getConf('CUSTOM_LOG').customLog[0].param[3].should.equal("tracecode");
+    });
+
 });

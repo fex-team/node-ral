@@ -748,4 +748,52 @@ describe('ral', function () {
             done();
         });
     });
+
+
+    it('log custom log', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        ral.init({
+            confDir: path.join(__dirname, './config/customLogConfig'),
+            logger: {
+                log_path: path.join(__dirname, '../logs'),
+                app: 'yog-ral',
+                logInstance: function () {
+                    return {
+                        notice: function (msg) {
+                            if (msg.match(/tracecode=1, 2/) && msg.match(/logid=123/)  && msg.match(/none=undefined/)) {
+                                done();
+                            }
+                        },
+                        warning: function (msg) {
+                            
+                        },
+                        trace: function (msg) {
+                            
+                        },
+                        fatal: function (msg) {
+                            
+                        },
+                        debug: function (msg) {
+                            
+                        }
+                    }
+                }
+            },
+            currentIDC: 'tc'
+        });
+        var server = require('./mock/customLogServer.js').createCustomLogServier(8399);
+        ral('CUSTOM_LOG', {
+            headers: {
+                x_bd_logid: '123'
+            }
+        }).on('data', function (data) {
+            data.should.be.ok
+            server.close();
+        }).on('error', function (err) {
+            server.close()
+            err.should.be.none;
+        });
+    });
 });
