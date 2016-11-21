@@ -29,7 +29,7 @@
     "chai": "3.5.0",
     "form-data": "0.2.0",
     "https-proxy-agent": "1.0.0",
-    "iconv-lite": "0.4.13",
+    "iconv-lite": "0.4.14",
     "performance-now": "0.2.0",
     "protobufjs": "5.0.1",
     "redis": "^2.6.2",
