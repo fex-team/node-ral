@@ -28,9 +28,9 @@ describe('config loadRawConfr', function () {
 
     it('loadRawConf config without balance', function () {
         var wrongConf = require('./config/wrong_config.js').without_balance;
-        (function () {
-            config.loadRawConf(wrongConf);
-        }).should.throw(/balance/);
+        var conf = config.loadRawConf(wrongConf);
+        conf.bookServiceBNS._isValid.should.be.false;
+        conf.bookServiceBNS._validateFailInfo.should.match(/balance/);
     });
 
     //    it('loadRawConf config without unpack', function() {
@@ -45,30 +45,30 @@ describe('config loadRawConfr', function () {
 
     it('loadRawConf config without protocol', function () {
         var wrongConf = require('./config/wrong_config.js').withoutProtocol;
-        (function () {
-            config.loadRawConf(wrongConf);
-        }).should.throw(/protocol/);
+        var conf = config.loadRawConf(wrongConf);
+        conf.bookServiceBNS._isValid.should.be.false;
+        conf.bookServiceBNS._validateFailInfo.should.match(/protocol/);
     });
 
     it('loadRawConf config with invalid encoding', function () {
         var wrongConf = require('./config/wrong_config.js').withInvalidEncoding;
-        (function () {
-            config.loadRawConf(wrongConf);
-        }).should.throw(/encoding is valid/);
+        var conf = config.loadRawConf(wrongConf);
+        conf.bookServiceBNS._isValid.should.be.false;
+        conf.bookServiceBNS._validateFailInfo.should.match(/encoding is invalid/);
     });
 
     it('loadRawConf config with out server', function () {
         var wrongConf = require('./config/wrong_config.js').withoutServer;
-        (function () {
-            config.loadRawConf(wrongConf);
-        }).should.throw(/server/);
+        var conf = config.loadRawConf(wrongConf);
+        conf.bookServiceBNS._isValid.should.be.false;
+        conf.bookServiceBNS._validateFailInfo.should.match(/server/);
     });
 
     it('loadRawConf config with out server info', function () {
         var wrongConf = require('./config/wrong_config.js').withoutServerInfo;
-        (function () {
-            config.loadRawConf(wrongConf);
-        }).should.throw(/server/);
+        var conf = config.loadRawConf(wrongConf);
+        conf.bookServiceBNS._isValid.should.be.false;
+        conf.bookServiceBNS._validateFailInfo.should.match(/server/);
     });
 
     it('loadRawConf config with out port', function () {
@@ -79,9 +79,9 @@ describe('config loadRawConfr', function () {
 
     it('loadRawConf config with invalid pack', function () {
         var wrongConf = require('./config/wrong_config.js').withInvalidPack;
-        (function () {
-            config.loadRawConf(wrongConf);
-        }).should.throw(/invalid pack/);
+        var conf = config.loadRawConf(wrongConf);
+        conf.bookServiceBNS._isValid.should.be.false;
+        conf.bookServiceBNS._validateFailInfo.should.match(/invalid pack/);
     });
 
     it('loadRawConf config with portOffset', function () {

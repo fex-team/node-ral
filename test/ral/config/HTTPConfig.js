@@ -87,5 +87,14 @@ module.exports = {
             port: 8194,
             idc: 'st'
         }]
-    }
+    },
+    INVALID_SERVICE: {
+        unpack: 'json',
+        pack: 'querystring',
+        method: 'GET',
+        encoding: 'utf-8',
+        balance: 'random',
+        protocol: 'http',
+        query: 'from=ral'
+    },
 };

@@ -371,7 +371,7 @@ describe('ral', function () {
             }
         });
         req.on('error', function (err) {
-            err.toString().should.be.match(/invalid service name/);
+            err.toString().should.be.match(/Invalid service name/);
             done();
         });
     });
@@ -749,6 +749,23 @@ describe('ral', function () {
         });
     });
 
+    it('should throw error when request a invalid service conf', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        if (!global.Promise) {
+            return done();
+        }
+        ralP('INVALID_SERVICE', {
+        }).then(function (data) {
+            data.shoult.not.be.ok;
+            done();
+        }).catch(function (err) {
+            err.toString().should.be.match(/server/);
+            done();
+        });
+    });
+
 
     it('log custom log', function (done) {
         before(function (ok) {
@@ -794,6 +811,54 @@ describe('ral', function () {
         }).on('error', function (err) {
             server.close()
             err.should.be.none;
+        });
+    });
+
+    it('log custom log when error occur', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        ral.init({
+            confDir: path.join(__dirname, './config/customLogConfig'),
+            logger: {
+                log_path: path.join(__dirname, '../logs'),
+                app: 'yog-ral',
+                logInstance: function () {
+                    return {
+                        notice: function (msg) {
+                            if (msg.match(/tracecode=1/) && msg.match(/logid=123/)  && msg.match(/none=undefined/)) {
+                                done();
+                            }
+                        },
+                        warning: function (msg) {
+                            
+                        },
+                        trace: function (msg) {
+                            
+                        },
+                        fatal: function (msg) {
+                            
+                        },
+                        debug: function (msg) {
+                            
+                        }
+                    }
+                }
+            },
+            currentIDC: 'tc'
+        });
+        var server = require('./mock/customLogServer.js').createCustomLogServier(8399);
+        ral('CUSTOM_LOG', {
+            path: '/404',
+            headers: {
+                x_bd_logid: '123'
+            }
+        }).on('data', function (data) {
+            data.should.be.not.ok;
+            server.close();
+        }).on('error', function (err) {
+            server.close()
+            err.should.be.ok;
         });
     });
 });
