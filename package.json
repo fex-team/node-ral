@@ -1,6 +1,6 @@
 {
   "name": "node-ral",
-  "version": "0.17.3",
+  "version": "0.17.4",
   "description": "a rpc client for node",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "https-proxy-agent": "1.0.0",
     "iconv-lite": "0.4.15",
     "performance-now": "0.2.0",
-    "protobufjs": "6.1.1",
+    "protobufjs": "5.0.1",
     "redis": "^2.6.2",
     "soap": "0.13.0",
     "underscore": "1.8.3",
