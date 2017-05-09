@@ -169,7 +169,7 @@ module.exports.createServer = function (encoding) {
                 }
                 response.write(content);
                 var padding = [];
-                for (var i = 0; i < 100000; i++) {
+                for (var i = 0; i < 1000; i++) {
                     response.write(i.toString());
                 }
                 response.write('end');

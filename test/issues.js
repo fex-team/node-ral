@@ -25,6 +25,7 @@ describe('issues', function () {
 
     beforeEach(function () {
         servers.push(server.oddFail(8192));
+        servers.push(server.oddFail(8193));
     });
 
     afterEach(function () {
@@ -62,5 +63,23 @@ describe('issues', function () {
             done();
         });
     });
+
+    it('don\'t retry on same machine', function (done) {
+        before(function (ok) {
+            isInited.on('done', ok);
+        });
+        var req = ral('retry_on_same_machine', {
+            beforeRequest: function (context) {
+                return context;
+            }
+        });
+        req.on('data', function (data) {
+            throw new Error('should be failed')
+        });
+        req.on('error', function (err) {
+            err.should.be.ok();
+            done();
+        });
+    })
 
 });
