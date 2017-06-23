@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "request": "2.79.0",
-    "async": "2.0.1",
+    "async": "2.2.0",
     "combined-stream": "1.0.5",
     "formidable": "1.1.1",
     "istanbul": "0.4.5",
