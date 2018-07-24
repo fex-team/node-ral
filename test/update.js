@@ -94,6 +94,29 @@ describe('config updater', function () {
         }, true);
     });
 
+    (process.env.CI ? it : it.skip)('update configs of shared object successful', function (done) {
+        var fake = {
+            normalizeConfig: function (conf) {
+                return conf;
+            },
+            needUpdate: function () {
+                return true;
+            }
+        };
+        normalizeManager.setConfigNormalizer([fake, 'default']);
+        config.load(path.join(__dirname, './update/config'));
+        config.enableUpdate(300000, true);
+        // read:succ事件在config更新之后才触发
+        configUpdater.once('read:succ', function () {
+            config.disableUpdate();
+            config.getConfNames().map(function (serviceID) {
+                var conf = config.getConf(serviceID);
+                conf.__from__.should.be.startWith('updater');
+            });
+            done();
+        });
+    });
+
     (process.env.CI ? it : it.skip)('auto updater should be triggered when normalizer need update', function (done) {
         var fake = {
             normalizeConfig: function (conf) {
