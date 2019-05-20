@@ -105,6 +105,25 @@ describe('load config', function () {
         conf.should.have.properties('bookService');
     });
 
+    it('load by raw', function () {
+        var conf = config.addConf({
+            "bookService2": {
+                "unpack": "json",
+                "pack": "json",
+                "encoding": "GBK",
+                "balance": "random",
+                "protocol": "http",
+                "server": [{
+                    "host": "st.yd.baidu.com",
+                    "port": 80,
+                    "idc": "st"
+                }]
+            }
+        }
+        );
+        conf.should.have.properties('bookService2');
+    });
+
     it('load by wrong file path', function () {
         (function () {
             config.load(path.join(__dirname, './config/single_config_w.js'));
